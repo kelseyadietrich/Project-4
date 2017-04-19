@@ -16,18 +16,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ResumeAddController">
    <children>
-      <TabPane layoutX="-3.0" layoutY="-4.0" prefHeight="408.0" prefWidth="610.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabs" layoutX="-3.0" layoutY="-4.0" prefHeight="408.0" prefWidth="610.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab style="-fx-background-color: 8389c4;" text="Personal">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="379.0" prefWidth="594.0" style="-fx-background-color: b5bcfc;">
                      <children>
-                        <TextField layoutX="72.0" layoutY="27.0" promptText="John Smith" />
-                        <TextField layoutX="312.0" layoutY="24.0" prefHeight="25.0" prefWidth="288.0" promptText="smithjj@hendrix.edu" />
-                        <TextField layoutX="72.0" layoutY="81.0" promptText="(555)123-4567" />
-                        <TextField layoutX="312.0" layoutY="80.0" prefHeight="25.0" prefWidth="289.0" promptText="1600 Washington Avenue" />
+                        <TextField fx:id="name" layoutX="72.0" layoutY="27.0" promptText="John Smith" />
+                        <TextField fx:id="email" layoutX="312.0" layoutY="24.0" prefHeight="25.0" prefWidth="288.0" promptText="smithjj@hendrix.edu" />
+                        <TextField fx:id="phone" layoutX="72.0" layoutY="81.0" promptText="(555)123-4567" />
+                        <TextField fx:id="userStreet" layoutX="312.0" layoutY="80.0" prefHeight="25.0" prefWidth="289.0" promptText="1600 Washington Avenue" />
                         <Label layoutX="22.0" layoutY="28.0" text="Name:">
                            <font>
                               <Font size="14.0" />
@@ -58,27 +58,27 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="121.0" layoutY="128.0" prefHeight="25.0" prefWidth="51.0" promptText="3309" />
+                        <TextField fx:id="userApt" layoutX="121.0" layoutY="128.0" prefHeight="25.0" prefWidth="51.0" promptText="3309" />
                         <Label layoutX="189.0" layoutY="130.0" text="City:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="224.0" layoutY="128.0" prefHeight="25.0" prefWidth="77.0" promptText="Conway" />
+                        <TextField fx:id="userCity" layoutX="224.0" layoutY="128.0" prefHeight="25.0" prefWidth="77.0" promptText="Conway" />
                         <Label layoutX="317.0" layoutY="131.0" text="State:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="359.0" layoutY="128.0" prefHeight="25.0" prefWidth="97.0" promptText="Arkansas" />
                         <Label layoutX="471.0" layoutY="131.0" text="Zip Code:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="537.0" layoutY="129.0" prefHeight="25.0" prefWidth="63.0" promptText="72032" />
-                        <TextArea layoutX="14.0" layoutY="209.0" prefHeight="131.0" prefWidth="583.0" wrapText="true" />
-                        <Button layoutX="279.0" layoutY="346.0" mnemonicParsing="false" text="Done" />
+                        <TextField fx:id="userZip" layoutX="537.0" layoutY="129.0" prefHeight="25.0" prefWidth="63.0" promptText="72032" />
+                        <TextArea fx:id="userAdditional" layoutX="14.0" layoutY="209.0" prefHeight="131.0" prefWidth="583.0" wrapText="true" />
+                        <Button fx:id="personalDone" layoutX="279.0" layoutY="346.0" mnemonicParsing="false" onAction="#personalDone" text="Done" />
+                        <ChoiceBox fx:id="userState" layoutX="360.0" layoutY="128.0" prefHeight="25.0" prefWidth="95.0" />
                      </children>
                   </AnchorPane>
             </content>
@@ -87,7 +87,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: fcdcb5;">
                      <children>
-                        <TextField layoutX="101.0" layoutY="27.0" prefHeight="25.0" prefWidth="175.0" promptText="Computer Science TA" />
+                        <TextField fx:id="title" layoutX="101.0" layoutY="27.0" prefHeight="25.0" prefWidth="175.0" promptText="Computer Science TA" />
                         <Label layoutX="25.0" layoutY="29.0" text="Job Title:">
                            <font>
                               <Font size="14.0" />
@@ -98,28 +98,28 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="383.0" layoutY="28.0" prefHeight="25.0" prefWidth="170.0" promptText="Hendrix College" />
+                        <TextField fx:id="employer" layoutX="383.0" layoutY="28.0" prefHeight="25.0" prefWidth="170.0" promptText="Hendrix College" />
                         <Label layoutX="25.0" layoutY="88.0" text="Start Date:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <DatePicker layoutX="101.0" layoutY="86.0" promptText="08/23/2016" />
+                        <DatePicker fx:id="jobStart" layoutX="101.0" layoutY="86.0" promptText="08/23/2016" />
                         <Label layoutX="313.0" layoutY="88.0" text="End Date:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <DatePicker layoutX="380.0" layoutY="86.0" promptText="12/12/2016" />
-                        <CheckBox layoutX="383.0" layoutY="119.0" mnemonicParsing="false" text="I Still Work Here" />
+                        <DatePicker fx:id="jobEnd" layoutX="380.0" layoutY="86.0" promptText="12/12/2016" />
+                        <CheckBox fx:id="stillWorks" layoutX="383.0" layoutY="119.0" mnemonicParsing="false" text="I Still Work Here" />
                         <Label layoutX="25.0" layoutY="158.0" text="Job Description:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextArea layoutX="25.0" layoutY="190.0" prefHeight="125.0" prefWidth="560.0" promptText="Computer Science lab assistant and tutor. Assisted students in entry level classes with computer science labs." wrapText="true" />
-                        <Button layoutX="101.0" layoutY="331.0" mnemonicParsing="false" text="Add Another Job" />
-                        <Button layoutX="361.0" layoutY="331.0" mnemonicParsing="false" text="Done" />
+                        <TextArea fx:id="jobAdditional" layoutX="25.0" layoutY="190.0" prefHeight="125.0" prefWidth="560.0" promptText="Computer Science lab assistant and tutor. Assisted students in entry level classes with computer science labs." wrapText="true" />
+                        <Button fx:id="addJob" layoutX="101.0" layoutY="331.0" mnemonicParsing="false" text="Add Another Job" />
+                        <Button fx:id="jobDone" layoutX="361.0" layoutY="331.0" mnemonicParsing="false" text="Done" />
                      </children>
                   </AnchorPane>
             </content>
@@ -195,31 +195,31 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="141.0" layoutY="23.0" prefHeight="25.0" prefWidth="449.0" promptText="Hendrix College" />
+                        <TextField fx:id="school" layoutX="141.0" layoutY="23.0" prefHeight="25.0" prefWidth="449.0" promptText="Hendrix College" />
                         <Label layoutX="23.0" layoutY="180.0" text="Degree:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <ChoiceBox layoutX="82.0" layoutY="179.0" prefWidth="150.0" />
+                        <ChoiceBox fx:id="degree" layoutX="82.0" layoutY="179.0" prefWidth="150.0" />
                         <Label layoutX="22.0" layoutY="64.0" text="Address:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="141.0" layoutY="62.0" prefHeight="25.0" prefWidth="448.0" promptText="1600 Washington Avenue" />
+                        <TextField fx:id="schoolStreet" layoutX="141.0" layoutY="62.0" prefHeight="25.0" prefWidth="448.0" promptText="1600 Washington Avenue" />
                         <Label layoutX="22.0" layoutY="103.0" text="Apt, Suite, Box:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="124.0" layoutY="101.0" prefHeight="25.0" prefWidth="58.0" />
+                        <TextField fx:id="schoolApt" layoutX="124.0" layoutY="101.0" prefHeight="25.0" prefWidth="58.0" />
                         <Label layoutX="199.0" layoutY="103.0" text="City:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="232.0" layoutY="101.0" prefHeight="25.0" prefWidth="76.0" promptText="Conway" />
+                        <TextField fx:id="schoolCity" layoutX="232.0" layoutY="101.0" prefHeight="25.0" prefWidth="76.0" promptText="Conway" />
                         <Label layoutX="319.0" layoutY="104.0" text="State:">
                            <font>
                               <Font size="14.0" />
@@ -230,34 +230,34 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="527.0" layoutY="101.0" prefHeight="25.0" prefWidth="62.0" promptText="72032" />
+                        <TextField fx:id="schoolZip" layoutX="527.0" layoutY="101.0" prefHeight="25.0" prefWidth="62.0" promptText="72032" />
                         <Label layoutX="22.0" layoutY="142.0" text="Dates Attended:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <DatePicker layoutX="130.0" layoutY="140.0" prefHeight="25.0" prefWidth="139.0" promptText="08/23/2013" />
+                        <DatePicker fx:id="eduStart" layoutX="130.0" layoutY="140.0" prefHeight="25.0" prefWidth="139.0" promptText="08/23/2013" />
                         <Label layoutX="289.0" layoutY="143.0" text="to">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <DatePicker layoutX="319.0" layoutY="140.0" prefHeight="25.0" prefWidth="139.0" promptText="05/13/2017" />
-                        <CheckBox layoutX="470.0" layoutY="144.0" mnemonicParsing="false" text="I Still Go Here" />
+                        <DatePicker fx:id="eduEnd" layoutX="319.0" layoutY="140.0" prefHeight="25.0" prefWidth="139.0" promptText="05/13/2017" />
+                        <CheckBox fx:id="stillGoes" layoutX="470.0" layoutY="144.0" mnemonicParsing="false" text="I Still Go Here" />
                         <Label layoutX="295.0" layoutY="229.0">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="23.0" layoutY="219.0" text="Additional Information:">
+                        <Label layoutX="23.0" layoutY="216.0" text="Additional Information:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextArea layoutX="21.0" layoutY="240.0" prefHeight="98.0" prefWidth="569.0" promptText="Chemical Physics major." wrapText="true" />
-                        <Button layoutX="115.0" layoutY="346.0" mnemonicParsing="false" text="Add Another Degree" />
-                        <Button layoutX="328.0" layoutY="346.0" mnemonicParsing="false" text="Done" />
-                        <ChoiceBox layoutX="361.0" layoutY="101.0" prefHeight="25.0" prefWidth="81.0" />
+                        <TextArea fx:id="eduAdditional" layoutX="21.0" layoutY="237.0" prefHeight="98.0" prefWidth="569.0" promptText="Chemical Physics major." wrapText="true" />
+                        <Button fx:id="addEdu" layoutX="115.0" layoutY="344.0" mnemonicParsing="false" text="Add Another Degree" />
+                        <Button fx:id="eduDone" layoutX="328.0" layoutY="344.0" mnemonicParsing="false" text="Done" />
+                        <ChoiceBox fx:id="schoolState" layoutX="361.0" layoutY="101.0" prefHeight="25.0" prefWidth="81.0" />
                      </children>
                   </AnchorPane>
                </content>
