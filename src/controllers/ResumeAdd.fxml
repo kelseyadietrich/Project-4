@@ -123,8 +123,8 @@
                            </font>
                         </Label>
                         <TextArea fx:id="jobAdditional" layoutX="25.0" layoutY="190.0" prefHeight="125.0" prefWidth="560.0" promptText="Computer Science lab assistant and tutor. Assisted students in entry level classes with computer science labs." wrapText="true" />
-                        <Button fx:id="addJob" layoutX="101.0" layoutY="331.0" mnemonicParsing="false" text="Add Another Job" />
-                        <Button fx:id="jobDone" layoutX="361.0" layoutY="331.0" mnemonicParsing="false" onAction="#testReader" text="Done" />
+                        <Button fx:id="addJob" layoutX="101.0" layoutY="331.0" mnemonicParsing="false" onAction="#addWork" text="Add Another Job" />
+                        <Button fx:id="jobDone" layoutX="361.0" layoutY="331.0" mnemonicParsing="false" onAction="#workDone" text="Done" />
                      </children>
                   </AnchorPane>
             </content>
@@ -260,8 +260,8 @@
                            </font>
                         </Label>
                         <TextArea fx:id="eduAdditional" layoutX="21.0" layoutY="237.0" prefHeight="98.0" prefWidth="569.0" promptText="Chemical Physics major." wrapText="true" />
-                        <Button fx:id="addEdu" layoutX="115.0" layoutY="344.0" mnemonicParsing="false" text="Add Another Degree" />
-                        <Button fx:id="eduDone" layoutX="328.0" layoutY="344.0" mnemonicParsing="false" text="Done" />
+                        <Button fx:id="addEdu" layoutX="115.0" layoutY="344.0" mnemonicParsing="false" onAction="#addEdu" text="Add Another Degree" />
+                        <Button fx:id="eduDone" layoutX="328.0" layoutY="344.0" mnemonicParsing="false" onAction="#eduDone" text="Done" />
                         <ChoiceBox fx:id="schoolState" layoutX="361.0" layoutY="101.0" prefHeight="25.0" prefWidth="81.0" />
                      </children>
                   </AnchorPane>
