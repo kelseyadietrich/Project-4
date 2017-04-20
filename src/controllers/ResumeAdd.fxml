@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -21,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ResumeAddController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ResumeAddController">
    <children>
       <TabPane fx:id="tabs" layoutX="-3.0" layoutY="-4.0" prefHeight="408.0" prefWidth="610.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -129,68 +124,6 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Internships">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: b7f7e2;">
-                     <children>
-                        <VBox layoutX="22.0" layoutY="17.0" prefHeight="336.0" prefWidth="567.0">
-                           <children>
-                              <HBox prefHeight="45.0" prefWidth="567.0">
-                                 <children>
-                                    <Label text="Internship Title: " />
-                                    <TextField prefHeight="31.0" prefWidth="143.0">
-                                       <HBox.margin>
-                                          <Insets right="35.0" />
-                                       </HBox.margin>
-                                    </TextField>
-                                    <Label text="Internship Address: " />
-                                    <TextField prefHeight="31.0" prefWidth="149.0" />
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="45.0" prefWidth="567.0">
-                                 <children>
-                                    <Label text="Internship Contact: " />
-                                    <TextField>
-                                       <HBox.margin>
-                                          <Insets right="35.0" />
-                                       </HBox.margin>
-                                    </TextField>
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="25.0" prefWidth="567.0">
-                                 <children>
-                                    <Label text="Skills Gained:" />
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="162.0" prefWidth="567.0">
-                                 <children>
-                                    <TextArea prefHeight="145.0" prefWidth="543.0">
-                                       <HBox.margin>
-                                          <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
-                                       </HBox.margin>
-                                    </TextArea>
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="42.0" prefWidth="567.0">
-                                 <children>
-                                    <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="144.0" text="Add">
-                                       <HBox.margin>
-                                          <Insets bottom="20.0" left="20.0" right="138.0" top="20.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                    <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="144.0" text="Done">
-                                       <HBox.margin>
-                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
             <Tab text="Education">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: fcb5b5;">
@@ -267,7 +200,71 @@
                   </AnchorPane>
                </content>
             </Tab>
+            <Tab text="Internships">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: b7f7e2;">
+                     <children>
+                        <VBox layoutX="22.0" layoutY="17.0" prefHeight="336.0" prefWidth="567.0">
+                           <children>
+                              <HBox prefHeight="45.0" prefWidth="567.0">
+                                 <children>
+                                    <Label text="Internship Title: " />
+                                    <TextField prefHeight="31.0" prefWidth="143.0">
+                                       <HBox.margin>
+                                          <Insets right="35.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Label text="Internship Address: " />
+                                    <TextField prefHeight="31.0" prefWidth="149.0" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="45.0" prefWidth="567.0">
+                                 <children>
+                                    <Label text="Internship Contact: " />
+                                    <TextField>
+                                       <HBox.margin>
+                                          <Insets right="35.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="25.0" prefWidth="567.0">
+                                 <children>
+                                    <Label text="Skills Gained:" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="162.0" prefWidth="567.0">
+                                 <children>
+                                    <TextArea prefHeight="145.0" prefWidth="543.0">
+                                       <HBox.margin>
+                                          <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                       </HBox.margin>
+                                    </TextArea>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="42.0" prefWidth="567.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="144.0" text="Add">
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="20.0" right="138.0" top="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="144.0" text="Done">
+                                       <HBox.margin>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
+      <Label layoutX="170.0" layoutY="410.0" text="Done adding information to resume? Click" />
+      <Label layoutX="399.0" layoutY="410.0" text="HERE" textFill="#0c1cf2" />
    </children>
 </Pane>
