@@ -32,18 +32,41 @@ public class Parser {
 		document.write("<br><br>");
 		document.write("<h2>Objective</h2>");
 		document.write(user.getAdditional());
+		document.write("<br><br>");
 		
 	}
 	
-	public void parseWork() {
-		
+	public void parseWork(Work work) {
+		document.write("<h2>Experience</h2>");
+		String title = work.getTitle();
+		title = title.toUpperCase();
+		String company = work.getEmployer();
+		company.toUpperCase();
+		String start = work.getStart();
+		start.toUpperCase();
+		String end = work.getEnd();
+		end.toUpperCase();
+		document.write("<h3>" + title + " | " + company + " | " + start + " - " + end);
+		document.write("<ul>");
+		document.write("<li>" + work.getDescrip() + "</ul> ");
+	
 	}
 	
-	public void parseIntern() {
+	public void parseEducation(Education edu) {
+		document.write("<h2>Education</h2>");
+		//<h3>DEGREE | DATE EARNED | SCHOOL </h3>
+		String degree = edu.getDegree();
+		degree = degree.toUpperCase();
+		String date = edu.getEnd();
+		date = date.toUpperCase();
+		String school = edu.getSchool();
+		school.toUpperCase();
 		
-	}
-	
-	public void parseEducation() {
+		document.write("<h3>" + degree + " | " + date + " | " + school + "</h3>");
+		document.write("<ul>");
+		document.write("<li>Major: " + edu.getMajor());
+		document.write("<li>Minor: " + edu.getMinor());
+		document.write("<li>Additional: " + edu.getAdditional() + "</ul>");
 		
 	}
 
