@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import resume.Reader;
+import resume.DocHandler;
 
 import java.io.IOException;
 
@@ -21,11 +21,11 @@ public class WebController {
 	
 	@FXML WebView view;
 	
-	Reader reader;
+	DocHandler reader;
 
 	@FXML
 	void initialize() {
-			reader = new Reader();
+			reader = new DocHandler();
 		    try {
 				String toSend = reader.read();
 				 WebEngine webEngine = view.getEngine();

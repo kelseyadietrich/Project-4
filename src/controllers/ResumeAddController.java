@@ -1,11 +1,13 @@
 package controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import resume.DocHandler;
 import resume.User;
 
 public class ResumeAddController {
@@ -79,6 +81,7 @@ public class ResumeAddController {
 	@FXML
 	TabPane tabs;
 	User personal;
+	
 	List<String> States = new ArrayList<>(Arrays.asList("States", "Alabama", "Alaska", "Arizona",
 			"Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
 			"Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
@@ -90,12 +93,14 @@ public class ResumeAddController {
 	List<String> Degrees = new ArrayList<>(Arrays.asList("Degrees", "GED", "High School Diploma",
 			"Vocational", "Assosciates", "Bachelors", "Masters", "Doctorate"));
 
+	DocHandler document;
 	//////////////////////////////////////////////////////////////
 
 	@FXML
 	public void initialize(){
 		fillStates();
 		fillDegrees();
+		document = new DocHandler();
 	}
 
 	private void fillDegrees() {
@@ -132,6 +137,16 @@ public class ResumeAddController {
 							configureUserAddress(), userAdditional.getText());
 		tabs.getSelectionModel().select(1);
 		System.out.println(personal.toString());
+	}
+	
+	@FXML
+	public void testReader() {
+		try {
+			System.out.println(document.read());
+		} catch (IOException e) {
+			System.out.println("Failed to read file");
+			e.printStackTrace();
+		}
 	}
 
 }

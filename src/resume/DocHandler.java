@@ -1,11 +1,17 @@
 package resume;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
-public class Reader {
+import javafx.stage.Window;
+
+public class DocHandler {
+	
+	public FileWriter fileWriter;
 	
 	public String read() throws IOException {
 		
@@ -18,6 +24,22 @@ public class Reader {
 	         html += file.readLine();
 	     }
 	     return html;
+	}
+	
+	public void write(String s) {
+			try {
+					fileWriter = new FileWriter("HTML.txt");
+					fileWriter.write(s);
+					fileWriter.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+	}
+	
+
+	public void done() throws IOException {
+		fileWriter.close();
+	
 	}
 
 
