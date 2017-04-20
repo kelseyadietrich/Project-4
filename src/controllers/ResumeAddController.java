@@ -7,7 +7,6 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import resume.User;
-import resume.Work;
 
 public class ResumeAddController {
 	/////////// PERSONAL TAB ///////////////
@@ -80,7 +79,6 @@ public class ResumeAddController {
 	@FXML
 	TabPane tabs;
 	User personal;
-	ArrayList<Work> work = new ArrayList<Work>();
 	List<String> States = new ArrayList<>(Arrays.asList("States", "Alabama", "Alaska", "Arizona",
 			"Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
 			"Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
@@ -134,23 +132,6 @@ public class ResumeAddController {
 							configureUserAddress(), userAdditional.getText());
 		tabs.getSelectionModel().select(1);
 		System.out.println(personal.toString());
-	}
-
-	public void addWork(){
-		work.add(new Work(title.getText(), employer.getText(), (jobStart.getValue() == null)?"":jobStart.getValue().toString(),
-				(jobEnd.getValue() == null)?"":jobEnd.getValue().toString(), jobAdditional.getText(),
-				 stillWorks.isSelected()));
-		title.setText("");
-		employer.setText("");
-		jobStart.setValue(null);
-		jobEnd.setValue(null);
-		jobAdditional.setText("");
-		stillWorks.setSelected(false);
-	}
-	@FXML
-	public void workDone(){
-		addWork();
-		tabs.getSelectionModel().select(2);
 	}
 
 }
