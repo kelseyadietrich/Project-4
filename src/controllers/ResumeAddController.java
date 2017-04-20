@@ -7,8 +7,7 @@ import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import resume.DocHandler;
-import resume.User;
+import resume.*;
 
 public class ResumeAddController {
 	/////////// PERSONAL TAB ///////////////
@@ -81,7 +80,9 @@ public class ResumeAddController {
 	@FXML
 	TabPane tabs;
 	User personal;
-	
+	ArrayList<Work> work = new ArrayList<Work>();
+	ArrayList<Education> edu = new ArrayList<Education>();
+
 	List<String> States = new ArrayList<>(Arrays.asList("States", "Alabama", "Alaska", "Arizona",
 			"Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
 			"Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
@@ -121,7 +122,7 @@ public class ResumeAddController {
 	}
 
 	@FXML
-	public String configureUserAddress(){
+	public String getUserAddress(){
 		String street, apt, city, state, zip;
 		street = userStreet.getText();
 		apt = "," + userApt.getText();
@@ -132,13 +133,67 @@ public class ResumeAddController {
 	}
 
 	@FXML
+	public String getSchoolAddress(){
+		String street, apt, city, state, zip;
+		street = schoolStreet.getText();
+		apt = "," + schoolApt.getText();
+		city  = "," + schoolCity.getText();
+		state = "," + schoolState.getSelectionModel().getSelectedItem();
+		zip = "," + schoolZip.getText();
+		return street + apt + city + state + zip;
+	}
+
+	@FXML
+	public void addWork(){
+	    work.add(new Work(title.getText(), employer.getText(), (jobStart.getValue() == null)?"":jobStart.getValue().toString(),
+	        (jobEnd.getValue() == null)?"":jobEnd.getValue().toString(), jobAdditional.getText(),
+	         stillWorks.isSelected()));
+	    title.setText("");
+	    employer.setText("");
+	    jobStart.setValue(null);
+	    jobEnd.setValue(null);
+	    jobAdditional.setText("");
+	    stillWorks.setSelected(false);
+	}
+
+	@FXML
+	public void addEdu(){
+		edu.add(new Education(school.getText(), getSchoolAddress(), (eduStart.getValue() == null)?"":eduStart.getValue().toString(),
+				(eduEnd.getValue() == null)?"":eduEnd.getValue().toString(), degree.getSelectionModel().getSelectedItem(),
+				 eduAdditional.getText(), stillGoes.isSelected()));
+		school.setText("");
+		schoolStreet.setText("");
+		schoolApt.setText("");
+		schoolCity.setText("");
+		schoolState.getSelectionModel().selectFirst();
+		schoolZip.setText("");
+		eduStart.setValue(null);
+		eduEnd.setValue(null);
+		degree.getSelectionModel().selectFirst();
+		eduAdditional.setText("");
+		stillGoes.setSelected(false);
+	}
+
+	@FXML
 	public void personalDone(){
 		personal = new User(name.getText(), email.getText(), phone.getText(),
-							configureUserAddress(), userAdditional.getText());
+							getUserAddress(), userAdditional.getText());
 		tabs.getSelectionModel().select(1);
 		System.out.println(personal.toString());
 	}
-	
+
+	@FXML
+	public void workDone(){
+	    addWork();
+	    tabs.getSelectionModel().select(2);
+	}
+
+	@FXML
+	public void eduDone(){
+		addEdu();
+		tabs.getSelectionModel().selectFirst();
+	}
+
 	@FXML
 	public void testReader() {
 		try {
