@@ -1,4 +1,4 @@
-package controllers;
+package resumeViewer;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -29,7 +29,8 @@ public class ResumeViewer {
 		ScrollPane scrollPane = new ScrollPane();
 	    scrollPane.setContent(this.browser);
 	    
-	    webEngine.load(filelocation);
+	    String url = ResumeViewer.class.getResource(filelocation).toExternalForm();
+	    webEngine.load(url);
 
 	    scene.setRoot(scrollPane);
 
