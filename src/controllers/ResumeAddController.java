@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -259,21 +260,24 @@ public class ResumeAddController {
 	public void makeResume() {
 		Parser parser = new Parser();
 		parser.initialize();
-		parser.parsePersonal(personal);
-		for (int i = 0; i < work.size(); i++) {
-			parser.parseWork(work.get(i));
+		try{
+			parser.parsePersonal(personal);
+			for (int i = 0; i < work.size(); i++) {
+				parser.parseWork(work.get(i));
+			}
+			for (int e = 0; e < edu.size(); e++) {
+				parser.parseEducation(edu.get(e));
+			}
+			ResumeViewer myViewer = new ResumeViewer();
+			here.setOnAction(event -> {
+				myViewer.DisplayContentsOf("src/HTML.html");
+			});
+		} catch (Exception exc) {
+			Alert r = new Alert(AlertType.NONE, "Are you sure you're done? You haven't "
+								+ "entered any information." , ButtonType.OK);
+			r.setTitle("ERROR");
+			r.showAndWait();
 		}
-		for (int e = 0; e < edu.size(); e++) {
-			parser.parseEducation(edu.get(e));
-		}
-
-
-		ResumeViewer myViewer = new ResumeViewer();
-		here.setOnAction(event -> {
-			myViewer.DisplayContentsOf("src/HTML.html");
-		});
-
-
 	}
 
 }
