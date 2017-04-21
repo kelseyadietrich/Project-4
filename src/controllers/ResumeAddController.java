@@ -86,17 +86,37 @@ public class ResumeAddController {
 	Button eduDone;
 	@FXML
 	TextField major;
-	@FXML 
+	@FXML
 	TextField minor;
-
+	//////////// SKILLS TAB ////////////////////
+	@FXML
+	TextField skill1;
+	@FXML
+	TextField skill2;
+	@FXML
+	TextField skill3;
+	@FXML
+	TextField skill4;
+	@FXML
+	TextField skill5;
+	@FXML
+	TextField skill6;
+	@FXML
+	TextField skill7;
+	@FXML
+	Button addSkills;
+	@FXML
+	Button skillsDone;
 	//////////// OTHER VARIABLES ////////////////////////
 	@FXML
 	Button here;
 	@FXML
 	TabPane tabs;
 	User personal;
+
 	ArrayList<Work> work = new ArrayList<Work>();
 	ArrayList<Education> edu = new ArrayList<Education>();
+	ArrayList<String> skills = new ArrayList<String>();
 
 	List<String> States = new ArrayList<>(Arrays.asList("States", "Alabama", "Alaska", "Arizona",
 			"Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
@@ -192,6 +212,24 @@ public class ResumeAddController {
 	}
 
 	@FXML
+	public void addSkills(){
+		if(skill1.getText() != "") skills.add(skill1.getText());
+		if(skill2.getText() != "") skills.add(skill2.getText());
+		if(skill3.getText() != "") skills.add(skill3.getText());
+		if(skill4.getText() != "") skills.add(skill4.getText());
+		if(skill5.getText() != "") skills.add(skill5.getText());
+		if(skill6.getText() != "") skills.add(skill6.getText());
+		if(skill7.getText() != "") skills.add(skill7.getText());
+		skill1.setText("");
+		skill2.setText("");
+		skill3.setText("");
+		skill4.setText("");
+		skill5.setText("");
+		skill6.setText("");
+		skill7.setText("");
+	}
+
+	@FXML
 	public void personalDone(){
 		personal = new User(name.getText(), email.getText(), phone.getText(),
 							getUserAddress(), userAdditional.getText());
@@ -208,6 +246,12 @@ public class ResumeAddController {
 	@FXML
 	public void eduDone(){
 		addEdu();
+		tabs.getSelectionModel().select(3);
+	}
+
+	@FXML
+	public void skillsDone(){
+		addSkills();
 		tabs.getSelectionModel().selectFirst();
 	}
 
@@ -222,14 +266,14 @@ public class ResumeAddController {
 		for (int e = 0; e < edu.size(); e++) {
 			parser.parseEducation(edu.get(e));
 		}
-		
-		
+
+
 		ResumeViewer myViewer = new ResumeViewer();
 		here.setOnAction(event -> {
 			myViewer.DisplayContentsOf("../resume/HTML.html");
 		});
-		
-		
+
+
 	}
 
 }
