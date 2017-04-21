@@ -24,6 +24,7 @@ public class DocHandler {
 					fileWriter.write(s);
 					fileWriter.close();
 			} catch (IOException ex) {
+				System.out.println("Failed to write");
 				ex.printStackTrace();
 			}
 	}
