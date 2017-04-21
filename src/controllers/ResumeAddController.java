@@ -281,7 +281,7 @@ public class ResumeAddController {
 	public void callView() {
 		ResumeViewer myViewer = new ResumeViewer();
 		here.setOnAction(event -> {
-			myViewer.DisplayContentsOf("src/HTML.html");
+			myViewer.DisplayContentsOf("../HTML.html");
 		});
 	}
 

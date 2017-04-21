@@ -14,7 +14,7 @@ public class ReadIn {
 	
 	public static String readFile() throws FileNotFoundException {
 		String read = "";
-		Scanner fileScanner = new Scanner(new File("src/HTML.html"));
+		Scanner fileScanner = new Scanner(new File("../HTML.html"));
 		while (fileScanner.hasNextLine()) {
 			read += fileScanner.nextLine();
 		}
