@@ -206,13 +206,13 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="schoolApt1" layoutX="299.0" layoutY="185.0" prefHeight="31.0" prefWidth="82.0" />
+                        <TextField fx:id="major" layoutX="299.0" layoutY="185.0" prefHeight="31.0" prefWidth="82.0" />
                         <Label layoutX="412.0" layoutY="192.0" text="Minor:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="schoolApt11" layoutX="458.0" layoutY="186.0" prefHeight="31.0" prefWidth="82.0" />
+                        <TextField fx:id="minor" layoutX="458.0" layoutY="186.0" prefHeight="31.0" prefWidth="82.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -271,6 +271,6 @@
         </tabs>
       </TabPane>
       <Label layoutX="170.0" layoutY="410.0" text="Done adding information to resume? Click" />
-      <Label layoutX="399.0" layoutY="410.0" text="HERE" textFill="#0c1cf2" />
+      <Label fx:id="here" layoutX="457.0" layoutY="409.0" onMouseClicked="#makeResume" text="HERE" textFill="#0c1cf2" />
    </children>
 </Pane>

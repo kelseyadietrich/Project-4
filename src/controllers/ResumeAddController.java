@@ -1,13 +1,21 @@
 package controllers;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import resume.*;
+import resumeViewer.ExampleMain;
+import resumeViewer.LaunchResumeExampleController;
 
 public class ResumeAddController {
 	/////////// PERSONAL TAB ///////////////
@@ -75,8 +83,14 @@ public class ResumeAddController {
 	Button addEdu;
 	@FXML
 	Button eduDone;
+	@FXML
+	TextField major;
+	@FXML 
+	TextField minor;
 
 	//////////// OTHER VARIABLES ////////////////////////
+	@FXML
+	Label here;
 	@FXML
 	TabPane tabs;
 	User personal;
@@ -160,7 +174,7 @@ public class ResumeAddController {
 	public void addEdu(){
 		edu.add(new Education(school.getText(), getSchoolAddress(), (eduStart.getValue() == null)?"":eduStart.getValue().toString(),
 				(eduEnd.getValue() == null)?"":eduEnd.getValue().toString(), degree.getSelectionModel().getSelectedItem(),
-				 eduAdditional.getText(), stillGoes.isSelected()));
+				 eduAdditional.getText(), stillGoes.isSelected(), major.getText(), minor.getText()));
 		school.setText("");
 		schoolStreet.setText("");
 		schoolApt.setText("");
@@ -172,6 +186,8 @@ public class ResumeAddController {
 		degree.getSelectionModel().selectFirst();
 		eduAdditional.setText("");
 		stillGoes.setSelected(false);
+		major.setText("");
+		minor.setText("");
 	}
 
 	@FXML
@@ -195,13 +211,24 @@ public class ResumeAddController {
 	}
 
 	@FXML
-	public void testReader() {
+	public void makeResume() {
 		try {
-			System.out.println(document.read());
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(ExampleMain.class.getResource("../resumeViewer/LaunchResumeExample.fxml"));
+			AnchorPane root;
+			root = (AnchorPane) loader.load();
+			LaunchResumeExampleController preview = (LaunchResumeExampleController)loader.getController();
+
+			Stage secondStage = new Stage();
+			Scene scene = new Scene(root, 507, 300);
+			secondStage.setScene(scene);
+			secondStage.show();
 		} catch (IOException e) {
-			System.out.println("Failed to read file");
+			System.out.println("Could not launch resume preview!");
 			e.printStackTrace();
 		}
+		
+		
 	}
 
 }
