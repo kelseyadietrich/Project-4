@@ -271,6 +271,6 @@
         </tabs>
       </TabPane>
       <Label layoutX="170.0" layoutY="410.0" text="Done adding information to resume? Click" />
-      <Label fx:id="here" layoutX="457.0" layoutY="409.0" onMouseClicked="#makeResume" text="HERE" textFill="#0c1cf2" />
+      <Button fx:id="here" layoutX="462.0" layoutY="395.0" mnemonicParsing="false" onAction="#makeResume" text="Button" />
    </children>
 </Pane>

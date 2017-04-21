@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import resume.*;
 import resumeViewer.ExampleMain;
 import resumeViewer.LaunchResumeExampleController;
+import resumeViewer.ResumeViewer;
 
 public class ResumeAddController {
 	/////////// PERSONAL TAB ///////////////
@@ -90,7 +91,7 @@ public class ResumeAddController {
 
 	//////////// OTHER VARIABLES ////////////////////////
 	@FXML
-	Label here;
+	Button here;
 	@FXML
 	TabPane tabs;
 	User personal;
@@ -212,21 +213,21 @@ public class ResumeAddController {
 
 	@FXML
 	public void makeResume() {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(ExampleMain.class.getResource("../resumeViewer/LaunchResumeExample.fxml"));
-			AnchorPane root;
-			root = (AnchorPane) loader.load();
-			LaunchResumeExampleController preview = (LaunchResumeExampleController)loader.getController();
-
-			Stage secondStage = new Stage();
-			Scene scene = new Scene(root, 507, 300);
-			secondStage.setScene(scene);
-			secondStage.show();
-		} catch (IOException e) {
-			System.out.println("Could not launch resume preview!");
-			e.printStackTrace();
+		Parser parser = new Parser();
+		parser.initialize(personal);
+		parser.parsePersonal();
+		for (int i = 0; i < work.size(); i++) {
+			parser.parseWork(work.get(i));
 		}
+		for (int e = 0; e < edu.size(); e++) {
+			parser.parseEducation(edu.get(e));
+		}
+		
+		
+		ResumeViewer myViewer = new ResumeViewer();
+		here.setOnAction(event -> {
+			myViewer.DisplayContentsOf("../resume/HTML.html");
+		});
 		
 		
 	}
