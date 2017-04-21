@@ -34,7 +34,7 @@ public class ResumeViewer {
 		 	    webEngine.load(url);
 	    } catch (Exception exc) {
 	    	exc.printStackTrace();
-	    	System.out.println("wtf bro, ResumeViewer fucked up");
+	    	System.out.println("wt bro, ResumeViewer up");
 	    }
 
 

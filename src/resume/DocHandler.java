@@ -20,6 +20,7 @@ public class DocHandler {
 	
 	public void write(String s) {
 			try {
+					System.out.println(s);
 					fileWriter = new FileWriter("../HTML.html");
 					fileWriter.write(s);
 					fileWriter.close();
