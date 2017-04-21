@@ -24,9 +24,10 @@ public class TestDocHandler {
  		document.write("This is just a test motherfucker");
  		try {
 			String text = document.read();
+			System.out.println(text);
 			assertEquals("This is just a test motherfucker", text);
 		} catch (IOException e) {
-			System.out.println("Failed test");
+			fail("Failed test");
 			e.printStackTrace();
 		}
  	}
