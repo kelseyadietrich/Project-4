@@ -258,7 +258,7 @@ public class ResumeAddController {
 
 	@FXML
 	public void makeResume() {
-		Parser parser = new Parser();
+	/*	Parser parser = new Parser();
 		parser.initialize();
 		try{
 			parser.parsePersonal(personal);
@@ -268,7 +268,6 @@ public class ResumeAddController {
 			for (int e = 0; e < edu.size(); e++) {
 				parser.parseEducation(edu.get(e));
 			}
-			callView();
 
 		} catch (Exception exc) {
 			Alert r = new Alert(AlertType.NONE, "Are you sure you're done? You haven't "
@@ -276,6 +275,8 @@ public class ResumeAddController {
 			r.setTitle("ERROR");
 			r.showAndWait();
 		}
+		parser.finalize();*/
+		callView();
 	}
 	
 	public void callView() {
