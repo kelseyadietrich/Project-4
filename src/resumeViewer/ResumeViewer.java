@@ -29,8 +29,14 @@ public class ResumeViewer {
 		ScrollPane scrollPane = new ScrollPane();
 	    scrollPane.setContent(this.browser);
 	    
-	    String url = ResumeViewer.class.getResource(filelocation).toExternalForm();
-	    webEngine.load(url);
+	    try {
+	    	 String url = ResumeViewer.class.getResource(filelocation).toExternalForm();
+		 	    webEngine.load(url);
+	    } catch (Exception exc) {
+	    	exc.printStackTrace();
+	    	System.out.println("wtf bro, ResumeViewer fucked up");
+	    }
+
 
 	    scene.setRoot(scrollPane);
 

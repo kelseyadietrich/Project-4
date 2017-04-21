@@ -268,16 +268,21 @@ public class ResumeAddController {
 			for (int e = 0; e < edu.size(); e++) {
 				parser.parseEducation(edu.get(e));
 			}
-			ResumeViewer myViewer = new ResumeViewer();
-			here.setOnAction(event -> {
-				myViewer.DisplayContentsOf("src/HTML.html");
-			});
+			callView();
+
 		} catch (Exception exc) {
 			Alert r = new Alert(AlertType.NONE, "Are you sure you're done? You haven't "
 								+ "entered any information." , ButtonType.OK);
 			r.setTitle("ERROR");
 			r.showAndWait();
 		}
+	}
+	
+	public void callView() {
+		ResumeViewer myViewer = new ResumeViewer();
+		here.setOnAction(event -> {
+			myViewer.DisplayContentsOf("src/HTML.html");
+		});
 	}
 
 }
