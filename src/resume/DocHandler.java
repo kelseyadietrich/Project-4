@@ -14,24 +14,17 @@ public class DocHandler {
 	public FileWriter fileWriter;
 	
 	public String read() throws IOException {
+		return ReadIn.readFile();
 		
-		FileReader in = new FileReader("HTML.txt");
-		BufferedReader file = new BufferedReader(in);
-	     
-		String html = ""; 	 
-				 
-	     while ((file.readLine()) != null) {
-	         html += file.readLine();
-	     }
-	     return html;
 	}
 	
 	public void write(String s) {
 			try {
-					fileWriter = new FileWriter("HTML.txt");
+					fileWriter = new FileWriter("src/HTML.html");
 					fileWriter.write(s);
 					fileWriter.close();
 			} catch (IOException ex) {
+				System.out.println("Failed to write");
 				ex.printStackTrace();
 			}
 	}

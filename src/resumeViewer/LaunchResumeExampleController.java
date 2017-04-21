@@ -15,7 +15,7 @@ public class LaunchResumeExampleController {
 	void initialize(){
 		ResumeViewer myViewer = new ResumeViewer();
 		launch.setOnAction(event -> {
-			myViewer.DisplayContentsOf("HTML.html");
+			myViewer.DisplayContentsOf("src/HTML.html");
 		});
 		
 	}

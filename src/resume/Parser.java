@@ -9,9 +9,8 @@ public class Parser {
 	public DocHandler document;
 	public User user;
 	
-	public void initialize(User u) {
+	public void initialize() {
 		this.document = new DocHandler();
-		this.user = u;
 		document.write("<style>");
 		document.write("h1 {color: #2a7b88;font-size: 30pt;font-family: Cambria;font-style: italic;}");
 		document.write("body {font-family: Cambria;font-size: 11pt;}");
@@ -21,7 +20,7 @@ public class Parser {
 		
 	}
 	
-	public void parsePersonal() {
+	public void parsePersonal(User user) {
 		String name = user.getName();
 		name.toUpperCase();
 		document.write("<h1>" + name + "</h1>");

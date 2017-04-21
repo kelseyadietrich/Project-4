@@ -258,8 +258,8 @@ public class ResumeAddController {
 	@FXML
 	public void makeResume() {
 		Parser parser = new Parser();
-		parser.initialize(personal);
-		parser.parsePersonal();
+		parser.initialize();
+		parser.parsePersonal(personal);
 		for (int i = 0; i < work.size(); i++) {
 			parser.parseWork(work.get(i));
 		}
@@ -270,7 +270,7 @@ public class ResumeAddController {
 
 		ResumeViewer myViewer = new ResumeViewer();
 		here.setOnAction(event -> {
-			myViewer.DisplayContentsOf("../resume/HTML.html");
+			myViewer.DisplayContentsOf("src/HTML.html");
 		});
 
 
