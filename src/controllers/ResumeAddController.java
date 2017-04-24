@@ -276,14 +276,16 @@ public class ResumeAddController {
 			r.showAndWait();
 		}
 		parser.finalize();
+		System.out.println("Calling view");
 		callView();
 	}
 	
 	public void callView() {
 		ResumeViewer myViewer = new ResumeViewer();
-		here.setOnAction(event -> {
+		//here.setOnAction(event -> {
+			System.out.println("Displaying content");
 			myViewer.DisplayContentsOf("../HTML.html");
-		});
+		//});
 	}
 
 }

@@ -1,5 +1,7 @@
 package resumeViewer;
 
+import java.io.File;
+
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
@@ -30,18 +32,23 @@ public class ResumeViewer {
 	    scrollPane.setContent(this.browser);
 	    
 	    try {
-	    	 String url = ResumeViewer.class.getResource(filelocation).toExternalForm();
-		 	    webEngine.load(url);
+	    	File where = new File(filelocation);
+	    	String url = where.toURI().toString();
+	    	System.out.println("url:" + url);
+	    	webEngine.load(url);
+	    	 //String url = ResumeViewer.class.getResource(filelocation).toExternalForm();
+	    	 //webEngine.load(url);
+		 	 scene.setRoot(scrollPane);
+
+			 webStage.setScene(scene);
+			 webStage.show();
 	    } catch (Exception exc) {
 	    	exc.printStackTrace();
 	    	System.out.println("wt bro, ResumeViewer up");
 	    }
 
 
-	    scene.setRoot(scrollPane);
-
-	    webStage.setScene(scene);
-	    webStage.show();
+	    
 	} 
 
 }
