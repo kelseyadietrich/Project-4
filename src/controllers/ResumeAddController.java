@@ -278,7 +278,7 @@ public class ResumeAddController {
 		parser.finalize();*/
 		callView();
 	}
-	
+
 	public void callView() {
 		ResumeViewer myViewer = new ResumeViewer();
 		here.setOnAction(event -> {
