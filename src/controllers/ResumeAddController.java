@@ -258,7 +258,7 @@ public class ResumeAddController {
 
 	@FXML
 	public void makeResume() {
-	/*	Parser parser = new Parser();
+		Parser parser = new Parser();
 		parser.initialize();
 		try{
 			parser.parsePersonal(personal);
@@ -275,15 +275,17 @@ public class ResumeAddController {
 			r.setTitle("ERROR");
 			r.showAndWait();
 		}
-		parser.finalize();*/
+		parser.finalize();
+		System.out.println("Calling view");
 		callView();
 	}
 
 	public void callView() {
 		ResumeViewer myViewer = new ResumeViewer();
-		here.setOnAction(event -> {
+		//here.setOnAction(event -> {
+			System.out.println("Displaying content");
 			myViewer.DisplayContentsOf("../HTML.html");
-		});
+		//});
 	}
 
 }
