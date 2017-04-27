@@ -282,10 +282,9 @@ public class ResumeAddController {
 	
 	public void callView() {
 		ResumeViewer myViewer = new ResumeViewer();
-		//here.setOnAction(event -> {
-			System.out.println("Displaying content");
-			myViewer.DisplayContentsOf("../HTML.html");
-		//});
+		System.out.println("Displaying content");
+		myViewer.DisplayContentsOf("../HTML.html");
+
 	}
 
 }
