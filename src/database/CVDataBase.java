@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import resume.Address;
 import resume.Education;
 import resume.User;
 import resume.Work;
@@ -12,13 +13,13 @@ import resume.Work;
 public class CVDataBase {
 	Connection c;
 	Statement stmt;
-	
+
 	int personalIDCount = 0;
 	int exprIDCount = 0;
 	int educIDCount = 0;
 	int skillEntryID = 0;
-	
-	
+
+
 	String createPrsnlDataTableQuery = "CREATE TABLE IF NOT EXISTS PERSONALDATA "
             + "(PersonalID INT PRIMARY KEY     NOT NULL,"
             + "Name            VARCHAR(255)    NOT NULL,"
@@ -30,8 +31,8 @@ public class CVDataBase {
             + "State           VARCHAR(255)    NOT NULL,"
             + "Zip             INT     NOT NULL"
             + "AdditionalInfo  VARCHAR(255)    NULL)";
-	
-	
+
+
 	String createExprDataTableQuery = "CREATE TABLE IF NOT EXISTS EXPRERIENCEDATA "
             + "(ExperienceID INT PRIMARY KEY           NOT NULL,"
             + "JobTitle            VARCHAR(255)        NOT NULL,"
@@ -41,8 +42,8 @@ public class CVDataBase {
             + "StillGo             BOOLEAN             NOT NULL,"
             + "Description         VARCHAR(255)        NULL,"
             + "FOREIGN KEY (PersonalID) REFERENCES PERSONALDATA (PersonalID))";
-	
-	
+
+
 	String createEducDataTableQuery = "CREATE TABLE IF NOT EXISTS EDUCATIONDATA "
             + "(EducItemID INT PRIMARY KEY         NOT NULL,"
             + "Institution       VARCHAR(255)      NOT NULL,"
@@ -57,10 +58,10 @@ public class CVDataBase {
             + "Degree            VARCHAR(255)      NOT NULL,"
             + "Major             VARCHAR(255)      NOT NULL,"
             + "Minor             VARCHAR(255)      NULL,"
-            + "AdditionalInof    VARCHAR(255)      NOT NULL,"
+            + "AdditionalInfo    VARCHAR(255)      NOT NULL,"
             + "FOREIGN KEY (PersonalID) REFERENCES PERSONALDATA (PersonalID))";
-	
-	
+
+
 	String createSkillsDataQuery = "CREATE TABLE IF NOT EXISTS SKILLSDATA "
             + "(SkillsEntryID  INT PRIMARY KEY  NOT NULL,"
             + "Skill1          BOOLEAN          NOT NULL,"
@@ -71,7 +72,7 @@ public class CVDataBase {
             + "Skill6          BOOLEAN          NOT NULL,"
             + "Skill7          BOOLEAN          NOT NULL,"
             + "FOREIGN KEY (PersonalID) REFERENCES PERSONALDATA (PersonalID))";
-	
+
 	public CVDataBase(){
 		stmt = null;
 		try {
@@ -84,48 +85,48 @@ public class CVDataBase {
 		    System.exit(0);
 		}
 	}
-	
+
 	int getPersonalID(User u){
 		int toReturn = this.personalIDCount;
 		this.personalIDCount += 1;
 		return toReturn;
 	}
-	
+
 	int getExprID(Work u){
 		int toReturn = this.exprIDCount;
 		this.exprIDCount += 1;
 		return toReturn;
 	}
-	
+
 	int geteducID(Education e){
 		int toReturn = this.educIDCount;
 		this.educIDCount += 1;
 		return toReturn;
 	}
-	
+
 //	int getskillsID(Skill u){
 //		int toReturn = this.skillEntryID;
 //		this.skillEntryID += 1;
 //		return toReturn;
 //	}
-	
-	
-	
-	
+
+
+
+
 	public void createTableFromStr(String str)  throws SQLException{
 		stmt = c.createStatement();
 		stmt.executeQuery(str);
-		
+
 	}
-	
+
 	public void setUp() throws SQLException{
 		createTableFromStr(createPrsnlDataTableQuery);
 		createTableFromStr(createExprDataTableQuery);
 		createTableFromStr(createEducDataTableQuery);
 		createTableFromStr(createSkillsDataQuery);
-		
+
 	}
-	
+
 	public void insertWorkEntry(Work w, User u) throws SQLException{
 		stmt = c.createStatement();
 		String title = w.getTitle();
@@ -144,13 +145,13 @@ public class CVDataBase {
 				     + getPersonalID(u) + ")";
 		stmt.executeQuery(query);
 	}
-	
+
 	//similar to previous : Maybe use Bifunctor to reduce lines of code? : )
-	
+
 	public void insertEducEntry(Education e, User u) throws SQLException{
 		stmt = c.createStatement();
 		String school = e.getSchool();
-		String address = e.getAddress();
+		Address address = e.getAddress();
 		String stDate = e.getStart();
 		String endDate = e.getEnd();
 		String degree = e.getDegree();
@@ -158,28 +159,42 @@ public class CVDataBase {
 		String major = e.getMajor();
 		String minor = e.getMinor();
 		boolean stillgoes = e.stillGoes();
-		String query = ""; //tocontinue;
+		String query = "INSERT INTO EDUCATIONDATA"
+					 + "VALUES(" + school + ","
+					 + address.getStreet() + ","
+					 + address.getApt() + ","
+					 + address.getCity() + ","
+					 + address.getState() + ","
+					 + address.getZip() + ","
+					 + stDate + ","
+					 + endDate + ","
+					 + e.stillGoes() + ","
+					 + degree + ","
+					 + major + ","
+					 + minor + ","
+					 + additionalInfo; //tocontinue;
+
 		stmt.executeQuery(query);
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

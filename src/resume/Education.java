@@ -1,11 +1,16 @@
 package resume;
 
-public class Education {
-	private String school, address, startDate, endDate, degree, additional, major, minor;
-	private boolean stillGoes;
+import java.util.Arrays;
+import java.util.List;
 
-	public Education(String school, String address, String startDate, String endDate,
-					 String degree, String additional, boolean stillGoes, String major, 
+public class Education {
+	private String school, startDate, endDate, degree, additional, major, minor;
+	private Address address;
+	private boolean stillGoes;
+	private List<String> smallAddr;
+
+	public Education(String school, Address address, String startDate, String endDate,
+					 String degree, String additional, boolean stillGoes, String major,
 					 String minor){
 		this.school = school;
 		this.address = address;
@@ -19,7 +24,7 @@ public class Education {
 	}
 
 	public String getSchool(){ return school; }
-	public String getAddress(){ return address; }
+	public Address getAddress(){ return address; }
 	public String getStart(){ return startDate; }
 	public String getEnd(){ return endDate; }
 	public String getDegree(){ return degree; }
