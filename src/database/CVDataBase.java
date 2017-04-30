@@ -1,46 +1,43 @@
 package database;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Map;
 
 import resume.Address;
 import resume.Education;
+import resume.Skills;
 import resume.User;
 import resume.Work;
+
 
 public class CVDataBase {
 	Connection c;
 	Statement stmt;
-
+	
 	int personalIDCount = 0;
 	int exprIDCount = 0;
 	int educIDCount = 0;
 	int skillEntryID = 0;
-
-
+	
+	
 	String createPrsnlDataTableQuery = "CREATE TABLE IF NOT EXISTS PERSONALDATA "
             + "(PersonalID INT PRIMARY KEY     NOT NULL,"
             + "Name            VARCHAR(255)    NOT NULL,"
             + "Email           VARCHAR(255)    NOT NULL,"
             + "Phone           VARCHAR(255)    NOT NULL,"
-            + "Address         VARCHAR(255)    NOT NULL,"
-            + "POBox           INT             NOT NULL,"
-            + "City            VARCHAR(255)    NOT NULL,"
-            + "State           VARCHAR(255)    NOT NULL,"
-<<<<<<< HEAD
-            + "Zip             INT     NOT NULL,"
+            + "Address         BLOB            NOT NULL,"
             + "AdditionalInfo  VARCHAR(255)    NULL);";
 	
 	
-=======
-            + "Zip             INT     NOT NULL"
-            + "AdditionalInfo  VARCHAR(255)    NULL)";
-
-
->>>>>>> c879a664a0a0db6b1a5f03376154da58592e99f6
-	String createExprDataTableQuery = "CREATE TABLE IF NOT EXISTS EXPRERIENCEDATA "
+	String createExprDataTableQuery = "CREATE TABLE IF NOT EXISTS EXPERIENCEDATA "
             + "(ExperienceID INT PRIMARY KEY           NOT NULL,"
             + "JobTitle            VARCHAR(255)        NOT NULL,"
             + "Employer            VARCHAR(255)        NOT NULL,"
@@ -48,59 +45,32 @@ public class CVDataBase {
             + "EnDate              VARCHAR(255)        NOT NULL,"
             + "StillGo             BOOLEAN             NOT NULL,"
             + "Description         VARCHAR(255)        NULL,"
-<<<<<<< HEAD
-            + "PersonalIDExpr      INT              ,"
+            + "PersonalIDExpr INT              ,"
             + "FOREIGN KEY (PersonalIDExpr) REFERENCES PERSONALDATA (PersonalID));";
 	
 	
-=======
-            + "FOREIGN KEY (PersonalID) REFERENCES PERSONALDATA (PersonalID))";
-
-
->>>>>>> c879a664a0a0db6b1a5f03376154da58592e99f6
 	String createEducDataTableQuery = "CREATE TABLE IF NOT EXISTS EDUCATIONDATA "
             + "(EducItemID INT PRIMARY KEY         NOT NULL,"
             + "Institution       VARCHAR(255)      NOT NULL,"
-            + "Address           VARCHAR(255)      NOT NULL,"
-            + "POBox             VARCHAR(255)      NOT NULL,"
-            + "City              VARCHAR(255)      NOT NULL,"
-            + "State             BOOLEAN           NOT NULL,"
-            + "Zip               VARCHAR(255)      NULL,"
+            + "Address           BLOB              NOT NULL,"
             + "StDate            VARCHAR(255)      NOT NULL,"
             + "EndDate           VARCHAR(255)      NOT NULL,"
             + "StillGo           BOOLEAN           NOT NULL,"
             + "Degree            VARCHAR(255)      NOT NULL,"
             + "Major             VARCHAR(255)      NOT NULL,"
             + "Minor             VARCHAR(255)      NULL,"
-<<<<<<< HEAD
-            + "AdditionalInof    VARCHAR(255)      NOT NULL,"
+            + "AdditionalInfo    VARCHAR(255)      NOT NULL,"
             + "PersonalIDEduc INT              ,"
             + "FOREIGN KEY (PersonalIDEduc) REFERENCES PERSONALDATA (PersonalID));";
 	
 	
-=======
-            + "AdditionalInfo    VARCHAR(255)      NOT NULL,"
-            + "FOREIGN KEY (PersonalID) REFERENCES PERSONALDATA (PersonalID))";
-
-
->>>>>>> c879a664a0a0db6b1a5f03376154da58592e99f6
 	String createSkillsDataQuery = "CREATE TABLE IF NOT EXISTS SKILLSDATA "
             + "(SkillsEntryID  INT PRIMARY KEY  NOT NULL,"
-            + "Skill1          BOOLEAN          NOT NULL,"
-            + "Skill2          BOOLEAN          NOT NULL,"
-            + "Skill3          BOOLEAN          NOT NULL,"
-            + "Skill4          BOOLEAN          NOT NULL,"
-            + "Skill5          BOOLEAN          NOT NULL,"
-            + "Skill6          BOOLEAN          NOT NULL,"
-            + "Skill7          BOOLEAN          NOT NULL,"
-<<<<<<< HEAD
+            + "Skill1          String          NOT NULL,"
+            + "Description     String          NOT NULL,"
             + "PersonalIDSkill INT              ,"
             + "FOREIGN KEY (PersonalIDSkill) REFERENCES PERSONALDATA (PersonalID));";
 	
-=======
-            + "FOREIGN KEY (PersonalID) REFERENCES PERSONALDATA (PersonalID))";
-
->>>>>>> c879a664a0a0db6b1a5f03376154da58592e99f6
 	public CVDataBase(){
 		stmt = null;
 		try {
@@ -114,54 +84,69 @@ public class CVDataBase {
 		    System.exit(0);
 		}
 	}
-
-	int getPersonalID(User u){
-		int toReturn = this.personalIDCount;
-		this.personalIDCount += 1;
-		return toReturn;
+	
+	int getPersonalID(){
+		return this.personalIDCount;
 	}
-
-	int getExprID(Work u){
-		int toReturn = this.exprIDCount;
-		this.exprIDCount += 1;
-		return toReturn;
+  
+	
+	public void deleteAll() throws SQLException {
+		stmt = c.createStatement();
+		String deleteQuery = "DELETE FROM WEATHERDATA";
+		stmt.executeUpdate(deleteQuery);
 	}
-
-	int geteducID(Education e){
-		int toReturn = this.educIDCount;
-		this.educIDCount += 1;
-		return toReturn;
-	}
-
-//	int getskillsID(Skill u){
-//		int toReturn = this.skillEntryID;
-//		this.skillEntryID += 1;
-//		return toReturn;
-//	}
-
-
-
-
+	
 	public void createTableFromStr(String str)  throws SQLException{
 		stmt = c.createStatement();
-<<<<<<< HEAD
 		stmt.executeUpdate(str);
 		
-=======
-		stmt.executeQuery(str);
-
->>>>>>> c879a664a0a0db6b1a5f03376154da58592e99f6
 	}
-
+	
+	public void clear() throws SQLException{
+		stmt = c.createStatement();
+		String dropQuery = 
+				"DROP TABLE IF EXISTS EDUCATIONDATA;"
+				+ "DROP TABLE IF EXISTS SKILLSDATA;"
+				+ "DROP TABLE IF EXISTS EXPERIENCEDATA;"
+				+ "DROP TABLE IF EXISTS PERSONALDATA;";
+		stmt.executeUpdate(dropQuery);
+		
+	
+	}
+	
 	public void setUp() throws SQLException{
+		clear();
 		createTableFromStr(createPrsnlDataTableQuery);
 		createTableFromStr(createExprDataTableQuery);
 		createTableFromStr(createEducDataTableQuery);
 		createTableFromStr(createSkillsDataQuery);
-
+		
 	}
-
-	public void insertWorkEntry(Work w, User u) throws SQLException{
+	
+	public void insertPrsnlEntry(User u) throws SQLException, IOException{
+		stmt = c.createStatement();
+		String name = u.getName();
+		String email = u.getEmail();
+		String phone = u.getPhone();
+		Address address = u.getAddress();
+		String addInfo = u.getAdditional();
+		PreparedStatement pstmt = 
+				c.prepareStatement("INSERT INTO PERSONALDATA VALUES (?, ?, ?, ?, ?, ?);");
+		pstmt.setInt(1, getPersonalID());
+		pstmt.setString(2, name);
+		pstmt.setString(3, email);
+		pstmt.setString(4, phone);
+		pstmt.setObject(5, serializeObject(address));
+		pstmt.setString(6, addInfo);
+		
+		pstmt.executeUpdate();
+		personalIDCount += 1;
+		
+		
+		
+	}
+	
+	public void insertWorkEntry(Work w) throws SQLException{
 		stmt = c.createStatement();
 		String title = w.getTitle();
 		String employer = w.getEmployer();
@@ -169,20 +154,23 @@ public class CVDataBase {
 		String endDate = w.getEnd();
 		String description = w.getDescrip();
 		boolean stillworks = w.stillWorks();
-		String query = "INSERT INTO EXPERIENCEDATA"
-				     + "VALUES (" + title + ","
-				     + employer + ","
-				     + stDate   + ","
-				     + endDate  + ","
-				     + stillworks + ","
-				     + description + ","
-				     + getPersonalID(u) + ")";
-		stmt.executeQuery(query);
+		PreparedStatement pstmt =
+				c.prepareStatement("INSERT INTO EXPERIENCEDATA VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+		pstmt.setInt(1, exprIDCount);
+		pstmt.setString(2, title);
+		pstmt.setString(3, employer);
+		pstmt.setString(4, stDate);
+		pstmt.setString(5, endDate);
+		pstmt.setBoolean(6, stillworks);
+		pstmt.setString(7, description);
+		pstmt.setInt(8, getPersonalID());
+		pstmt.executeUpdate();
+		exprIDCount += 1;
 	}
-
+	
 	//similar to previous : Maybe use Bifunctor to reduce lines of code? : )
-
-	public void insertEducEntry(Education e, User u) throws SQLException{
+	
+	public void insertEducEntry(Education e) throws SQLException, IOException{
 		stmt = c.createStatement();
 		String school = e.getSchool();
 		Address address = e.getAddress();
@@ -193,42 +181,71 @@ public class CVDataBase {
 		String major = e.getMajor();
 		String minor = e.getMinor();
 		boolean stillgoes = e.stillGoes();
-		String query = "INSERT INTO EDUCATIONDATA"
-					 + "VALUES(" + school + ","
-					 + address.getStreet() + ","
-					 + address.getApt() + ","
-					 + address.getCity() + ","
-					 + address.getState() + ","
-					 + address.getZip() + ","
-					 + stDate + ","
-					 + endDate + ","
-					 + e.stillGoes() + ","
-					 + degree + ","
-					 + major + ","
-					 + minor + ","
-					 + additionalInfo; //tocontinue;
-
-		stmt.executeQuery(query);
-
+		PreparedStatement pstmt = 
+				c.prepareStatement("INSERT INTO EDUCATIONDATA VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+		pstmt.setInt(1,  educIDCount);
+		pstmt.setString(2, school);
+		pstmt.setObject(3,  serializeObject(address));
+		pstmt.setString(4,  stDate);
+		pstmt.setString(5,  endDate);
+		pstmt.setBoolean(6,  stillgoes);
+		pstmt.setString(7, degree);
+		pstmt.setString(8, major);
+		pstmt.setString(9, minor);
+		pstmt.setString(10, additionalInfo);
+		pstmt.setInt(11, getPersonalID());
+		pstmt.executeUpdate();
+		educIDCount += 1;
+		
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	public void insertSkillEntries(Skills skillList) throws SQLException{
+		PreparedStatement pstmt = c.prepareStatement("INSERT INTO SKILLSDATA VALUES (?,?,?,?);");
+	    ArrayList<Map.Entry<String, String>> skills = new ArrayList<>(skillList.getSkillAndDesc().entrySet());
+	    stmt = c.createStatement();
+	    for(Map.Entry<String, String> item : skills){
+	    	String sk = item.getKey();
+	    	String desc = item.getValue();
+	    	pstmt.setInt(1, skillEntryID);
+	    	pstmt.setString(2, sk);
+	    	pstmt.setString(3, desc);
+	    	pstmt.setInt(4,  getPersonalID());
+	    	pstmt.executeUpdate();
+	    	skillEntryID += 1;
+	    	
+	    }
+		
+	}
+	
+	
+	
+	public byte[] serializeObject(Address obs) throws IOException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ObjectOutputStream oos = new ObjectOutputStream(baos);
+		oos.writeObject(obs);
+		oos.flush();
+		oos.close();
+		baos.close();
+		return baos.toByteArray();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
