@@ -1,9 +1,10 @@
 package resume;
 
 public class User {
-	private String name, email, phone, address, additional;
+	private String name, email, phone, additional;
+	private Address address;
 
-	public User(String name, String email, String phone, String address, String additional) {
+	public User(String name, String email, String phone, Address address, String additional) {
 		this.name = name;
 		this.email =  email;
 		this.phone = phone;
@@ -14,7 +15,7 @@ public class User {
 	public String getName(){ return name; }
 	public String getEmail(){ return email; }
 	public String getPhone(){ return phone; }
-	public String getAddress(){ return address; }
+	public Address getAddress(){ return address; }
 	public String getAdditional(){ return additional; }
 
 	@Override
