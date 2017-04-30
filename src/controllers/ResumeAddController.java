@@ -279,11 +279,33 @@ public class ResumeAddController {
 		tabs.getSelectionModel().selectFirst();
 	}
 
+	//Where the parsers are called from the button
 	@FXML
 	public void makeResume() {
+		parser1Call();
+		System.out.println("Calling view");
+		callView();
+	}
+
+	public void callView() {
+		ResumeViewer myViewer = new ResumeViewer();
+		System.out.println("Displaying content");
+		myViewer.DisplayContentsOf("../HTML.html");
+
+	}
+	
+	public void doneError() {
+		Alert r = new Alert(AlertType.NONE, "Are you sure you're done? You haven't "
+				+ "entered any information." , ButtonType.OK);
+		r.setTitle("ERROR");
+		r.showAndWait();
+	}
+	
+	//First parser that can be called
+	public void parser1Call() {
 		Parser parser = new Parser();
 		parser.initialize();
-		try{
+		try {
 			parser.parsePersonal(personal);
 			for (int i = 0; i < work.size(); i++) {
 				parser.parseWork(work.get(i));
@@ -294,21 +316,30 @@ public class ResumeAddController {
 			parser.parseSkill(skills);
 
 		} catch (Exception exc) {
-			Alert r = new Alert(AlertType.NONE, "Are you sure you're done? You haven't "
-								+ "entered any information." , ButtonType.OK);
-			r.setTitle("ERROR");
-			r.showAndWait();
+			doneError();
 		}
 		parser.finalize();
-		System.out.println("Calling view");
-		callView();
 	}
-
-	public void callView() {
-		ResumeViewer myViewer = new ResumeViewer();
-		System.out.println("Displaying content");
-		myViewer.DisplayContentsOf("../HTML.html");
-
+	
+	//Second parser that can be called
+	public void parser2Call() {
+		Parser2 parser = new Parser2();
+		parser.initialize();
+		try {
+			parser.parsePersonal(personal);
+			parser.parseSkills(skills);
+			for (int i = 0; i < work.size(); i++) {
+				parser.parseWork(work.get(i));
+			}
+			for (int e = 0; e < edu.size(); e++) {
+				parser.parseEducation(edu.get(e));
+			}
+			
+		} catch (Exception exc) {
+			doneError();
+		}
+		parser.finalize();
+		
 	}
 
 }
