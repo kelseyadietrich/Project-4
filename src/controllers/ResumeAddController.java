@@ -127,7 +127,7 @@ public class ResumeAddController {
 
 	ArrayList<Work> work = new ArrayList<Work>();
 	ArrayList<Education> edu = new ArrayList<Education>();
-	Skills skills;
+	//Skills skills;
 
 	List<String> States = new ArrayList<>(Arrays.asList("States", "Alabama", "Alaska", "Arizona",
 			"Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
@@ -148,7 +148,7 @@ public class ResumeAddController {
 		fillStates();
 		fillDegrees();
 		document = new DocHandler();
-		skills = new Skills();
+		//skills = new Skills();
 	}
 
 	private void fillDegrees() {
@@ -223,35 +223,35 @@ public class ResumeAddController {
 		minor.setText("");
 	}
 
-	@FXML
-	public void addSkills(){
-		
-		if(skill1.getText() != "" && skill1desc.getText() != "") {
-			skills.add(skill1.getText(), skill1desc.getText());
-		}
-		if(skill2.getText() != "" && skill2desc.getText() != "") {
-			skills.add(skill2.getText(), skill2desc.getText());
-		}
-		if(skill3.getText() != "" && skill3desc.getText() != "") {
-			skills.add(skill3.getText(), skill3desc.getText());
-		}
-		if(skill4.getText() != "" && skill4desc.getText() != "") {
-			skills.add(skill4.getText(), skill4desc.getText());
-		}
-		if(skill5.getText() != "" && skill5desc.getText() != "") {
-			skills.add(skill5.getText(), skill5desc.getText());
-		}
-		if(skill6.getText() != "" && skill6desc.getText() != "") {
-			skills.add(skill6.getText(), skill6desc.getText());
-		}
-		skill1.setText("");
-		skill2.setText("");
-		skill3.setText("");
-		skill4.setText("");
-		skill5.setText("");
-		skill6.setText("");
-
-	}
+	//@FXML
+//	public void addSkills(){
+//		
+//		if(skill1.getText() != "" && skill1desc.getText() != "") {
+//			skills.add(skill1.getText(), skill1desc.getText());
+//		}
+//		if(skill2.getText() != "" && skill2desc.getText() != "") {
+//			skills.add(skill2.getText(), skill2desc.getText());
+//		}
+//		if(skill3.getText() != "" && skill3desc.getText() != "") {
+//			skills.add(skill3.getText(), skill3desc.getText());
+//		}
+//		if(skill4.getText() != "" && skill4desc.getText() != "") {
+//			skills.add(skill4.getText(), skill4desc.getText());
+//		}
+//		if(skill5.getText() != "" && skill5desc.getText() != "") {
+//			skills.add(skill5.getText(), skill5desc.getText());
+//		}
+//		if(skill6.getText() != "" && skill6desc.getText() != "") {
+//			skills.add(skill6.getText(), skill6desc.getText());
+//		}
+//		skill1.setText("");
+//		skill2.setText("");
+//		skill3.setText("");
+//		skill4.setText("");
+//		skill5.setText("");
+//		skill6.setText("");
+//
+//	}
 
 	@FXML
 	public void personalDone(){
@@ -275,7 +275,7 @@ public class ResumeAddController {
 
 	@FXML
 	public void skillsDone(){
-		addSkills();
+		//addSkills();
 		tabs.getSelectionModel().selectFirst();
 	}
 
@@ -291,7 +291,7 @@ public class ResumeAddController {
 			for (int e = 0; e < edu.size(); e++) {
 				parser.parseEducation(edu.get(e));
 			}
-			parser.parseSkill(skills);
+			//parser.parseSkill(skills);
 
 		} catch (Exception exc) {
 			Alert r = new Alert(AlertType.NONE, "Are you sure you're done? You haven't "

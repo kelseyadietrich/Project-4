@@ -1,10 +1,7 @@
 package resume;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Parser {
 	
@@ -94,16 +91,16 @@ public class Parser {
 		
 	}
 	
-	public void parseSkill(Skills skills) {
-		parsed.add("</li></ul><h2>Skills & Abilities</h2>");
-		
-		
-		for (int a = 0; a < skills.size(); a++) {
-			parsed.add("<h3>" + skills.getSkill(a) + "</h3>");
-			parsed.add("<ul><li>" + skills.getDesc(a) + "</li></ul>");
-		}
-		
-	}
+//	public void parseSkill(Skills skills) {
+//		parsed.add("</li></ul><h2>Skills & Abilities</h2>");
+//		
+//		
+//		for (int a = 0; a < skills.size(); a++) {
+//			parsed.add("<h3>" + skills.getSkill(a) + "</h3>");
+//			parsed.add("<ul><li>" + skills.getDesc(a) + "</li></ul>");
+//		}
+//		
+//	}
 	
 	
 

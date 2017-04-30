@@ -28,8 +28,8 @@ public class CVDataBase {
             + "POBox           INT             NOT NULL,"
             + "City            VARCHAR(255)    NOT NULL,"
             + "State           VARCHAR(255)    NOT NULL,"
-            + "Zip             INT     NOT NULL"
-            + "AdditionalInfo  VARCHAR(255)    NULL)";
+            + "Zip             INT     NOT NULL,"
+            + "AdditionalInfo  VARCHAR(255)    NULL);";
 	
 	
 	String createExprDataTableQuery = "CREATE TABLE IF NOT EXISTS EXPRERIENCEDATA "
@@ -40,7 +40,8 @@ public class CVDataBase {
             + "EnDate              VARCHAR(255)        NOT NULL,"
             + "StillGo             BOOLEAN             NOT NULL,"
             + "Description         VARCHAR(255)        NULL,"
-            + "FOREIGN KEY (PersonalID) REFERENCES PERSONALDATA (PersonalID))";
+            + "PersonalIDExpr      INT              ,"
+            + "FOREIGN KEY (PersonalIDExpr) REFERENCES PERSONALDATA (PersonalID));";
 	
 	
 	String createEducDataTableQuery = "CREATE TABLE IF NOT EXISTS EDUCATIONDATA "
@@ -58,7 +59,8 @@ public class CVDataBase {
             + "Major             VARCHAR(255)      NOT NULL,"
             + "Minor             VARCHAR(255)      NULL,"
             + "AdditionalInof    VARCHAR(255)      NOT NULL,"
-            + "FOREIGN KEY (PersonalID) REFERENCES PERSONALDATA (PersonalID))";
+            + "PersonalIDEduc INT              ,"
+            + "FOREIGN KEY (PersonalIDEduc) REFERENCES PERSONALDATA (PersonalID));";
 	
 	
 	String createSkillsDataQuery = "CREATE TABLE IF NOT EXISTS SKILLSDATA "
@@ -70,13 +72,15 @@ public class CVDataBase {
             + "Skill5          BOOLEAN          NOT NULL,"
             + "Skill6          BOOLEAN          NOT NULL,"
             + "Skill7          BOOLEAN          NOT NULL,"
-            + "FOREIGN KEY (PersonalID) REFERENCES PERSONALDATA (PersonalID))";
+            + "PersonalIDSkill INT              ,"
+            + "FOREIGN KEY (PersonalIDSkill) REFERENCES PERSONALDATA (PersonalID));";
 	
 	public CVDataBase(){
 		stmt = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:resumeData.db");
+			//setUp();
 		} catch ( Exception e ) {
 			c = null;
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -114,7 +118,7 @@ public class CVDataBase {
 	
 	public void createTableFromStr(String str)  throws SQLException{
 		stmt = c.createStatement();
-		stmt.executeQuery(str);
+		stmt.executeUpdate(str);
 		
 	}
 	
