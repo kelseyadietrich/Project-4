@@ -1,6 +1,6 @@
 package resume;
 
-public class User {
+public class User implements ResumeObject{
 	private String name, email, phone, additional;
 	private Address address;
 
@@ -24,8 +24,9 @@ public class User {
 	public void setEmail(String email){this.email = email;}
 	public void setPhone(String phone){this.phone = phone;}
 	public void setAdditional(String additional){this.additional = additional;}
-	public void setAddress(Address address){this.address = address;}
-
+	public void setAddress(Address address){this.address = address;}	
+	
+	public void isSerializable(){}
 
 	@Override
 	public String toString(){

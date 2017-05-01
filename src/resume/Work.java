@@ -2,11 +2,14 @@ package resume;
 
 import sun.util.calendar.BaseCalendar.Date;
 
-public class Work {
+public class Work implements ResumeObject {
 	private String title, employer, startDate, endDate, description;
 	private boolean stillWorks;
 	//Date startDate;
 	//Date endDate;
+	
+	public Work(){this.title = null;this.employer=null;this.startDate=null;
+	this.endDate=null;this.description=null;this.stillWorks=false;}
 
 	public Work(String title, String employer, String startDate, String endDate,
 			    String description, boolean stillWorks){
@@ -30,13 +33,11 @@ public class Work {
 	public void setStart(String start){ this.startDate = start; }
 	public void setEnd(String end){ this.endDate = end; }
 	public void setDescrip(String desc){ this.description = desc; }
-	public void setWorking(){ 
-		if (stillWorks == false) {
-			this.stillWorks = true;
-		}else {
-			this.stillWorks = false;
-		}
+	public void setWorking(Boolean b){ 
+		stillWorks = b;
 	}
+	
+	public void isSerializable(){}
 
 	@Override
 	public String toString(){
