@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import resume.Education;
 import resume.Parser;
 import resume.Parser2;
+import resume.Parser3;
 import resume.Skills;
 import resume.User;
 import resume.Work;
@@ -144,17 +145,21 @@ public class ChooseLayoutController {
 	
 	//Third parser that can be called
 	public void parser3Call() {
-		Parser2 parser = new Parser2();
+		Parser3 parser = new Parser3();
 		parser.initialize();
 		try {
 			parser.parsePersonal(personal);
 			parser.parseSkills(skills);
+			parser.openWork();
 			for (int i = 0; i < work.size(); i++) {
 				parser.parseWork(work.get(i));
 			}
+			parser.closeWork();
+			parser.openEdu();
 			for (int e = 0; e < edu.size(); e++) {
 				parser.parseEducation(edu.get(e));
 			}
+			parser.closeEdu();
 
 		} catch (Exception exc) {
 			doneError();

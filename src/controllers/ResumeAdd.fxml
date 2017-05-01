@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ResumeAddController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ResumeAddController">
    <children>
       <TabPane fx:id="tabs" layoutX="-3.0" layoutY="-4.0" prefHeight="408.0" prefWidth="610.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -21,10 +21,10 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="379.0" prefWidth="594.0" style="-fx-background-color: b5bcfc;">
                      <children>
-                        <TextField fx:id="name" layoutX="72.0" layoutY="27.0" promptText="John Smith" />
-                        <TextField fx:id="email" layoutX="312.0" layoutY="24.0" prefHeight="25.0" prefWidth="288.0" promptText="smithjj@hendrix.edu" />
-                        <TextField fx:id="phone" layoutX="72.0" layoutY="81.0" promptText="(555)123-4567" />
-                        <TextField fx:id="userStreet" layoutX="312.0" layoutY="80.0" prefHeight="25.0" prefWidth="289.0" promptText="1600 Washington Avenue" />
+                        <TextField fx:id="name" layoutX="72.0" layoutY="27.0" promptText="John Smith" text="Shane Atchley" />
+                        <TextField fx:id="email" layoutX="312.0" layoutY="24.0" prefHeight="25.0" prefWidth="288.0" promptText="smithjj@hendrix.edu" text="sosatchley@gmail.com" />
+                        <TextField fx:id="phone" layoutX="72.0" layoutY="81.0" promptText="(555)123-4567" text="(479) 216-9668" />
+                        <TextField fx:id="userStreet" layoutX="312.0" layoutY="80.0" prefHeight="25.0" prefWidth="289.0" promptText="1600 Washington Avenue" text="1600 Washington Ave" />
                         <Label layoutX="22.0" layoutY="28.0" text="Name:">
                            <font>
                               <Font size="14.0" />
@@ -45,7 +45,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="17.0" layoutY="180.0" text="Additional Info:">
+                        <Label layoutX="17.0" layoutY="180.0" text="Objective:">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -55,13 +55,13 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="userApt" layoutX="121.0" layoutY="128.0" prefHeight="25.0" prefWidth="51.0" promptText="3309" />
+                        <TextField fx:id="userApt" layoutX="121.0" layoutY="128.0" prefHeight="25.0" prefWidth="51.0" promptText="3309" text="3039" />
                         <Label layoutX="189.0" layoutY="130.0" text="City:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="userCity" layoutX="224.0" layoutY="128.0" prefHeight="25.0" prefWidth="77.0" promptText="Conway" />
+                        <TextField fx:id="userCity" layoutX="224.0" layoutY="128.0" prefHeight="25.0" prefWidth="77.0" promptText="Conway" text="Conway" />
                         <Label layoutX="317.0" layoutY="131.0" text="State:">
                            <font>
                               <Font size="14.0" />
@@ -72,7 +72,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="userZip" layoutX="537.0" layoutY="129.0" prefHeight="25.0" prefWidth="63.0" promptText="72032" />
+                        <TextField fx:id="userZip" layoutX="537.0" layoutY="129.0" prefHeight="25.0" prefWidth="63.0" promptText="72032" text="72032" />
                         <TextArea fx:id="userAdditional" layoutX="14.0" layoutY="209.0" prefHeight="131.0" prefWidth="583.0" wrapText="true" />
                         <Button fx:id="personalDone" layoutX="279.0" layoutY="346.0" mnemonicParsing="false" onAction="#personalDone" text="Done" />
                         <ChoiceBox fx:id="userState" layoutX="360.0" layoutY="128.0" prefHeight="25.0" prefWidth="95.0" />
@@ -84,7 +84,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: fcdcb5;">
                      <children>
-                        <TextField fx:id="title" layoutX="101.0" layoutY="27.0" prefHeight="25.0" prefWidth="175.0" promptText="Computer Science TA" />
+                        <TextField fx:id="title" layoutX="101.0" layoutY="27.0" prefHeight="25.0" prefWidth="175.0" promptText="Computer Science TA" text="Rental Property Manager" />
                         <Label layoutX="25.0" layoutY="29.0" text="Job Title:">
                            <font>
                               <Font size="14.0" />
@@ -95,7 +95,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="employer" layoutX="383.0" layoutY="28.0" prefHeight="25.0" prefWidth="170.0" promptText="Hendrix College" />
+                        <TextField fx:id="employer" layoutX="383.0" layoutY="28.0" prefHeight="25.0" prefWidth="170.0" promptText="Hendrix College" text="Select Realty" />
                         <Label layoutX="25.0" layoutY="88.0" text="Start Date:">
                            <font>
                               <Font size="14.0" />
@@ -114,7 +114,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="jobAdditional" layoutX="25.0" layoutY="190.0" prefHeight="125.0" prefWidth="560.0" promptText="Computer Science lab assistant and tutor. Assisted students in entry level classes with computer science labs." wrapText="true" />
+                        <TextArea fx:id="jobAdditional" layoutX="25.0" layoutY="190.0" prefHeight="125.0" prefWidth="560.0" promptText="Computer Science lab assistant and tutor. Assisted students in entry level classes with computer science labs." text="Delt with tenants. Cleaned and repaired properties between renters. " wrapText="true" />
                         <Button fx:id="addJob" layoutX="101.0" layoutY="331.0" mnemonicParsing="false" onAction="#addWork" text="Add Another Job" />
                         <Button fx:id="jobDone" layoutX="361.0" layoutY="331.0" mnemonicParsing="false" onAction="#workDone" text="Done" />
                      </children>
@@ -130,7 +130,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="school" layoutX="141.0" layoutY="23.0" prefHeight="25.0" prefWidth="449.0" promptText="Hendrix College" />
+                        <TextField fx:id="school" layoutX="141.0" layoutY="23.0" prefHeight="25.0" prefWidth="449.0" promptText="Hendrix College" text="Hendrix College" />
                         <Label layoutX="21.0" layoutY="128.0" text="Degree:">
                            <font>
                               <Font size="14.0" />
@@ -149,7 +149,7 @@
                            </font>
                         </Label>
                         <DatePicker fx:id="eduEnd" layoutX="328.0" layoutY="74.0" prefHeight="25.0" prefWidth="139.0" promptText="05/13/2017" />
-                        <CheckBox fx:id="stillGoes" layoutX="488.0" layoutY="79.0" mnemonicParsing="false" text="I Still Go Here" />
+                        <CheckBox fx:id="stillGoes" layoutX="488.0" layoutY="79.0" mnemonicParsing="false" selected="true" text="I Still Go Here" />
                         <Label layoutX="295.0" layoutY="229.0">
                            <font>
                               <Font size="14.0" />
@@ -168,7 +168,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="major" layoutX="296.0" layoutY="128.0" prefHeight="25.0" prefWidth="114.0" />
+                        <TextField fx:id="major" layoutX="296.0" layoutY="128.0" prefHeight="25.0" prefWidth="114.0" text="Computer Science" />
                         <Label layoutX="427.0" layoutY="131.0" text="Minor:">
                            <font>
                               <Font size="14.0" />
@@ -203,16 +203,16 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="skill1" layoutX="73.0" layoutY="23.0" prefHeight="25.0" prefWidth="511.0" />
-                        <TextField fx:id="skill2" layoutX="73.0" layoutY="65.0" prefHeight="25.0" prefWidth="511.0" />
-                        <TextField fx:id="skill3" layoutX="73.0" layoutY="107.0" prefHeight="25.0" prefWidth="511.0" />
-                        <TextField fx:id="skill4" layoutX="73.0" layoutY="149.0" prefHeight="25.0" prefWidth="511.0" />
+                        <TextField fx:id="skill1" layoutX="73.0" layoutY="23.0" prefHeight="25.0" prefWidth="511.0" text="Work it harder" />
+                        <TextField fx:id="skill2" layoutX="73.0" layoutY="65.0" prefHeight="25.0" prefWidth="511.0" text="Make it better" />
+                        <TextField fx:id="skill3" layoutX="73.0" layoutY="107.0" prefHeight="25.0" prefWidth="511.0" text="Do it faster" />
+                        <TextField fx:id="skill4" layoutX="73.0" layoutY="149.0" prefHeight="25.0" prefWidth="511.0" text="Makes us stronger" />
                         <Label layoutX="26.0" layoutY="193.0" text="Skill 5:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="skill5" layoutX="73.0" layoutY="191.0" prefHeight="25.0" prefWidth="511.0" />
+                        <TextField fx:id="skill5" layoutX="73.0" layoutY="191.0" prefHeight="25.0" prefWidth="511.0" text="More than ever" />
                         <Label layoutX="26.0" layoutY="276.0" text="Skill 7:">
                            <font>
                               <Font size="14.0" />
@@ -223,8 +223,8 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="skill6" layoutX="73.0" layoutY="232.0" prefHeight="25.0" prefWidth="511.0" />
-                        <TextField fx:id="skill7" layoutX="73.0" layoutY="274.0" prefHeight="25.0" prefWidth="511.0" />
+                        <TextField fx:id="skill6" layoutX="73.0" layoutY="232.0" prefHeight="25.0" prefWidth="511.0" text="Hour after hour" />
+                        <TextField fx:id="skill7" layoutX="73.0" layoutY="274.0" prefHeight="25.0" prefWidth="511.0" text="Our work is never over" />
                         <Button fx:id="addSkills" layoutX="132.0" layoutY="326.0" mnemonicParsing="false" onAction="#addSkills" text="Add Even More Skills" />
                         <Button fx:id="skillsDone" layoutX="369.0" layoutY="326.0" mnemonicParsing="false" onAction="#skillsDone" text="Done" />
                      </children>

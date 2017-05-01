@@ -125,8 +125,8 @@ public class ResumeAddController {
 
 	@FXML
 	public void initialize(){
-		fillStates();
-		fillDegrees();
+		fillStates();		userState.setValue("Arkansas");
+		fillDegrees();		degree.setValue("Bachelor's");
 		document = new DocHandler();
 		skills = new Skills();
 	}
