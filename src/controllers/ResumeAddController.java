@@ -1,25 +1,23 @@
-package controllers;
-
-import java.io.IOException;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import resume.*;
-import resumeViewer.ExampleMain;
-import resumeViewer.LaunchResumeExampleController;
-import resumeViewer.ResumeViewer;
-
-public class ResumeAddController {
+package controllers;
+import java.io.IOException;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import resume.*;
+import resumeViewer.ExampleMain;
+import resumeViewer.LaunchResumeExampleController;
+import resumeViewer.ResumeViewer;
+public class ResumeAddController {
 	/////////// PERSONAL TAB ///////////////
 	@FXML
 	TextField name;
@@ -102,13 +100,11 @@ public class ResumeAddController {
 	@FXML
 	Button here;
 	@FXML
-	TabPane tabs;
+	TabPane tabs;
 	User personal;
-
 	ArrayList<Work> work = new ArrayList<Work>();
 	ArrayList<Education> edu = new ArrayList<Education>();
-	Skills skills;
-
+	Skills skills;
 	List<String> States = new ArrayList<>(Arrays.asList("States", "Alabama", "Alaska", "Arizona",
 			"Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
 			"Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
@@ -116,47 +112,40 @@ public class ResumeAddController {
 			"Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York",
 			"North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania",
 			"Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah",
-			"Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"));
+			"Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"));
 	List<String> Degrees = new ArrayList<>(Arrays.asList("Degrees", "GED", "High School Diploma",
-			"Vocational", "Assosciates", "Bachelors", "Masters", "Doctorate"));
-
+			"Vocational", "Assosciates", "Bachelors", "Masters", "Doctorate"));
 	DocHandler document;
-	//////////////////////////////////////////////////////////////
-
+	//////////////////////////////////////////////////////////////
 	@FXML
 	public void initialize(){
-		fillStates();		userState.setValue("Arkansas");
-		fillDegrees();		degree.setValue("Bachelor's");
+		fillStates();
+		fillDegrees();
 		document = new DocHandler();
 		skills = new Skills();
-	}
-
+	}
 	private void fillDegrees() {
 		for(String deg: Degrees){
 			degree.getItems().add(deg);
 		}
 		degree.getSelectionModel().selectFirst();
-
-	}
-
+	}
 	private void fillStates() {
 		for(String state: States){
 			userState.getItems().add(state);
 		}
 		userState.getSelectionModel().selectFirst();
-	}
-
+	}
 	@FXML
 	public Address getUserAddress(){
 		String street, apt, city, state, zip;
 		street = userStreet.getText();
-		apt = "," + userApt.getText();
-		city  = "," + userCity.getText();
-		state = "," + userState.getSelectionModel().getSelectedItem();
-		zip = "," + userZip.getText();
+		apt = userApt.getText();
+		city  = userCity.getText();
+		state = userState.getSelectionModel().getSelectedItem();
+		zip = userZip.getText();
 		return new Address(street, apt, city, state, zip);
-	}
-
+	}
 	@FXML
 	public void addWork(){
 	    work.add(new Work(title.getText(), employer.getText(), (jobStart.getValue() == null)?"":jobStart.getValue().toString(),
@@ -187,7 +176,6 @@ public class ResumeAddController {
 
 	@FXML
 	public void addSkills(){
-
 		if(skill1.getText() != "") { skills.add(skill1.getText()); }
 		if(skill2.getText() != "") { skills.add(skill2.getText()); }
 		if(skill3.getText() != "") { skills.add(skill3.getText()); }
@@ -202,45 +190,38 @@ public class ResumeAddController {
 		skill5.setText("");
 		skill6.setText("");
 		skill7.setText("");
-	}
-
+	}
 	@FXML
-	public void personalDone(){
-		personal = new User(name.getText(), email.getText(), phone.getText(),
-							getUserAddress(), userAdditional.getText());
-		tabs.getSelectionModel().select(1);
-		System.out.println(personal.toString());
-	}
-
+	public void personalDone(){		boolean errors = checkPersonal();		if(!errors){
+			personal = new User(name.getText(), email.getText(), phone.getText(),
+								getUserAddress(), userAdditional.getText());
+			tabs.getSelectionModel().select(1);		}
+		//System.out.println(personal.toString());
+	}
 	@FXML
 	public void workDone(){
 	    addWork();
 	    tabs.getSelectionModel().select(2);
-	}
-
+	}
 	@FXML
 	public void eduDone(){
 		addEdu();
 		tabs.getSelectionModel().select(3);
-	}
-
+	}
 	@FXML
 	public void skillsDone(){
 		addSkills();
 		tabs.getSelectionModel().selectFirst();
-	}
-
+	}
 	//Where the parsers are called from the button
 	@FXML
-	public void makeResume() {
+	public void makeResume() {		checkDone();
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(GuiMain.class.getResource("ChooseLayout.fxml"));
-			AnchorPane root = (AnchorPane) loader.load();
-
+			Pane root = (Pane) loader.load();
 			ChooseLayoutController choose = (ChooseLayoutController) loader.getController();
-			choose.importVariables(this);
-
+			choose.importVariables(this);
 			Stage secondStage = new Stage();
 			Scene scene = new Scene(root);
 			secondStage.setScene(scene);
@@ -248,5 +229,5 @@ public class ResumeAddController {
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
-	}
-}
+	}	@FXML	public boolean checkPersonal(){		boolean errors = false;		if((name.getText() == "")){			error("You are nameless.");			errors = true;		}		if((userStreet.getText() == "") || (userCity.getText() == "")){			error("You did not enter a complete address.");			errors = true;		}		if(userState.getSelectionModel().getSelectedItem().equals("States")){			error("Whoa! You do not live a state bud.");			errors = true;		}		try{			Integer.parseInt(userApt.getText());		} catch (Exception e){			error("Incorrect apartment format.");			errors = true;		}		try{			Integer.parseInt(userZip.getText());		} catch (Exception e){			error("Incorrect zipcode format.");			errors = true;		}		return errors;	}	@FXML	public void checkDone(){		if((personal == null) && work.size() == 0 && edu.size() == 0 && skills.size() == 0 ){			error("Are you sure you're done? You haven't entered any information.");		}	}	public void error(String e) {		Alert r = new Alert(AlertType.NONE, e , ButtonType.OK);		r.setTitle("ERROR");		r.showAndWait();	}
+}

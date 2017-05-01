@@ -38,49 +38,49 @@ public class DBInsertObject {
 	}
 	
 	public void insertPrsnlEntry(User u) throws SQLException, IOException{
-		stmt = c.createStatement();
+		this.stmt = this.c.createStatement();
 		PreparedStatement pstmt =
-				c.prepareStatement("INSERT INTO PERSONALDATA VALUES (?, ?);");
+				this.c.prepareStatement("INSERT INTO PERSONALDATA VALUES (?, ?);");
 		pstmt.setInt(1, getPersonalID());
 		pstmt.setObject(2, serializeObject(u));
 		pstmt.executeUpdate();
-		personalIDCount += 1;
+		this.personalIDCount += 1;
 	}
 
 	public void insertWorkEntry(Work w) throws SQLException, IOException{
-		stmt = c.createStatement();
+		this.stmt = this.c.createStatement();
 		PreparedStatement pstmt =
-				c.prepareStatement("INSERT INTO EXPERIENCEDATA VALUES (?, ?, ?);");
-		pstmt.setInt(1, exprIDCount);
+				this.c.prepareStatement("INSERT INTO EXPERIENCEDATA VALUES (?, ?, ?);");
+		pstmt.setInt(1, this.exprIDCount);
 		pstmt.setObject(2, serializeObject(w));
 		pstmt.setInt(3, getPersonalID());
 		pstmt.executeUpdate();
-		exprIDCount += 1;
+		this.exprIDCount += 1;
 	}
 
 
 	public void insertEducEntry(Education e) throws SQLException, IOException{
-		stmt = c.createStatement();
+		this.stmt = this.c.createStatement();
 		PreparedStatement pstmt =
-				c.prepareStatement("INSERT INTO EDUCATIONDATA VALUES (?, ?, ?);");
-		pstmt.setInt(1,  educIDCount);
+				this.c.prepareStatement("INSERT INTO EDUCATIONDATA VALUES (?, ?, ?);");
+		pstmt.setInt(1,  this.educIDCount);
 		pstmt.setObject(2, serializeObject(e));
 		pstmt.setInt(3, getPersonalID());
 		pstmt.executeUpdate();
-		educIDCount += 1;
+		this.educIDCount += 1;
 
 	}
 
 	public void insertSkillEntries(Skills skillList) throws SQLException{
 		PreparedStatement pstmt = c.prepareStatement("INSERT INTO SKILLSDATA VALUES (?,?,?);");
 	    ArrayList<String> skills = new ArrayList<>(skillList.getAll());
-	    stmt = c.createStatement();
+	    this.stmt = this.c.createStatement();
 	    for(String item : skills){
-	    	pstmt.setInt(1, skillEntryID);
+	    	pstmt.setInt(1, this.skillEntryID);
 	    	pstmt.setObject(2, item);
 	    	pstmt.setInt(3,  getPersonalID());
 	    	pstmt.executeUpdate();
-	    	skillEntryID += 1;
+	    	this.skillEntryID += 1;
 	    }
 
 	}

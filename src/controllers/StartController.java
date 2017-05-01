@@ -18,6 +18,7 @@ public class StartController {
 
 	@FXML
 	public void createDB(){
+		
 		openResumeAdd();
 	}
 
