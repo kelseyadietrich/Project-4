@@ -236,7 +236,7 @@ public class ResumeAddController {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(GuiMain.class.getResource("ChooseLayout.fxml"));
-			Pane root = (Pane) loader.load();
+			AnchorPane root = (AnchorPane) loader.load();
 
 			ChooseLayoutController choose = (ChooseLayoutController) loader.getController();
 			choose.importVariables(this);

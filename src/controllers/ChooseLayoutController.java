@@ -32,6 +32,9 @@ public class ChooseLayoutController {
 	ArrayList<Work> work = new ArrayList<Work>();
 	ArrayList<Education> edu = new ArrayList<Education>();
 	Skills skills;
+	private boolean layout1Picked;
+	private boolean layout2Picked;
+	private boolean layout3Picked;
 
 	@FXML
 	public void initialize(){}
@@ -46,9 +49,42 @@ public class ChooseLayoutController {
 	}
 	@FXML
 	public void choose(){
-		parser1Call();
+		getSelected();
 		System.out.println("Calling view");
 		callView();
+	}
+
+	@FXML 
+	void pickOne() {
+		layout1Picked = true;
+		layout2Picked = false;
+		layout3Picked = false;
+	}
+	
+	@FXML 
+	void pickTwo() {
+		layout1Picked = false;
+		layout2Picked = true;
+		layout3Picked = false;
+	}
+	
+	@FXML 
+	void pickThree() {
+		layout1Picked = false;
+		layout2Picked = false;
+		layout3Picked = true;
+	}
+	
+	private void getSelected() {
+		if (layout1Picked) {
+			parser1Call();
+		}
+		if (layout2Picked) {
+			parser2Call();
+		}
+		if (layout3Picked) {
+			parser3Call();
+		}
 	}
 
 	public void callView() {
@@ -87,6 +123,27 @@ public class ChooseLayoutController {
 
 	//Second parser that can be called
 	public void parser2Call() {
+		Parser2 parser = new Parser2();
+		parser.initialize();
+		try {
+			parser.parsePersonal(personal);
+			parser.parseSkills(skills);
+			for (int i = 0; i < work.size(); i++) {
+				parser.parseWork(work.get(i));
+			}
+			for (int e = 0; e < edu.size(); e++) {
+				parser.parseEducation(edu.get(e));
+			}
+
+		} catch (Exception exc) {
+			doneError();
+		}
+		parser.finalize();
+
+	}
+	
+	//Third parser that can be called
+	public void parser3Call() {
 		Parser2 parser = new Parser2();
 		parser.initialize();
 		try {
