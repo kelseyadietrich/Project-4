@@ -4,55 +4,36 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DBSetUpStatements {
+public class DBSetUpObject {
 	
 	private String createPrsnlDataTableQuery;
 	private String createExprDataTableQuery;
 	private String createEducDataTableQuery;
 	private String createSkillsDataQuery;
 	
-	public DBSetUpStatements(){
+	public DBSetUpObject(){
 		
 		this.createPrsnlDataTableQuery = "CREATE TABLE IF NOT EXISTS PERSONALDATA "
 	            + "(PersonalID INT PRIMARY KEY     NOT NULL,"
-	            + "Name            VARCHAR(255)    NOT NULL,"
-	            + "Email           VARCHAR(255)    NOT NULL,"
-	            + "Phone           VARCHAR(255)    NOT NULL,"
-	            + "Address         BLOB            NOT NULL,"
-	            + "AdditionalInfo  VARCHAR(255)    NULL);";
+	            + "User BLOB NOT NULL;";
 		
 		this.createExprDataTableQuery = "CREATE TABLE IF NOT EXISTS EXPERIENCEDATA "
 	            + "(ExperienceID INT PRIMARY KEY           NOT NULL,"
-	            + "JobTitle            VARCHAR(255)        NOT NULL,"
-	            + "Employer            VARCHAR(255)        NOT NULL,"
-	            + "StDate              VARCHAR(255)        NOT NULL,"
-	            + "EnDate              VARCHAR(255)        NOT NULL,"
-	            + "StillGo             BOOLEAN             NOT NULL,"
-	            + "Description         VARCHAR(255)        NULL,"
+	            + "Work BLOB NOT NULL,"
 	            + "PersonalIDExpr INT              ,"
 	            + "FOREIGN KEY (PersonalIDExpr) REFERENCES PERSONALDATA (PersonalID));";
 		
 		this.createEducDataTableQuery = "CREATE TABLE IF NOT EXISTS EDUCATIONDATA "
 	            + "(EducItemID INT PRIMARY KEY         NOT NULL,"
-	            + "Institution       VARCHAR(255)      NOT NULL,"
-	            + "Address           BLOB              NOT NULL,"
-	            + "StDate            VARCHAR(255)      NOT NULL,"
-	            + "EndDate           VARCHAR(255)      NOT NULL,"
-	            + "StillGo           BOOLEAN           NOT NULL,"
-	            + "Degree            VARCHAR(255)      NOT NULL,"
-	            + "Major             VARCHAR(255)      NOT NULL,"
-	            + "Minor             VARCHAR(255)      NULL,"
-	            + "AdditionalInfo    VARCHAR(255)      NOT NULL,"
+	            + "Education BLOB NOT NULL"
 	            + "PersonalIDEduc INT              ,"
 	            + "FOREIGN KEY (PersonalIDEduc) REFERENCES PERSONALDATA (PersonalID));";
 		
 		this.createSkillsDataQuery = "CREATE TABLE IF NOT EXISTS SKILLSDATA "
 	            + "(SkillsEntryID  INT PRIMARY KEY  NOT NULL,"
-	            + "Skill          String          NOT NULL,"
+	            + "Skills          BLOB          NOT NULL,"
 	            + "PersonalIDSkill INT              ,"
 	            + "FOREIGN KEY (PersonalIDSkill) REFERENCES PERSONALDATA (PersonalID));";
-		
-		
 		
 		
 	}

@@ -2,7 +2,7 @@ package resume;
 
 import java.util.ArrayList;
 
-public class Skills {
+public class Skills implements ResumeObject{
 
 	private ArrayList<String> skills;
 
@@ -25,4 +25,7 @@ public class Skills {
 	public int size() {
 		return skills.size();
 	}
+	
+	public void isSerializable(){}
+
 }

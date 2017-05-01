@@ -1,6 +1,6 @@
 package resume;
 
-public class Education {
+public class Education implements ResumeObject {
 	private String school, startDate, endDate, degree, additional, major, minor;
 	private boolean stillGoes;
 
@@ -41,6 +41,8 @@ public class Education {
 			this.stillGoes = true;
 		}
 	}
+	
+	public void isSerializable(){}
 
 	@Override
 	public String toString(){
