@@ -26,6 +26,20 @@ public class Education {
 	public String getMajor(){ return major; }
 	public String getMinor(){ return minor; }
 	public boolean stillGoes(){ return stillGoes; }
+	
+	public void setStart(String start){ this.startDate = start; }
+	public void setEnd(String end){ this.endDate = end; }
+	public void setDegree(String deg){ this.degree = deg; }
+	public void setAdditional(String add){ this.additional = add; }
+	public void setMajor(String maj){ this.major = maj; }
+	public void setMinor(String min){ this.minor = min; }
+	public void setGoes(){ 
+		if (stillGoes == true) {
+			this.stillGoes = false;
+		}else {
+			this.stillGoes = true;
+		}
+	}
 
 	@Override
 	public String toString(){
