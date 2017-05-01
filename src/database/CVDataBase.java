@@ -25,18 +25,21 @@ public class CVDataBase {
 	Statement stmt;
 
 	
-	DBSetUpObject sqlStmt = new DBSetUpObject();
-	DBInsertObject sqlInsertStmt = new DBInsertObject(stmt, c);
-	DBSelectorObject sqlSelectStmt = new DBSelectorObject(stmt, c);
+	DBSetUpObject sqlStmt;
+	DBInsertObject sqlInsertStmt;
+	DBSelectorObject sqlSelectStmt;
 
 	public CVDataBase(){
-		stmt = null;
+		this.stmt = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:resumeData.db");
+			this.c = DriverManager.getConnection("jdbc:sqlite:resumeData.db");
+			this.sqlStmt = new DBSetUpObject();
+			this.sqlInsertStmt = new DBInsertObject(stmt, c);
+			this.sqlSelectStmt = new DBSelectorObject(stmt, c);
 			//setUp();
 		} catch ( Exception e ) {
-			c = null;
+			this.c = null;
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 			System.out.println(this.getClass());
 		    System.exit(0);
@@ -44,22 +47,22 @@ public class CVDataBase {
 	}
 
 	public void setUp() throws SQLException{
-		sqlStmt.setUpWith(stmt, c);
+		this.sqlStmt.setUpWith(stmt, c);
 
 	}
 
 	//inserts
 	public void insertPrsnlEntry(User u) throws SQLException, IOException{
-		sqlInsertStmt.insertPrsnlEntry(u);
+		this.sqlInsertStmt.insertPrsnlEntry(u);
 	}
 
 	public void insertWorkEntry(Work w) throws SQLException, IOException{
-		sqlInsertStmt.insertWorkEntry(w);
+		this.sqlInsertStmt.insertWorkEntry(w);
 	}
 
 
 	public void insertEducEntry(Education e) throws SQLException, IOException{
-		sqlInsertStmt.insertEducEntry(e);
+		this.sqlInsertStmt.insertEducEntry(e);
 
 	}
 
@@ -70,19 +73,19 @@ public class CVDataBase {
 	
 	//retrievals
 	public ArrayList<User> getPersonalData() throws ClassNotFoundException, SQLException, IOException{
-		return sqlSelectStmt.getAllKnownUsers();
+		return this.sqlSelectStmt.getAllKnownUsers();
 	}
 	
 	public ArrayList<Work> getExperienceData() throws ClassNotFoundException, SQLException, IOException{
-		return sqlSelectStmt.getAllKnownWorkExpr();
+		return this.sqlSelectStmt.getAllKnownWorkExpr();
 	}
 	
 	public ArrayList<Education> getEducationData() throws ClassNotFoundException, IOException, SQLException{
-		return sqlSelectStmt.getAllKnownEducation();
+		return this.sqlSelectStmt.getAllKnownEducation();
 	}
 	
 	public ArrayList<Skills> getSkillsData() throws ClassNotFoundException, IOException, SQLException{
-		return sqlSelectStmt.getAllKnownSkills();
+		return this.sqlSelectStmt.getAllKnownSkills();
 	}
 	
 

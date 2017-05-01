@@ -1,6 +1,8 @@
 package resume;
 
-public class Education implements ResumeObject {
+import java.io.Serializable;
+
+public class Education implements ResumeObject, Serializable {
 	private String school, startDate, endDate, degree, additional, major, minor;
 	private boolean stillGoes;
 
