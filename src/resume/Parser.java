@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Parser {
-	
+
 	public DocHandler document;
 	public User user;
 	public ArrayList<String> parsed = new ArrayList<String>();
-	
+
 	public void initialize() {
 		this.document = new DocHandler();
 		this.parsed = new ArrayList<String>();
@@ -21,7 +21,7 @@ public class Parser {
 		parsed.add("</style>");
 
 	}
-	
+
 	public void finalize() {
 		String entireHtml = "";
 		for (int i = 0; i < parsed.size(); i ++) {
@@ -29,7 +29,7 @@ public class Parser {
 		}
 		document.write(entireHtml);
 	}
-	
+
 	public void parsePersonal(User user) {
 		String name = user.getName();
 		name.toUpperCase();
@@ -44,9 +44,9 @@ public class Parser {
 		parsed.add("<h2>Objective</h2>");
 		parsed.add(user.getAdditional());
 		parsed.add("<br><br>");
-		
+
 	}
-	
+
 	public void parseWork(Work work) {
 		parsed.add("<h2>Experience</h2>");
 		String title = work.getTitle();
@@ -60,9 +60,9 @@ public class Parser {
 		parsed.add("<h3>" + title + " | " + company + " | " + start + " - " + end);
 		parsed.add("<ul>");
 		parsed.add("<li>" + work.getDescrip() + "</ul> ");
-	
+
 	}
-	
+
 	public void parseEducation(Education edu) {
 		parsed.add("<h2>Education</h2>");
 		//<h3>DEGREE | DATE EARNED | SCHOOL </h3>
@@ -72,7 +72,7 @@ public class Parser {
 		date = date.toUpperCase();
 		String school = edu.getSchool();
 		school.toUpperCase();
-		
+
 		parsed.add("<h3>" + degree + " | " + date + " | " + school + "</h3>");
 		parsed.add("<ul>");
 		if (edu.getMajor() != "") {
@@ -84,20 +84,20 @@ public class Parser {
 		if (edu.getAdditional() != "") {
 			parsed.add("<li>Additional: " + edu.getAdditional() + "</ul>");
 		}
-		
+
 	}
-	
+
 	public void parseSkill(Skills skills) {
 		parsed.add("</li></ul><h2>Skills & Abilities</h2>");
-		
-		
+
+
 		for (int a = 0; a < skills.size(); a++) {
 			parsed.add("<h3>" + skills.getSkill(a) + "</h3>");
-			
+
 		}
-		
+
 	}
-	
-	
+
+
 
 }

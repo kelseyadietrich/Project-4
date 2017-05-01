@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Education implements ResumeObject, Serializable {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private String school, startDate, endDate, degree, additional, major, minor;
@@ -40,7 +40,7 @@ public class Education implements ResumeObject, Serializable {
 	public void setAdditional(String add){ this.additional = add; }
 	public void setMajor(String maj){ this.major = maj; }
 	public void setMinor(String min){ this.minor = min; }
-	public void setGoes(boolean stGoes){ 
+	public void setGoes(boolean stGoes){
 		this.stillGoes = stGoes;
 	}
 
@@ -49,7 +49,7 @@ public class Education implements ResumeObject, Serializable {
 
 	@Override
 	public String toString(){
-		return String.format("%s\n%s\n%s\n%s\n%s\n%s\n%b", school, startDate,
+		return String.format("%s\n%s\n%s\n%s\n%s\n%b", school, startDate,
 							 endDate, degree, additional, stillGoes);
 	}
 }

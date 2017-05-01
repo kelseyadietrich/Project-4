@@ -114,7 +114,7 @@ public class ResumeAddController {
 			"Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah",
 			"Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"));
 	List<String> Degrees = new ArrayList<>(Arrays.asList("Degrees", "GED", "High School Diploma",
-			"Vocational", "Assosciates", "Bachelors", "Masters", "Doctorate"));
+			"Vocational", "Associates", "Bachelors", "Masters", "Doctorate"));
 	DocHandler document;
 	//////////////////////////////////////////////////////////////
 	@FXML
@@ -147,31 +147,31 @@ public class ResumeAddController {
 		return new Address(street, apt, city, state, zip);
 	}
 	@FXML
-	public void addWork(){
-	    work.add(new Work(title.getText(), employer.getText(), (jobStart.getValue() == null)?"":jobStart.getValue().toString(),
-	        (jobEnd.getValue() == null)?"":jobEnd.getValue().toString(), jobAdditional.getText(),
-	         stillWorks.isSelected()));
-	    title.setText("");
-	    employer.setText("");
-	    jobStart.setValue(null);
-	    jobEnd.setValue(null);
-	    jobAdditional.setText("");
-	    stillWorks.setSelected(false);
+	public void addWork(){		boolean errors = checkWork();		if(!errors){
+		    work.add(new Work(title.getText(), employer.getText(), (jobStart.getValue() == null)?"":jobStart.getValue().toString(),
+		        (jobEnd.getValue() == null)?"":jobEnd.getValue().toString(), jobAdditional.getText(),
+		         stillWorks.isSelected()));
+		    title.setText("");
+		    employer.setText("");
+		    jobStart.setValue(null);
+		    jobEnd.setValue(null);
+		    jobAdditional.setText("");
+		    stillWorks.setSelected(false);		}
 	}
 
 	@FXML
-	public void addEdu(){
-		edu.add(new Education(school.getText(), (eduStart.getValue() == null)?"":eduStart.getValue().toString(),
-				(eduEnd.getValue() == null)?"":eduEnd.getValue().toString(), degree.getSelectionModel().getSelectedItem(),
-				 eduAdditional.getText(), stillGoes.isSelected(), major.getText(), minor.getText()));
-		school.setText("");
-		eduStart.setValue(null);
-		eduEnd.setValue(null);
-		degree.getSelectionModel().selectFirst();
-		eduAdditional.setText("");
-		stillGoes.setSelected(false);
-		major.setText("");
-		minor.setText("");
+	public void addEdu(){		boolean errors = checkEdu();		if(!errors){
+			edu.add(new Education(school.getText(), (eduStart.getValue() == null)?"":eduStart.getValue().toString(),
+					(eduEnd.getValue() == null)?"":eduEnd.getValue().toString(), degree.getSelectionModel().getSelectedItem(),
+					 eduAdditional.getText(), stillGoes.isSelected(), major.getText(), minor.getText()));
+			school.setText("");
+			eduStart.setValue(null);
+			eduEnd.setValue(null);
+			degree.getSelectionModel().selectFirst();
+			eduAdditional.setText("");
+			stillGoes.setSelected(false);
+			major.setText("");
+			minor.setText("");		}
 	}
 
 	@FXML
@@ -229,5 +229,5 @@ public class ResumeAddController {
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
-	}	@FXML	public boolean checkPersonal(){		boolean errors = false;		if((name.getText() == "")){			error("You are nameless.");			errors = true;		}		if((userStreet.getText() == "") || (userCity.getText() == "")){			error("You did not enter a complete address.");			errors = true;		}		if(userState.getSelectionModel().getSelectedItem().equals("States")){			error("Whoa! You do not live a state bud.");			errors = true;		}		try{			Integer.parseInt(userApt.getText());		} catch (Exception e){			error("Incorrect apartment format.");			errors = true;		}		try{			Integer.parseInt(userZip.getText());		} catch (Exception e){			error("Incorrect zipcode format.");			errors = true;		}		return errors;	}	@FXML	public void checkDone(){		if((personal == null) && work.size() == 0 && edu.size() == 0 && skills.size() == 0 ){			error("Are you sure you're done? You haven't entered any information.");		}	}	public void error(String e) {		Alert r = new Alert(AlertType.NONE, e , ButtonType.OK);		r.setTitle("ERROR");		r.showAndWait();	}
+	}	@FXML	public boolean checkPersonal(){		boolean errors = false;		if((name.getText() == "")){			error("You are nameless.");			errors = true;		}		if((userStreet.getText() == "") || (userCity.getText() == "")){			error("You did not enter a complete address.");			errors = true;		}		if(userState.getSelectionModel().getSelectedItem().equals("States")){			error("Whoa! You do not live a state bud.");			errors = true;		}		try{			Integer.parseInt(userApt.getText());		} catch (Exception e){			error("Incorrect apartment format.");			errors = true;		}		try{			Integer.parseInt(userZip.getText());		} catch (Exception e){			error("Incorrect zipcode format.");			errors = true;		}		return errors;	}	@FXML	public boolean checkWork(){		boolean errors = false;		if((title.getText() == "") || (employer.getText() == "")){			error("You did not enter complete job information");			errors = true;		}		if(jobStart.getValue() == null){			error("When did you work here?");			errors = true;		}		if(jobAdditional.getText() == ""){			error("What did you do at this job?");			errors = true;		}		return errors;	}	@FXML	public boolean checkEdu(){		boolean errors = false;		if(school.getText() == ""){			error("You did not enter a school.");			errors = true;		}		if(eduStart.getValue() == null){			error("When did you go to school here?");			errors = true;		}		if(degree.getSelectionModel().getSelectedItem().equals("Degrees")){			error("What degree did/will you get here?");			errors = true;		}		if(degree.getSelectionModel().getSelectedItem().equals("Bachelors") ||		   degree.getSelectionModel().getSelectedItem().equals("Associates")){			error("Wait! You didn't enter your major.");			errors = true;		}		return errors;	}	@FXML	public void checkDone(){		if((personal == null) && work.size() == 0 && edu.size() == 0 && skills.size() == 0 ){			error("Are you sure you're done? You haven't entered any information.");		}	}	public void error(String e) {		Alert r = new Alert(AlertType.NONE, e , ButtonType.OK);		r.setTitle("ERROR");		r.showAndWait();	}
 }

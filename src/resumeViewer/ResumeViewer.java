@@ -12,29 +12,26 @@ import javafx.stage.Stage;
 public class ResumeViewer {
 	private WebView browser;
 	private WebEngine webEngine;
-	
-	
+
+
 	public ResumeViewer(){
 		this.browser = new WebView();
 		this.webEngine = browser.getEngine();
 	}
-	
-	
-	
-	
+
 	public void DisplayContentsOf(String filelocation){
 		Stage webStage = new Stage();
 		webStage.setWidth(400);
 		webStage.setHeight(500);
-		
+
 		Scene scene = new Scene(new Group());
 		ScrollPane scrollPane = new ScrollPane();
 	    scrollPane.setContent(this.browser);
-	    
+
 	    try {
 	    	File where = new File(filelocation);
 	    	String url = where.toURI().toString();
-	    	System.out.println("url:" + url);
+	    	//System.out.println("url:" + url);
 	    	webEngine.load(url);
 	    	 //String url = ResumeViewer.class.getResource(filelocation).toExternalForm();
 	    	 //webEngine.load(url);
@@ -44,11 +41,8 @@ public class ResumeViewer {
 			 webStage.show();
 	    } catch (Exception exc) {
 	    	exc.printStackTrace();
-	    	System.out.println("wt bro, ResumeViewer up");
+	    	//System.out.println("wt bro, ResumeViewer up");
 	    }
-
-
-	    
-	} 
+	}
 
 }

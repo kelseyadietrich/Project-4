@@ -51,7 +51,7 @@ public class ChooseLayoutController {
 	public void choose(){
 		parser1Call();
 	    getSelected();
-	    System.out.println("Calling view");
+	   // System.out.println("Calling view");
 	    callView();
 	}
 
@@ -90,7 +90,7 @@ public class ChooseLayoutController {
 
 	public void callView() {
 		ResumeViewer myViewer = new ResumeViewer();
-		System.out.println("Displaying content");
+		//System.out.println("Displaying content");
 		myViewer.DisplayContentsOf("../HTML.html");
 
 	}
