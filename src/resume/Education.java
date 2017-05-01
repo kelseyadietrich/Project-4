@@ -42,7 +42,7 @@ public class Education implements ResumeObject {
 
 	@Override
 	public String toString(){
-		return String.format("%s\n%s\n%s\n%s\n%s\n%s\n%b", school, startDate,
+		return String.format("%s\n%s\n%s\n%s\n%s\n%b", school, startDate,
 							 endDate, degree, additional, stillGoes);
 	}
 }
