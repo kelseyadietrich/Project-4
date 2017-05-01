@@ -1,9 +1,14 @@
 package resume;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Skills implements ResumeObject{
+public class Skills implements ResumeObject, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<String> skills;
 
 	public Skills() {

@@ -1,6 +1,12 @@
 package resume;
 
-public class User implements ResumeObject{
+import java.io.Serializable;
+
+public class User implements ResumeObject, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name, email, phone, additional;
 	private Address address;
 
