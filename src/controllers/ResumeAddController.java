@@ -62,16 +62,6 @@ public class ResumeAddController {
 	@FXML
 	TextField school;
 	@FXML
-	TextField schoolStreet;
-	@FXML
-	TextField schoolApt;
-	@FXML
-	TextField schoolCity;
-	@FXML
-	ChoiceBox<String> schoolState;
-	@FXML
-	TextField schoolZip;
-	@FXML
 	DatePicker eduStart;
 	@FXML
 	DatePicker eduEnd;
@@ -152,10 +142,8 @@ public class ResumeAddController {
 	private void fillStates() {
 		for(String state: States){
 			userState.getItems().add(state);
-			schoolState.getItems().add(state);
 		}
 		userState.getSelectionModel().selectFirst();
-		schoolState.getSelectionModel().selectFirst();
 	}
 
 	@FXML
@@ -166,17 +154,6 @@ public class ResumeAddController {
 		city  = "," + userCity.getText();
 		state = "," + userState.getSelectionModel().getSelectedItem();
 		zip = "," + userZip.getText();
-		return new Address(street, apt, city, state, zip);
-	}
-
-	@FXML
-	public Address getSchoolAddress(){
-		String street, apt, city, state, zip;
-		street = schoolStreet.getText();
-		apt = "," + schoolApt.getText();
-		city  = "," + schoolCity.getText();
-		state = "," + schoolState.getSelectionModel().getSelectedItem();
-		zip = "," + schoolZip.getText();
 		return new Address(street, apt, city, state, zip);
 	}
 
@@ -195,15 +172,10 @@ public class ResumeAddController {
 
 	@FXML
 	public void addEdu(){
-		edu.add(new Education(school.getText(), getSchoolAddress(), (eduStart.getValue() == null)?"":eduStart.getValue().toString(),
+		edu.add(new Education(school.getText(), (eduStart.getValue() == null)?"":eduStart.getValue().toString(),
 				(eduEnd.getValue() == null)?"":eduEnd.getValue().toString(), degree.getSelectionModel().getSelectedItem(),
 				 eduAdditional.getText(), stillGoes.isSelected(), major.getText(), minor.getText()));
 		school.setText("");
-		schoolStreet.setText("");
-		schoolApt.setText("");
-		schoolCity.setText("");
-		schoolState.getSelectionModel().selectFirst();
-		schoolZip.setText("");
 		eduStart.setValue(null);
 		eduEnd.setValue(null);
 		degree.getSelectionModel().selectFirst();
