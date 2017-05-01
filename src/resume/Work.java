@@ -1,8 +1,12 @@
 package resume;
 
-import sun.util.calendar.BaseCalendar.Date;
+import java.io.Serializable;
 
-public class Work implements ResumeObject {
+public class Work implements ResumeObject, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String title, employer, startDate, endDate, description;
 	private boolean stillWorks;
 	//Date startDate;
