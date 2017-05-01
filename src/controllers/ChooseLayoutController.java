@@ -11,8 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import resume.Education;
-import resume.Parser;
-import resume.Parser2;
+import resume.*;
 import resume.Skills;
 import resume.User;
 import resume.Work;
@@ -136,6 +135,31 @@ public class ChooseLayoutController {
 		parser.finalize();
 
 	}
+
+	 //Third parser that can be called
+
+	  public void parser3Call() {
+	    Parser3 parser = new Parser3();
+	    parser.initialize();
+	    try {
+		      parser.parsePersonal(personal);
+		      parser.parseSkills(skills);
+		      parser.openWork();
+		      for (int i = 0; i < work.size(); i++) {
+		        parser.parseWork(work.get(i));
+		      }
+		      parser.closeWork();
+		      parser.openEdu();
+		      for (int e = 0; e < edu.size(); e++) {
+		        parser.parseEducation(edu.get(e));
+		      }
+		      parser.closeEdu();
+	    } catch (Exception exc) {
+	    	error("Are you sure you're done? You haven't entered any information.");
+	    }
+	    parser.finalize();
+	    }
+
 
 	public void error(String e) {
 		Alert r = new Alert(AlertType.NONE, e , ButtonType.OK);
