@@ -19,7 +19,6 @@ import resume.Education;
 import resume.Skills;
 import resume.User;
 import resume.Work;
-import weatherApplicationComponent.Observation;
 
 
 public class CVDataBase {
