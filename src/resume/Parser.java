@@ -65,7 +65,6 @@ public class Parser {
 	
 	public void parseEducation(Education edu) {
 		parsed.add("<h2>Education</h2>");
-		//<h3>DEGREE | DATE EARNED | SCHOOL </h3>
 		String degree = edu.getDegree();
 		degree = degree.toUpperCase();
 		String date = edu.getEnd();
