@@ -1,11 +1,7 @@
 package controllers;
-import java.io.IOException;
-
-import java.util.ArrayList;
+import java.io.IOException;import java.sql.SQLException;import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-
-import javafx.fxml.FXML;
+import java.util.List;import database.CVDataBase;import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -104,7 +100,7 @@ public class ResumeAddController {
 	User personal;
 	ArrayList<Work> work = new ArrayList<Work>();
 	ArrayList<Education> edu = new ArrayList<Education>();
-	Skills skills;
+	Skills skills;	CVDataBase cvdb;
 	List<String> States = new ArrayList<>(Arrays.asList("States", "Alabama", "Alaska", "Arizona",
 			"Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
 			"Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
@@ -150,7 +146,7 @@ public class ResumeAddController {
 	public void addWork(){
 	    work.add(new Work(title.getText(), employer.getText(), (jobStart.getValue() == null)?"":jobStart.getValue().toString(),
 	        (jobEnd.getValue() == null)?"":jobEnd.getValue().toString(), jobAdditional.getText(),
-	         stillWorks.isSelected()));
+	         stillWorks.isSelected()));	    try {			cvdb.insertWorkEntry(work.get(work.size() - 1));		} catch (SQLException e) {			e.printStackTrace();		} catch (IOException e) {			e.printStackTrace();		}
 	    title.setText("");
 	    employer.setText("");
 	    jobStart.setValue(null);
@@ -163,7 +159,7 @@ public class ResumeAddController {
 	public void addEdu(){
 		edu.add(new Education(school.getText(), (eduStart.getValue() == null)?"":eduStart.getValue().toString(),
 				(eduEnd.getValue() == null)?"":eduEnd.getValue().toString(), degree.getSelectionModel().getSelectedItem(),
-				 eduAdditional.getText(), stillGoes.isSelected(), major.getText(), minor.getText()));
+				 eduAdditional.getText(), stillGoes.isSelected(), major.getText(), minor.getText()));		 try {			  cvdb.insertEducEntry(edu.get(edu.size() - 1));			} catch (SQLException e) {				e.printStackTrace();			} catch (IOException e) {				e.printStackTrace();			}
 		school.setText("");
 		eduStart.setValue(null);
 		eduEnd.setValue(null);
@@ -182,7 +178,7 @@ public class ResumeAddController {
 		if(skill4.getText() != "") { skills.add(skill4.getText()); }
 		if(skill5.getText() != "") { skills.add(skill5.getText()); }
 		if(skill6.getText() != "") { skills.add(skill6.getText()); }
-		if(skill7.getText() != "") { skills.add(skill7.getText()); }
+		if(skill7.getText() != "") { skills.add(skill7.getText()); }		try {			cvdb.insertSkillEntries(skills);		} catch (SQLException e) {			e.printStackTrace();		}
 		skill1.setText("");
 		skill2.setText("");
 		skill3.setText("");
@@ -194,7 +190,7 @@ public class ResumeAddController {
 	@FXML
 	public void personalDone(){		boolean errors = checkPersonal();		if(!errors){
 			personal = new User(name.getText(), email.getText(), phone.getText(),
-								getUserAddress(), userAdditional.getText());
+								getUserAddress(), userAdditional.getText());			try {				cvdb.insertPrsnlEntry(personal);			} catch (SQLException e) {				e.printStackTrace();			} catch (IOException e) {				e.printStackTrace();			}
 			tabs.getSelectionModel().select(1);		}
 		//System.out.println(personal.toString());
 	}
@@ -229,5 +225,5 @@ public class ResumeAddController {
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
-	}	@FXML	public boolean checkPersonal(){		boolean errors = false;		if((name.getText() == "")){			error("You are nameless.");			errors = true;		}		if((userStreet.getText() == "") || (userCity.getText() == "")){			error("You did not enter a complete address.");			errors = true;		}		if(userState.getSelectionModel().getSelectedItem().equals("States")){			error("Whoa! You do not live a state bud.");			errors = true;		}		try{			Integer.parseInt(userApt.getText());		} catch (Exception e){			error("Incorrect apartment format.");			errors = true;		}		try{			Integer.parseInt(userZip.getText());		} catch (Exception e){			error("Incorrect zipcode format.");			errors = true;		}		return errors;	}	@FXML	public void checkDone(){		if((personal == null) && work.size() == 0 && edu.size() == 0 && skills.size() == 0 ){			error("Are you sure you're done? You haven't entered any information.");		}	}	public void error(String e) {		Alert r = new Alert(AlertType.NONE, e , ButtonType.OK);		r.setTitle("ERROR");		r.showAndWait();	}
+	}	@FXML	public boolean checkPersonal(){		boolean errors = false;		if((name.getText() == "")){			error("You are nameless.");			errors = true;		}		if((userStreet.getText() == "") || (userCity.getText() == "")){			error("You did not enter a complete address.");			errors = true;		}		if(userState.getSelectionModel().getSelectedItem().equals("States")){			error("Whoa! You do not live a state bud.");			errors = true;		}		try{			Integer.parseInt(userApt.getText());		} catch (Exception e){			error("Incorrect apartment format.");			errors = true;		}		try{			Integer.parseInt(userZip.getText());		} catch (Exception e){			error("Incorrect zipcode format.");			errors = true;		}		return errors;	}	@FXML	public void checkDone(){		if((personal == null) && work.size() == 0 && edu.size() == 0 && skills.size() == 0 ){			error("Are you sure you're done? You haven't entered any information.");		}	}	public void error(String e) {		Alert r = new Alert(AlertType.NONE, e , ButtonType.OK);		r.setTitle("ERROR");		r.showAndWait();	}	public void importVariables(StartController startController) {		this.cvdb = startController.cvdb;			}
 }
