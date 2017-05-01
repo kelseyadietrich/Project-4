@@ -217,80 +217,50 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: b7f7e2;">
                      <children>
-                        <Label layoutX="26.0" layoutY="25.0" text="Skill name:">
+                         <Label layoutX="26.0" layoutY="25.0" text="Skill 1:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="26.0" layoutY="77.0" text="Skill name:">
+                        <Label layoutX="26.0" layoutY="67.0" text="Skill 2:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="26.0" layoutY="128.0" text="Skill name:">
+                        <Label layoutX="26.0" layoutY="109.0" text="Skill 3:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="26.0" layoutY="181.0" text="Skill name:">
+                        <Label layoutX="26.0" layoutY="151.0" text="Skill 4:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="skill1" layoutX="109.0" layoutY="20.0" prefHeight="31.0" prefWidth="155.0" />
-                        <TextField fx:id="skill2" layoutX="107.0" layoutY="78.0" prefHeight="31.0" prefWidth="154.0" />
-                        <TextField fx:id="skill3" layoutX="110.0" layoutY="133.0" prefHeight="31.0" prefWidth="154.0" />
-                        <TextField fx:id="skill4" layoutX="112.0" layoutY="178.0" prefHeight="31.0" prefWidth="153.0" />
-                        <Label layoutX="26.0" layoutY="235.0" text="Skill name:">
+                        <TextField fx:id="skill1" layoutX="73.0" layoutY="23.0" prefHeight="25.0" prefWidth="511.0" />
+                        <TextField fx:id="skill2" layoutX="73.0" layoutY="65.0" prefHeight="25.0" prefWidth="511.0" />
+                        <TextField fx:id="skill3" layoutX="73.0" layoutY="107.0" prefHeight="25.0" prefWidth="511.0" />
+                        <TextField fx:id="skill4" layoutX="73.0" layoutY="149.0" prefHeight="25.0" prefWidth="511.0" />
+                        <Label layoutX="26.0" layoutY="193.0" text="Skill 5:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="skill5" layoutX="109.0" layoutY="230.0" prefHeight="31.0" prefWidth="150.0" />
-                        <Label layoutX="26.0" layoutY="281.0" text="Skill name:">
+                        <TextField fx:id="skill5" layoutX="73.0" layoutY="191.0" prefHeight="25.0" prefWidth="511.0" />
+                        <Label layoutX="26.0" layoutY="276.0" text="Skill 7:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="skill6" layoutX="112.0" layoutY="276.0" prefHeight="31.0" prefWidth="153.0" />
+                        <Label layoutX="26.0" layoutY="234.0" text="Skill 6:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="skill6" layoutX="73.0" layoutY="232.0" prefHeight="25.0" prefWidth="511.0" />
+                        <TextField fx:id="skill7" layoutX="73.0" layoutY="274.0" prefHeight="25.0" prefWidth="511.0" />
                         <Button fx:id="addSkills" layoutX="132.0" layoutY="326.0" mnemonicParsing="false" onAction="#addSkills" text="Add Even More Skills" />
                         <Button fx:id="skillsDone" layoutX="369.0" layoutY="326.0" mnemonicParsing="false" onAction="#skillsDone" text="Done" />
-                        <Label layoutX="272.0" layoutY="25.0" text="Description:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="skill1desc" layoutX="357.0" layoutY="20.0" prefHeight="31.0" prefWidth="224.0" />
-                        <Label layoutX="272.0" layoutY="87.0" text="Description:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="skill2desc" layoutX="357.0" layoutY="82.0" prefHeight="31.0" prefWidth="223.0" />
-                        <Label layoutX="272.0" layoutY="138.0" text="Description:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="skill3desc" layoutX="357.0" layoutY="133.0" prefHeight="31.0" prefWidth="223.0" />
-                        <Label layoutX="272.0" layoutY="184.0" text="Description:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="skill4desc" layoutX="357.0" layoutY="178.0" prefHeight="31.0" prefWidth="223.0" />
-                        <Label layoutX="272.0" layoutY="235.0" text="Description:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="skill5desc" layoutX="358.0" layoutY="230.0" prefHeight="31.0" prefWidth="223.0" />
-                        <Label layoutX="268.0" layoutY="282.0" text="Description:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="skill6desc" layoutX="358.0" layoutY="277.0" prefHeight="31.0" prefWidth="223.0" />
                      </children>
                   </AnchorPane>
                </content>
