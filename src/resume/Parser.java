@@ -65,7 +65,6 @@ public class Parser {
 
 	public void parseEducation(Education edu) {
 		parsed.add("<h2>Education</h2>");
-		//<h3>DEGREE | DATE EARNED | SCHOOL </h3>
 		String degree = edu.getDegree();
 		degree = degree.toUpperCase();
 		String date = edu.getEnd();
@@ -89,13 +88,14 @@ public class Parser {
 
 	public void parseSkill(Skills skills) {
 		parsed.add("</li></ul><h2>Skills & Abilities</h2>");
-
-
+		parsed.add("<ul>");
+		
 		for (int a = 0; a < skills.size(); a++) {
-			parsed.add("<h3>" + skills.getSkill(a) + "</h3>");
-
+			parsed.add("<li><h3>" + skills.getSkill(a) + "</h3>");
+			
 		}
-
+		parsed.add("</ul>");
+		
 	}
 
 

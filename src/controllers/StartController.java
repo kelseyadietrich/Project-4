@@ -1,8 +1,5 @@
 package controllers;
 
-import java.sql.SQLException;
-
-import database.CVDataBase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,17 +18,6 @@ public class StartController {
 
 	@FXML
 	public void createDB(){
-		
-		
-		CVDataBase cvdb = new CVDataBase();
-		try {
-			cvdb.setUp();
-			System.out.println("Database successfully set up!");
-		} catch (SQLException e) {
-				// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		openResumeAdd();
 	}
 
