@@ -2,7 +2,6 @@ package database;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import resume.Address;
 import resume.Education;
@@ -20,14 +19,11 @@ public class DbMain {
 				, "may-05-2018", "Bachelor's", "Lorem ipsum dolor sit", true, "Computer Science", "Applied Math");
 		Work testWork = new Work("CS Tutor", "Hendrix Math department", "aug-07-2016"
 				, "May-15-2017", "Lorem ipsum dolor sit", false);
+		
+		
 		Skills testSkills = new Skills();
-
-		
-		
-
+	
 		testSkills.add("soccer");
-
-
 		try {
 			cvdb.setUp();
 		} catch (SQLException e) {
@@ -38,7 +34,7 @@ public class DbMain {
 		try {
 			cvdb.insertPrsnlEntry(testUser);
 			cvdb.insertEducEntry(testEd);
-			cvdb.insertSkillEntries(testSkills);
+			//cvdb.insertSkillEntries(testSkills);
 			cvdb.insertWorkEntry(testWork);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -47,20 +43,7 @@ public class DbMain {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		try {
-			ArrayList<User> fromDB = cvdb.getPersonalData();
-			System.out.println(fromDB);
-			ArrayList<Work> wFromDB = cvdb.getExperienceData();
-			System.out.println(wFromDB);
-			ArrayList<Education> eFromDB = cvdb.getEducationData();
-			System.out.println(eFromDB);
-			ArrayList<Skills> sFromDB = cvdb.getSkillsData();
-			System.out.println(sFromDB);
-		} catch (ClassNotFoundException | SQLException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
+	
 }

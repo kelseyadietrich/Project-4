@@ -29,4 +29,9 @@ public class Address implements Serializable{
 	public void setState(String stat){ this.state = stat; }
 	public void setZip(String zp){ this.zip = zp; }
 
+	public String toString() {
+		String add = street  + apt  + city  + state  + zip;
+		return add;
+	}
+	
 }

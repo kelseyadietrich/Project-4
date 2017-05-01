@@ -1,8 +1,5 @@
 package controllers;
 
-import java.sql.SQLException;
-
-import database.CVDataBase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,22 +12,12 @@ public class StartController {
 	Button update;
 	@FXML
 	Button create;
-	
-	CVDataBase cvdb;
 
 	@FXML
 	public void initialize(){}
 
 	@FXML
 	public void createDB(){
-		cvdb = new CVDataBase();
-		try {
-			cvdb.setUp();
-			System.out.println("Database successfully set up!");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
 		openResumeAdd();
 	}
 
@@ -41,10 +28,6 @@ public class StartController {
 			loader.setLocation(GuiMain.class.getResource("ResumeAdd.fxml"));
 			Pane root = (Pane) loader.load();
 
-			ResumeAddController resumeAdd = (ResumeAddController) loader.getController();
-
-			resumeAdd.importVariables(this);
-			
 			Stage secondStage = new Stage();
 			Scene scene = new Scene(root);
 			secondStage.setScene(scene);
