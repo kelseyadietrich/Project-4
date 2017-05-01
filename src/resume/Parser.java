@@ -1,6 +1,7 @@
 package resume;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 
 public class Parser {
@@ -18,20 +19,13 @@ public class Parser {
 		parsed.add("h2 {color: #2a7b88;font-size: 14pt;font-family: Cambria;font-style: bold;}");
 		parsed.add("h3 {color: ##000000; font-size: 12pt; font-family: Cambria;  font-style: bold;}");
 		parsed.add("</style>");
-		try {
-			System.out.println(document.read());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Could not read document?");
-			e.printStackTrace();
-		}
+
 	}
 	
 	public void finalize() {
 		String entireHtml = "";
 		for (int i = 0; i < parsed.size(); i ++) {
 			entireHtml += parsed.get(i);
-			//System.out.println(entireHtml);
 		}
 		document.write(entireHtml);
 	}
