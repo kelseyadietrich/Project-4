@@ -50,7 +50,7 @@ public class Parser3 {
 		parsed.add("<h3 align=\"center\">");
 		parsed.add(email);
 		parsed.add("</h3>");
-		parsed.add(" <p align=\"center\"><img width=\"38\" height=\"3\" src=\"Untitled-1_clip_image002.png\" alt=\"Title: Telephone icon\"></p>");
+		parsed.add(" <p align=\"center\"><img width=\"38\" height=\"38\" src=\"Untitled-1_clip_image002.png\" alt=\"Title: Telephone icon\"></p>");
 		parsed.add("<h3 align=\"center\">");
 		parsed.add(phone);
 		parsed.add("</h3>");
@@ -111,8 +111,6 @@ public class Parser3 {
 		parsed.add("<p align=\"center\"");
 		parsed.add(work.getDescrip());
 		parsed.add("</p>");
-		parsed.add("</center>");
-		parsed.add("</tr>");
 	}
 	
 	public void openWork() {
