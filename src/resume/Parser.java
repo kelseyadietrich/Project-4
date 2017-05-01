@@ -89,12 +89,13 @@ public class Parser {
 	
 	public void parseSkill(Skills skills) {
 		parsed.add("</li></ul><h2>Skills & Abilities</h2>");
-		
+		parsed.add("<ul>");
 		
 		for (int a = 0; a < skills.size(); a++) {
-			parsed.add("<h3>" + skills.getSkill(a) + "</h3>");
+			parsed.add("<li><h3>" + skills.getSkill(a) + "</h3>");
 			
 		}
+		parsed.add("</ul>");
 		
 	}
 	

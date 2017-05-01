@@ -38,7 +38,11 @@ public class ChooseLayoutController {
 	private boolean layout3Picked;
 
 	@FXML
-	public void initialize(){}
+	public void initialize(){
+		layout1Picked = true;
+		layout2Picked = false;
+		layout3Picked = false;
+	}
 
 	// get rid of later. Just here bc database not yet implemented
 	@FXML
