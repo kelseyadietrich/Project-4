@@ -33,9 +33,11 @@ public class Parser {
 	public void parsePersonal(User user) {
 		String name = user.getName();
 		name.toUpperCase();
+		Address add = user.getAddress();
+		String address = add.toString();
 		parsed.add("<h1>" + name + "</h1>");
 		parsed.add("<hr>");
-		parsed.add(user.getAddress() + " | ");
+		parsed.add(address + " | ");
 		parsed.add(user.getPhone() + " | ");
 		parsed.add(user.getEmail());
 		parsed.add("<br><br>");
@@ -91,7 +93,7 @@ public class Parser {
 		
 		for (int a = 0; a < skills.size(); a++) {
 			parsed.add("<h3>" + skills.getSkill(a) + "</h3>");
-			parsed.add("<ul><li>" + skills.getDesc(a) + "</li></ul>");
+			
 		}
 		
 	}
