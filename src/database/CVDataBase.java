@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Map;
 
 import resume.Address;
 import resume.Education;
@@ -25,53 +24,18 @@ public class CVDataBase {
 	Connection c;
 	Statement stmt;
 	
+	DBSetUpStatements sqlStmt = new DBSetUpStatements();
+	
 	int personalIDCount = 0;
 	int exprIDCount = 0;
 	int educIDCount = 0;
 	int skillEntryID = 0;
 	
 	
-	String createPrsnlDataTableQuery = "CREATE TABLE IF NOT EXISTS PERSONALDATA "
-            + "(PersonalID INT PRIMARY KEY     NOT NULL,"
-            + "Name            VARCHAR(255)    NOT NULL,"
-            + "Email           VARCHAR(255)    NOT NULL,"
-            + "Phone           VARCHAR(255)    NOT NULL,"
-            + "Address         BLOB            NOT NULL,"
-            + "AdditionalInfo  VARCHAR(255)    NULL);";
-	
-	
-	String createExprDataTableQuery = "CREATE TABLE IF NOT EXISTS EXPERIENCEDATA "
-            + "(ExperienceID INT PRIMARY KEY           NOT NULL,"
-            + "JobTitle            VARCHAR(255)        NOT NULL,"
-            + "Employer            VARCHAR(255)        NOT NULL,"
-            + "StDate              VARCHAR(255)        NOT NULL,"
-            + "EnDate              VARCHAR(255)        NOT NULL,"
-            + "StillGo             BOOLEAN             NOT NULL,"
-            + "Description         VARCHAR(255)        NULL,"
-            + "PersonalIDExpr INT              ,"
-            + "FOREIGN KEY (PersonalIDExpr) REFERENCES PERSONALDATA (PersonalID));";
-	
-	
-	String createEducDataTableQuery = "CREATE TABLE IF NOT EXISTS EDUCATIONDATA "
-            + "(EducItemID INT PRIMARY KEY         NOT NULL,"
-            + "Institution       VARCHAR(255)      NOT NULL,"
-            + "Address           BLOB              NOT NULL,"
-            + "StDate            VARCHAR(255)      NOT NULL,"
-            + "EndDate           VARCHAR(255)      NOT NULL,"
-            + "StillGo           BOOLEAN           NOT NULL,"
-            + "Degree            VARCHAR(255)      NOT NULL,"
-            + "Major             VARCHAR(255)      NOT NULL,"
-            + "Minor             VARCHAR(255)      NULL,"
-            + "AdditionalInfo    VARCHAR(255)      NOT NULL,"
-            + "PersonalIDEduc INT              ,"
-            + "FOREIGN KEY (PersonalIDEduc) REFERENCES PERSONALDATA (PersonalID));";
-	
-	
-	String createSkillsDataQuery = "CREATE TABLE IF NOT EXISTS SKILLSDATA "
-            + "(SkillsEntryID  INT PRIMARY KEY  NOT NULL,"
-            + "Skill          String          NOT NULL,"
-            + "PersonalIDSkill INT              ,"
-            + "FOREIGN KEY (PersonalIDSkill) REFERENCES PERSONALDATA (PersonalID));";
+	String createPrsnlDataTableQuery = sqlStmt.getCreatePrsnlDataTableQuery();
+	String createExprDataTableQuery = sqlStmt.getCreateExprDataTableQuery();
+	String createEducDataTableQuery = sqlStmt.getCreateEducDataTableQuery();
+	String createSkillsDataQuery = sqlStmt.getCreateSkillsDataQuery();
 	
 	public CVDataBase(){
 		stmt = null;
@@ -223,38 +187,40 @@ public class CVDataBase {
 	}
 	
 	
-	public User getKnownUser(ResultSet rs) throws SQLException{
+	public User getKnownUser(ResultSet rs) throws SQLException, IOException, ClassNotFoundException{
 		stmt = c.createStatement();
-//		  protected Currency processRow(ResultSet rs) throws SQLException {
-//		        Currency currency = new Currency();
-//		        currency.setId(rs.getInt("id"));
-//		        currency.setEUR(rs.getString("EUR"));
-//		        currency.setUSD(rs.getString("USD"));
-//		        currency.setRate(rs.getString("rate"));     
-//		        return currency;
-//
-//		    }
 		User u = new User();
-		return null;
+		u.setName(rs.getString("Name"));
+		u.setEmail(rs.getString("Email"));
+		u.setAdditional(rs.getString("AdditionalInfo"));
+		
+		ByteArrayInputStream bais = new ByteArrayInputStream(rs.getBytes("Address"));
+		ObjectInputStream ois = new ObjectInputStream(bais);
+		Address address = (Address) ois.readObject();
+		u.setAddress(address);
+		
+		return u;
 	}
 	
-	//TO DO
-//	public ArrayList<User> getAllKnownUsers() throws SQLException{
-//		stmt = c.createStatement();
-//		
-//		
-//		//getting names
-//		ArrayList<String> names = new ArrayList<>();
-//		String query = "SELECT Name FROM PERSONALDATA ORDER BY ID;";
-//		ResultSet rs = stmt.executeQuery(query);
-//		while(rs.next()){
-//			names.add(rs.getString(1));
-//		}
-//		//return names;
-//		
-//		
-//		return null;
-//	}
+	public ArrayList<User> getAllKnownUsers() throws SQLException, ClassNotFoundException, IOException{
+		stmt = c.createStatement();
+		
+		
+		//getting names
+		ArrayList<User> toReturn = new ArrayList<>();
+		String query = "SELECT * FROM PERSONALDATA ORDER BY ID;";
+		ResultSet rs = stmt.executeQuery(query);
+		while(rs.next()){
+			toReturn.add(getKnownUser(rs));
+		}
+		
+		return toReturn;
+	}
+	
+	
+	public Work getKnownWork(){
+		return null;
+	}
 	
 	//TO DO 
 	public ArrayList<Work> getAllKnownWorkExpr(){
