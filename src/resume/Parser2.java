@@ -8,7 +8,7 @@ public class Parser2 {
 	public DocHandler document;
 	public User user;
 	public ArrayList<String> parsed = new ArrayList<String>();
-	
+
 	public void initialize() {
 		this.document = new DocHandler();
 		this.parsed = new ArrayList<String>();
@@ -23,7 +23,7 @@ public class Parser2 {
 		parsed.add("#column2 {float:left;width: 66%;}");
 		parsed.add("</style>");
 	}
-	
+
 	public void finalize() {
 		parsed.add("</div>");
 		String entireHtml = "";
@@ -32,7 +32,7 @@ public class Parser2 {
 		}
 		document.write(entireHtml);
 	}
-	
+
 	public void parsePersonal(User user) {
 		String name = user.getName();
 		name.toUpperCase();
@@ -43,7 +43,7 @@ public class Parser2 {
 		Address add = user.getAddress();
 		String address = add.toString();
 		address.toUpperCase();
-		
+
 		parsed.add("<div style=\"width: 100%; height: 0px; border-bottom: 55px solid #ea4e4e; text-align: right;\"><span style=\"font-size: 40px; font-family: Arial Black; background-color: #ea4e4e; padding: 0 10px;\">");
 		parsed.add(name);
 		parsed.add("</span></div>");
@@ -51,26 +51,23 @@ public class Parser2 {
 		parsed.add(email + " | " + phone + " | " + address);
 		parsed.add("</span></div>");
 		parsed.add("<br><br>");
-		
+
 		parsed.add("<div id=\"column1\"><h3>OBJECTIVE</h3><hr align=\"left\" width= \"90%\" size=\"10\" color= \"#ea4e4e\">");
 		parsed.add("<p>" + user.getAdditional() + "</p>");
-	
+
 	}
-	
+
 	public void parseSkills(Skills skills) {
 		parsed.add("<h3>SKILLS</h3>");
 		parsed.add("<hr align=\"left\"  width= \"90%\"size=\"10\" color= \"#ea4e4e\">");
 		for (int a = 0; a < skills.size(); a++) {
 			parsed.add("<h4>" + skills.getSkill(a) + "</h4>");
-			parsed.add("<p>");
-			parsed.add("<ul><li>" + skills.getDesc(a) + "</li></ul>");
-			parsed.add("</p>");
 		}
 		parsed.add("</div>");
 		parsed.add("<div id=\"column2\"><h3>EXPERIENCE</h3><hr align=\"left\" size=\"10\" color= \"#ea4e4e\">");
-		
+
 	}
-	
+
 	public void parseWork(Work work) {
 		String title = work.getTitle();
 		title = title.toUpperCase();
@@ -83,7 +80,7 @@ public class Parser2 {
 		parsed.add("<h4>" + title + " | " + company + " | " + start + " - " + end + "</h4>");
 		parsed.add("<p>" + work.getDescrip() + "</p>");
 	}
-	
+
 	public void parseEducation(Education edu) {
 		parsed.add("<h3>EDUCATION</h3><hr align=\"left\" size=\"10\" color= \"#ea4e4e\">");
 		String degree = edu.getDegree();
@@ -95,7 +92,7 @@ public class Parser2 {
 		parsed.add("<h4>" + degree + " | " + date + " | " + school + "</h4>");
 		parsed.add("<p>" + edu.getAdditional() + "</p>");
 	}
-	
-	
+
+
 
 }

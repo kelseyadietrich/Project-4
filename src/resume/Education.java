@@ -1,8 +1,5 @@
 package resume;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class Education {
 	private String school, startDate, endDate, degree, additional, major, minor;
 	private boolean stillGoes;
@@ -32,7 +29,7 @@ public class Education {
 
 	@Override
 	public String toString(){
-		return String.format("%s\n%s\n%s\n%s\n%s\n%s\n%b", school, address, startDate,
+		return String.format("%s\n%s\n%s\n%s\n%s\n%s\n%b", school, startDate,
 							 endDate, degree, additional, stillGoes);
 	}
 }
