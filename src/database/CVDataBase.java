@@ -1,11 +1,14 @@
 package database;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -16,6 +19,7 @@ import resume.Education;
 import resume.Skills;
 import resume.User;
 import resume.Work;
+import weatherApplicationComponent.Observation;
 
 
 public class CVDataBase {
@@ -67,7 +71,6 @@ public class CVDataBase {
 	String createSkillsDataQuery = "CREATE TABLE IF NOT EXISTS SKILLSDATA "
             + "(SkillsEntryID  INT PRIMARY KEY  NOT NULL,"
             + "Skill1          String          NOT NULL,"
-            + "Description     String          NOT NULL,"
             + "PersonalIDSkill INT              ,"
             + "FOREIGN KEY (PersonalIDSkill) REFERENCES PERSONALDATA (PersonalID));";
 	
@@ -168,7 +171,6 @@ public class CVDataBase {
 		exprIDCount += 1;
 	}
 	
-	//similar to previous : Maybe use Bifunctor to reduce lines of code? : )
 	
 	public void insertEducEntry(Education e) throws SQLException, IOException{
 		stmt = c.createStatement();
@@ -200,7 +202,7 @@ public class CVDataBase {
 	}
 	
 	public void insertSkillEntries(Skills skillList) throws SQLException{
-		PreparedStatement pstmt = c.prepareStatement("INSERT INTO SKILLSDATA VALUES (?,?,?,?);");
+		PreparedStatement pstmt = c.prepareStatement("INSERT INTO SKILLSDATA VALUES (?,?,?);");
 	    ArrayList<Map.Entry<String, String>> skills = new ArrayList<>(skillList.getSkillAndDesc().entrySet());
 	    stmt = c.createStatement();
 	    for(Map.Entry<String, String> item : skills){
@@ -208,16 +210,13 @@ public class CVDataBase {
 	    	String desc = item.getValue();
 	    	pstmt.setInt(1, skillEntryID);
 	    	pstmt.setString(2, sk);
-	    	pstmt.setString(3, desc);
-	    	pstmt.setInt(4,  getPersonalID());
+	    	pstmt.setInt(3,  getPersonalID());
 	    	pstmt.executeUpdate();
 	    	skillEntryID += 1;
 	    	
 	    }
 		
 	}
-	
-	
 	
 	public byte[] serializeObject(Address obs) throws IOException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -230,6 +229,52 @@ public class CVDataBase {
 	}
 	
 	
+	//TO DO
+	public ArrayList<User> getAllKnownUsers() throws SQLException{
+		stmt = c.createStatement();
+		
+		ArrayList<String> names = new ArrayList<>();
+		String query = "SELECT Name FROM PERSONALDATA Order by id;";
+		ResultSet rs = stmt.executeQuery(query);
+		while(rs.next()){
+			names.add(rs.getString(1));
+		}
+		//return names;
+		
+		
+		return null;
+	}
+	
+	//TO DO 
+	public ArrayList<Work> getAllKnownWorkExpr(){
+		return null;
+	}
+	
+	//TO DO 
+	public ArrayList<Skills> getAllKnownSkills(){
+		return null;
+	}
+	
+	
+	//TO DO
+	public ArrayList<Education> getAllKnownEducation(){
+		return null;
+	}
+	
+	
+//	public Address deserializeObject(long primaryKey) throws IOException, SQLException, ClassNotFoundException {
+//		stmt = c.createStatement();
+//		String query = String.format("SELECT OBJECT FROM WEATHERDATA WHERE ID = %d;",
+//				primaryKey);
+//		ResultSet rs = stmt.executeQuery(query);
+//		ByteArrayInputStream bais = new ByteArrayInputStream(rs.getBytes("OBJECT"));
+//		ObjectInputStream ois = new ObjectInputStream(bais);
+//		Address obsObj = (Address) ois.readObject();
+//		ois.close();
+//		bais.close();
+//		return obsObj;
+//	}
+//	
 	
 	
 	
