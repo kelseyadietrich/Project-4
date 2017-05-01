@@ -237,7 +237,7 @@ public class ResumeAddController {
 		System.out.println("Calling view");
 		callView();
 	}
-
+//whataaaa
 	public void callView() {
 		ResumeViewer myViewer = new ResumeViewer();
 		System.out.println("Displaying content");
