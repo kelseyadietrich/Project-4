@@ -35,13 +35,9 @@ public class Education implements ResumeObject {
 	public void setMajor(String maj){ this.major = maj; }
 	public void setMinor(String min){ this.minor = min; }
 	public void setGoes(){
-		if (stillGoes == true) {
-			this.stillGoes = false;
-		}else {
-			this.stillGoes = true;
-		}
+		this.stillGoes = !this.stillGoes;
 	}
-	
+
 	public void isSerializable(){}
 
 	@Override
