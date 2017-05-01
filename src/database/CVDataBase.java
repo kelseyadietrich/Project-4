@@ -225,23 +225,29 @@ public class CVDataBase {
 	}
 	
 	
-	//TO DO
-	public ArrayList<User> getAllKnownUsers() throws SQLException{
+	public User getKnownUser(int i) throws SQLException{
 		stmt = c.createStatement();
-		
-		
-		//getting names
-		ArrayList<String> names = new ArrayList<>();
-		String query = "SELECT Name FROM PERSONALDATA ORDER BY ID;";
-		ResultSet rs = stmt.executeQuery(query);
-		while(rs.next()){
-			names.add(rs.getString(1));
-		}
-		//return names;
-		
-		
+		String query = "SELECT Name FROM PERSONALDATA WHERE ID=%d"
 		return null;
 	}
+	
+	//TO DO
+//	public ArrayList<User> getAllKnownUsers() throws SQLException{
+//		stmt = c.createStatement();
+//		
+//		
+//		//getting names
+//		ArrayList<String> names = new ArrayList<>();
+//		String query = "SELECT Name FROM PERSONALDATA ORDER BY ID;";
+//		ResultSet rs = stmt.executeQuery(query);
+//		while(rs.next()){
+//			names.add(rs.getString(1));
+//		}
+//		//return names;
+//		
+//		
+//		return null;
+//	}
 	
 	//TO DO 
 	public ArrayList<Work> getAllKnownWorkExpr(){

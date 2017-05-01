@@ -20,7 +20,7 @@ public class DbMain {
 		Work testWork = new Work("CS Tutor", "Hendrix Math department", "aug-07-2016"
 				, "May-15-2017", "Lorem ipsum dolor sit", false);
 		Skills testSkills = new Skills();
-		testSkills.add("soccer", "player freshman year!");
+		//testSkills.add("soccer", "player freshman year!");
 		
 		
 		try {
