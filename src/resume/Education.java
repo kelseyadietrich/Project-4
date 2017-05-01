@@ -1,8 +1,13 @@
+
 package resume;
 
 import java.io.Serializable;
 
 public class Education implements ResumeObject, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String school, startDate, endDate, degree, additional, major, minor;
 	private boolean stillGoes;
 
