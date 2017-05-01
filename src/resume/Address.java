@@ -22,5 +22,11 @@ public class Address implements Serializable{
 	public String getCity(){ return city; }
 	public String getState(){ return state; }
 	public String getZip(){ return zip; }
+	
+	public void setStreet(String st){ this.street = st; }
+	public void setApt(String ap){ this.apt = ap; }
+	public void setCity(String cty){ this.city = cty; }
+	public void setState(String stat){ this.state = stat; }
+	public void setZip(String zp){ this.zip = zp; }
 
 }

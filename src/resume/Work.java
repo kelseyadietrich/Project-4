@@ -24,6 +24,19 @@ public class Work {
 	public String getEnd(){ return endDate; }
 	public String getDescrip(){ return description; }
 	public boolean stillWorks(){ return stillWorks; }
+	
+	public void setTitle(String tit){ this.title = tit; }
+	public void setEmployer(String emp){ this.employer = emp; }
+	public void setStart(String start){ this.startDate = start; }
+	public void setEnd(String end){ this.endDate = end; }
+	public void setDescrip(String desc){ this.description = desc; }
+	public void setWorking(){ 
+		if (stillWorks == false) {
+			this.stillWorks = true;
+		}else {
+			this.stillWorks = false;
+		}
+	}
 
 	@Override
 	public String toString(){

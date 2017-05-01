@@ -1,8 +1,5 @@
 package resume;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class Education {
 	private String school, startDate, endDate, degree, additional, major, minor;
 	private boolean stillGoes;
@@ -29,10 +26,24 @@ public class Education {
 	public String getMajor(){ return major; }
 	public String getMinor(){ return minor; }
 	public boolean stillGoes(){ return stillGoes; }
+	
+	public void setStart(String start){ this.startDate = start; }
+	public void setEnd(String end){ this.endDate = end; }
+	public void setDegree(String deg){ this.degree = deg; }
+	public void setAdditional(String add){ this.additional = add; }
+	public void setMajor(String maj){ this.major = maj; }
+	public void setMinor(String min){ this.minor = min; }
+	public void setGoes(){ 
+		if (stillGoes == true) {
+			this.stillGoes = false;
+		}else {
+			this.stillGoes = true;
+		}
+	}
 
 	@Override
 	public String toString(){
-		return String.format("%s\n%s\n%s\n%s\n%s\n%s\n%b", school, address, startDate,
+		return String.format("%s\n%s\n%s\n%s\n%s\n%s\n%b", school, startDate,
 							 endDate, degree, additional, stillGoes);
 	}
 }
