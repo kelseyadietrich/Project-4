@@ -18,19 +18,21 @@ public class Work {
 		this.stillWorks = stillWorks;
 	}
 
-	public String getTitle(){ return title; }
-	public String getEmployer(){ return employer; }
-	public String getStart(){ return startDate; }
-	public String getEnd(){ return endDate; }
-	public String getDescrip(){ return description; }
-	public boolean stillWorks(){ return stillWorks; }
-	
+	// table EXPERIENCEDATA
+
+	public String getTitle(){ return title; } // column 2
+	public String getEmployer(){ return employer; } // column 3
+	public String getStart(){ return startDate; } // column 4
+	public String getEnd(){ return endDate; } // column 5
+	public String getDescrip(){ return description; } // column 7
+	public boolean stillWorks(){ return stillWorks; } // column 6
+
 	public void setTitle(String tit){ this.title = tit; }
 	public void setEmployer(String emp){ this.employer = emp; }
 	public void setStart(String start){ this.startDate = start; }
 	public void setEnd(String end){ this.endDate = end; }
 	public void setDescrip(String desc){ this.description = desc; }
-	public void setWorking(){ 
+	public void setWorking(){
 		if (stillWorks == false) {
 			this.stillWorks = true;
 		}else {

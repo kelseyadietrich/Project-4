@@ -17,23 +17,24 @@ public class Education {
 		this.minor = minor;
 	}
 
-	public String getSchool(){ return school; }
-	//public Address getAddress(){ return address; }
-	public String getStart(){ return startDate; }
-	public String getEnd(){ return endDate; }
-	public String getDegree(){ return degree; }
-	public String getAdditional(){ return additional; }
-	public String getMajor(){ return major; }
-	public String getMinor(){ return minor; }
-	public boolean stillGoes(){ return stillGoes; }
-	
+	// table EDUCATIONDATA
+
+	public String getSchool(){ return school; } // column 2
+	public String getStart(){ return startDate; } // column 3
+	public String getEnd(){ return endDate; } // column 4
+	public String getDegree(){ return degree; } // column 6
+	public String getAdditional(){ return additional; } // column 9
+	public String getMajor(){ return major; } // column 7
+	public String getMinor(){ return minor; } // column 8
+	public boolean stillGoes(){ return stillGoes; } // column 5
+
 	public void setStart(String start){ this.startDate = start; }
 	public void setEnd(String end){ this.endDate = end; }
 	public void setDegree(String deg){ this.degree = deg; }
 	public void setAdditional(String add){ this.additional = add; }
 	public void setMajor(String maj){ this.major = maj; }
 	public void setMinor(String min){ this.minor = min; }
-	public void setGoes(){ 
+	public void setGoes(){
 		if (stillGoes == true) {
 			this.stillGoes = false;
 		}else {
