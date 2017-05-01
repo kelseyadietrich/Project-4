@@ -69,7 +69,7 @@ public class CVDataBase {
 	
 	String createSkillsDataQuery = "CREATE TABLE IF NOT EXISTS SKILLSDATA "
             + "(SkillsEntryID  INT PRIMARY KEY  NOT NULL,"
-            + "Skill1          String          NOT NULL,"
+            + "Skill          String          NOT NULL,"
             + "PersonalIDSkill INT              ,"
             + "FOREIGN KEY (PersonalIDSkill) REFERENCES PERSONALDATA (PersonalID));";
 	

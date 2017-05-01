@@ -18,6 +18,10 @@ public class Skills {
 		return skills.get(i);
 	}
 
+	public ArrayList<String> getAll(){
+		return skills;
+	}
+
 	public int size() {
 		return skills.size();
 	}
