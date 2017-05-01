@@ -38,41 +38,41 @@ public class DBInsertObject {
 	}
 	
 	public void insertPrsnlEntry(User u) throws SQLException, IOException{
-		stmt = c.createStatement();
+		this.stmt = this.c.createStatement();
 		PreparedStatement pstmt =
-				c.prepareStatement("INSERT INTO PERSONALDATA VALUES (?, ?);");
+				this.c.prepareStatement("INSERT INTO PERSONALDATA VALUES (?, ?);");
 		pstmt.setInt(1, getPersonalID());
 		pstmt.setObject(2, serializeObject(u));
 		pstmt.executeUpdate();
-		personalIDCount += 1;
+		this.personalIDCount += 1;
 	}
 
 	public void insertWorkEntry(Work w) throws SQLException, IOException{
-		stmt = c.createStatement();
+		this.stmt = this.c.createStatement();
 		PreparedStatement pstmt =
-				c.prepareStatement("INSERT INTO EXPERIENCEDATA VALUES (?, ?, ?);");
+				this.c.prepareStatement("INSERT INTO EXPERIENCEDATA VALUES (?, ?, ?);");
 		pstmt.setInt(1, exprIDCount);
 		pstmt.setObject(2, serializeObject(w));
 		pstmt.setInt(3, getPersonalID());
 		pstmt.executeUpdate();
-		exprIDCount += 1;
+		this.exprIDCount += 1;
 	}
 
 
 	public void insertEducEntry(Education e) throws SQLException, IOException{
-		stmt = c.createStatement();
+		this.stmt = c.createStatement();
 		PreparedStatement pstmt =
-				c.prepareStatement("INSERT INTO EDUCATIONDATA VALUES (?, ?, ?);");
+				this.c.prepareStatement("INSERT INTO EDUCATIONDATA VALUES (?, ?, ?);");
 		pstmt.setInt(1,  educIDCount);
 		pstmt.setObject(2, serializeObject(e));
 		pstmt.setInt(3, getPersonalID());
 		pstmt.executeUpdate();
-		educIDCount += 1;
+		this.educIDCount += 1;
 
 	}
 
 	public void insertSkillEntries(Skills skillList) throws SQLException, IOException{
-		PreparedStatement pstmt = c.prepareStatement("INSERT INTO SKILLSDATA VALUES (?,?,?);");
+		PreparedStatement pstmt = this.c.prepareStatement("INSERT INTO SKILLSDATA VALUES (?,?,?);");
 	    pstmt.setInt(1, this.skillEntryID);
 	    pstmt.setObject(2, serializeObject(skillList));
 	    pstmt.setInt(3,  getPersonalID());
