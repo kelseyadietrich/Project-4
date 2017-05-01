@@ -169,25 +169,25 @@ public class ResumeAddController {
 	}
 
 	@FXML
-	public String getUserAddress(){
+	public Address getUserAddress(){
 		String street, apt, city, state, zip;
 		street = userStreet.getText();
 		apt = "," + userApt.getText();
 		city  = "," + userCity.getText();
 		state = "," + userState.getSelectionModel().getSelectedItem();
 		zip = "," + userZip.getText();
-		return street + apt + city + state + zip;
+		return new Address(street, apt, city, state, zip);
 	}
 
 	@FXML
-	public String getSchoolAddress(){
+	public Address getSchoolAddress(){
 		String street, apt, city, state, zip;
 		street = schoolStreet.getText();
 		apt = "," + schoolApt.getText();
 		city  = "," + schoolCity.getText();
 		state = "," + schoolState.getSelectionModel().getSelectedItem();
 		zip = "," + schoolZip.getText();
-		return street + apt + city + state + zip;
+		return new Address(street, apt, city, state, zip);
 	}
 
 	@FXML
@@ -225,7 +225,7 @@ public class ResumeAddController {
 
 	@FXML
 	public void addSkills(){
-		
+
 		if(skill1.getText() != "" && skill1desc.getText() != "") {
 			skills.add(skill1.getText(), skill1desc.getText());
 		}

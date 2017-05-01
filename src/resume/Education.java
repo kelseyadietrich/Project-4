@@ -7,7 +7,6 @@ public class Education {
 	private String school, startDate, endDate, degree, additional, major, minor;
 	private Address address;
 	private boolean stillGoes;
-	private List<String> smallAddr;
 
 	public Education(String school, Address address, String startDate, String endDate,
 					 String degree, String additional, boolean stillGoes, String major,
