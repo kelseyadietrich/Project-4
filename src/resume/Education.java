@@ -1,12 +1,6 @@
 package resume;
 
-import java.io.Serializable;
-
-public class Education implements ResumeObject, Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Education implements ResumeObject {
 	private String school, startDate, endDate, degree, additional, major, minor;
 	private boolean stillGoes;
 
@@ -40,10 +34,9 @@ public class Education implements ResumeObject, Serializable {
 	public void setAdditional(String add){ this.additional = add; }
 	public void setMajor(String maj){ this.major = maj; }
 	public void setMinor(String min){ this.minor = min; }
-	public void setGoes(boolean stGoes){ 
-		this.stillGoes = stGoes;
+	public void setGoes(){
+		this.stillGoes = !this.stillGoes;
 	}
-
 
 	public void isSerializable(){}
 

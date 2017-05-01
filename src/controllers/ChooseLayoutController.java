@@ -11,7 +11,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import resume.Education;
-import resume.*;
+import resume.Parser;
+import resume.Parser2;
+import resume.Parser3;
 import resume.Skills;
 import resume.User;
 import resume.Work;
@@ -50,46 +52,44 @@ public class ChooseLayoutController {
 		this.edu = r.edu;
 		this.skills = r.skills;
 	}
-
 	@FXML
 	public void choose(){
-		parser1Call();
-	    getSelected();
-	    System.out.println("Calling view");
-	    callView();
+		getSelected();
+		System.out.println("Calling view");
+		callView();
 	}
 
-	@FXML
+	@FXML 
 	void pickOne() {
-	    layout1Picked = true;
-	    layout2Picked = false;
-	    layout3Picked = false;
+		layout1Picked = true;
+		layout2Picked = false;
+		layout3Picked = false;
 	}
-
-	@FXML
+	
+	@FXML 
 	void pickTwo() {
-	    layout1Picked = false;
-	    layout2Picked = true;
-	    layout3Picked = false;
+		layout1Picked = false;
+		layout2Picked = true;
+		layout3Picked = false;
 	}
-
-	@FXML
+	
+	@FXML 
 	void pickThree() {
-	    layout1Picked = false;
-	    layout2Picked = false;
-	    layout3Picked = true;
+		layout1Picked = false;
+		layout2Picked = false;
+		layout3Picked = true;
 	}
-
+	
 	private void getSelected() {
-	    if (layout1Picked) {
-	      parser1Call();
-	    }
-	    if (layout2Picked) {
-	      parser2Call();
-	    }
-	    if (layout3Picked) {
-	      parser3Call();
-	    }
+		if (layout1Picked) {
+			parser1Call();
+		}
+		if (layout2Picked) {
+			parser2Call();
+		}
+		if (layout3Picked) {
+			parser3Call();
+		}
 	}
 
 	public void callView() {
@@ -97,6 +97,13 @@ public class ChooseLayoutController {
 		System.out.println("Displaying content");
 		myViewer.DisplayContentsOf("../HTML.html");
 
+	}
+
+	public void doneError() {
+		Alert r = new Alert(AlertType.NONE, "Are you sure you're done? You haven't "
+				+ "entered any information." , ButtonType.OK);
+		r.setTitle("ERROR");
+		r.showAndWait();
 	}
 
 	//First parser that can be called
@@ -114,7 +121,7 @@ public class ChooseLayoutController {
 			parser.parseSkill(skills);
 
 		} catch (Exception exc) {
-			error("Are you sure you're done? You haven't entered any information.");
+			doneError();
 		}
 		parser.finalize();
 	}
@@ -134,40 +141,34 @@ public class ChooseLayoutController {
 			}
 
 		} catch (Exception exc) {
-			error("Are you sure you're done? You haven't entered any information.");
+			doneError();
 		}
 		parser.finalize();
 
 	}
+	
+	//Third parser that can be called
+	public void parser3Call() {
+		Parser3 parser = new Parser3();
+		parser.initialize();
+		try {
+			parser.parsePersonal(personal);
+			parser.parseSkills(skills);
+			parser.openWork();
+			for (int i = 0; i < work.size(); i++) {
+				parser.parseWork(work.get(i));
+			}
+			parser.closeWork();
+			parser.openEdu();
+			for (int e = 0; e < edu.size(); e++) {
+				parser.parseEducation(edu.get(e));
+			}
+			parser.closeEdu();
 
-	 //Third parser that can be called
+		} catch (Exception exc) {
+			doneError();
+		}
+		parser.finalize();
 
-	  public void parser3Call() {
-	    Parser3 parser = new Parser3();
-	    parser.initialize();
-	    try {
-		      parser.parsePersonal(personal);
-		      parser.parseSkills(skills);
-		      parser.openWork();
-		      for (int i = 0; i < work.size(); i++) {
-		        parser.parseWork(work.get(i));
-		      }
-		      parser.closeWork();
-		      parser.openEdu();
-		      for (int e = 0; e < edu.size(); e++) {
-		        parser.parseEducation(edu.get(e));
-		      }
-		      parser.closeEdu();
-	    } catch (Exception exc) {
-	    	error("Are you sure you're done? You haven't entered any information.");
-	    }
-	    parser.finalize();
-	    }
-
-
-	public void error(String e) {
-		Alert r = new Alert(AlertType.NONE, e , ButtonType.OK);
-		r.setTitle("ERROR");
-		r.showAndWait();
 	}
 }
