@@ -202,17 +202,14 @@ public class CVDataBase {
 	
 	public void insertSkillEntries(Skills skillList) throws SQLException{
 		PreparedStatement pstmt = c.prepareStatement("INSERT INTO SKILLSDATA VALUES (?,?,?);");
-	    ArrayList<Map.Entry<String, String>> skills = new ArrayList<>(skillList.getSkillAndDesc().entrySet());
+	    ArrayList<String> skills = new ArrayList<>(skillList.getAll());
 	    stmt = c.createStatement();
-	    for(Map.Entry<String, String> item : skills){
-	    	String sk = item.getKey();
-	    	String desc = item.getValue();
+	    for(String item : skills){
 	    	pstmt.setInt(1, skillEntryID);
-	    	pstmt.setString(2, sk);
+	    	pstmt.setString(2, item);
 	    	pstmt.setInt(3,  getPersonalID());
 	    	pstmt.executeUpdate();
 	    	skillEntryID += 1;
-	    	
 	    }
 		
 	}
@@ -232,8 +229,10 @@ public class CVDataBase {
 	public ArrayList<User> getAllKnownUsers() throws SQLException{
 		stmt = c.createStatement();
 		
+		
+		//getting names
 		ArrayList<String> names = new ArrayList<>();
-		String query = "SELECT Name FROM PERSONALDATA Order by id;";
+		String query = "SELECT Name FROM PERSONALDATA ORDER BY ID;";
 		ResultSet rs = stmt.executeQuery(query);
 		while(rs.next()){
 			names.add(rs.getString(1));
