@@ -20,9 +20,15 @@ public class DbMain {
 		Work testWork = new Work("CS Tutor", "Hendrix Math department", "aug-07-2016"
 				, "May-15-2017", "Lorem ipsum dolor sit", false);
 		Skills testSkills = new Skills();
+<<<<<<< HEAD
+		//testSkills.add("soccer", "player freshman year!");
+		
+		
+=======
 		testSkills.add("soccer");
 
 
+>>>>>>> abb4ef54586bcfcf1d1f2dd1489934d2a3502c44
 		try {
 			cvdb.setUp();
 		} catch (SQLException e) {
