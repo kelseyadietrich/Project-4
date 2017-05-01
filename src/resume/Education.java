@@ -5,14 +5,12 @@ import java.util.List;
 
 public class Education {
 	private String school, startDate, endDate, degree, additional, major, minor;
-	private Address address;
 	private boolean stillGoes;
 
-	public Education(String school, Address address, String startDate, String endDate,
+	public Education(String school, String startDate, String endDate,
 					 String degree, String additional, boolean stillGoes, String major,
 					 String minor){
 		this.school = school;
-		this.address = address;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.degree = degree;
@@ -23,7 +21,7 @@ public class Education {
 	}
 
 	public String getSchool(){ return school; }
-	public Address getAddress(){ return address; }
+	//public Address getAddress(){ return address; }
 	public String getStart(){ return startDate; }
 	public String getEnd(){ return endDate; }
 	public String getDegree(){ return degree; }
