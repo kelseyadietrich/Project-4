@@ -66,7 +66,7 @@ public class CVDataBase {
 
 	}
 
-	public void insertSkillEntries(Skills skillList) throws SQLException{
+	public void insertSkillEntries(Skills skillList) throws SQLException, IOException{
 		this.sqlInsertStmt.insertSkillEntries(skillList);
 	}
 	

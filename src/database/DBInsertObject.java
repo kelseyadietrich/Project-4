@@ -71,17 +71,14 @@ public class DBInsertObject {
 
 	}
 
-	public void insertSkillEntries(Skills skillList) throws SQLException{
+	public void insertSkillEntries(Skills skillList) throws SQLException, IOException{
 		PreparedStatement pstmt = c.prepareStatement("INSERT INTO SKILLSDATA VALUES (?,?,?);");
-	    ArrayList<String> skills = new ArrayList<>(skillList.getAll());
-	    this.stmt = this.c.createStatement();
-	    for(String item : skills){
-	    	pstmt.setInt(1, this.skillEntryID);
-	    	pstmt.setObject(2, item);
-	    	pstmt.setInt(3,  getPersonalID());
-	    	pstmt.executeUpdate();
-	    	this.skillEntryID += 1;
-	    }
+	    pstmt.setInt(1, this.skillEntryID);
+	    pstmt.setObject(2, serializeObject(skillList));
+	    pstmt.setInt(3,  getPersonalID());
+	    pstmt.executeUpdate();
+	    this.skillEntryID += 1;
+	    
 
 	}
 
