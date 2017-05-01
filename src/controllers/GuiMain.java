@@ -11,7 +11,7 @@ public class GuiMain extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(GuiMain.class.getResource("ChooseLayout.fxml"));
+		loader.setLocation(GuiMain.class.getResource("Start.fxml"));
 		AnchorPane root = (AnchorPane) loader.load();
 
 		Scene scene = new Scene(root, 507, 300);
