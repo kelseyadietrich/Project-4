@@ -11,7 +11,7 @@ public class User implements ResumeObject, Serializable{
 	private Address address;
 
 	public User(){}
-	
+
 	public User(String name, String email, String phone, Address address, String additional) {
 		this.name = name;
 		this.email =  email;
@@ -20,12 +20,14 @@ public class User implements ResumeObject, Serializable{
 		this.additional = additional;
 	}
 
-	public String getName(){ return name; }
-	public String getEmail(){ return email; }
-	public String getPhone(){ return phone; }
-	public Address getAddress(){ return address; }
-	public String getAdditional(){ return additional; }
-	
+	/// Table: PERSONALDATA
+
+	public String getName(){ return name; } // column 2
+	public String getEmail(){ return email; } // column 3
+	public String getPhone(){ return phone; } // column 4
+	public Address getAddress(){ return address; } // column 5
+	public String getAdditional(){ return additional; } // column 6
+
 	public void setName(String name){this.name = name;}
 	public void setEmail(String email){this.email = email;}
 	public void setPhone(String phone){this.phone = phone;}

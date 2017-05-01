@@ -1,3 +1,4 @@
+
 package resume;
 
 import java.io.Serializable;
@@ -51,3 +52,4 @@ public class Work implements ResumeObject, Serializable {
 
 
 }
+
