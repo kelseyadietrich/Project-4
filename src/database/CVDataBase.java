@@ -174,7 +174,6 @@ public class CVDataBase {
 	public void insertEducEntry(Education e) throws SQLException, IOException{
 		stmt = c.createStatement();
 		String school = e.getSchool();
-		Address address = e.getAddress();
 		String stDate = e.getStart();
 		String endDate = e.getEnd();
 		String degree = e.getDegree();
@@ -183,18 +182,17 @@ public class CVDataBase {
 		String minor = e.getMinor();
 		boolean stillgoes = e.stillGoes();
 		PreparedStatement pstmt = 
-				c.prepareStatement("INSERT INTO EDUCATIONDATA VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+				c.prepareStatement("INSERT INTO EDUCATIONDATA VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 		pstmt.setInt(1,  educIDCount);
 		pstmt.setString(2, school);
-		pstmt.setObject(3,  serializeObject(address));
-		pstmt.setString(4,  stDate);
-		pstmt.setString(5,  endDate);
-		pstmt.setBoolean(6,  stillgoes);
-		pstmt.setString(7, degree);
-		pstmt.setString(8, major);
-		pstmt.setString(9, minor);
-		pstmt.setString(10, additionalInfo);
-		pstmt.setInt(11, getPersonalID());
+		pstmt.setString(3,  stDate);
+		pstmt.setString(4,  endDate);
+		pstmt.setBoolean(5,  stillgoes);
+		pstmt.setString(6, degree);
+		pstmt.setString(7, major);
+		pstmt.setString(8, minor);
+		pstmt.setString(9, additionalInfo);
+		pstmt.setInt(10, getPersonalID());
 		pstmt.executeUpdate();
 		educIDCount += 1;
 		
@@ -225,9 +223,18 @@ public class CVDataBase {
 	}
 	
 	
-	public User getKnownUser(int i) throws SQLException{
+	public User getKnownUser(ResultSet rs) throws SQLException{
 		stmt = c.createStatement();
-		String query = "SELECT Name FROM PERSONALDATA WHERE ID=%d"
+//		  protected Currency processRow(ResultSet rs) throws SQLException {
+//		        Currency currency = new Currency();
+//		        currency.setId(rs.getInt("id"));
+//		        currency.setEUR(rs.getString("EUR"));
+//		        currency.setUSD(rs.getString("USD"));
+//		        currency.setRate(rs.getString("rate"));     
+//		        return currency;
+//
+//		    }
+		User u = new User();
 		return null;
 	}
 	

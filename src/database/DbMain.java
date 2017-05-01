@@ -12,24 +12,30 @@ import resume.Work;
 public class DbMain {
 	public static void main(String[] args){
 		CVDataBase cvdb = new CVDataBase();
-		
+
 		Address testAddress = new Address("1600 Washington ave", "Hutt 17", "Conway", "AR", "72032");
 		User testUser = new User("Bosco", "ndemeyemm@hendrix.edu", "501-514-8388", testAddress, "Lorem ipsum dolor sit");
-		Education testEd = new Education("Hendrix college", testAddress, "jan-01-2014"
+		Education testEd = new Education("Hendrix college", "jan-01-2014"
 				, "may-05-2018", "Bachelor's", "Lorem ipsum dolor sit", true, "Computer Science", "Applied Math");
 		Work testWork = new Work("CS Tutor", "Hendrix Math department", "aug-07-2016"
 				, "May-15-2017", "Lorem ipsum dolor sit", false);
 		Skills testSkills = new Skills();
+<<<<<<< HEAD
 		//testSkills.add("soccer", "player freshman year!");
 		
 		
+=======
+		testSkills.add("soccer");
+
+
+>>>>>>> abb4ef54586bcfcf1d1f2dd1489934d2a3502c44
 		try {
 			cvdb.setUp();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		try {
 			cvdb.insertPrsnlEntry(testUser);
 			cvdb.insertEducEntry(testEd);
