@@ -15,7 +15,7 @@ public class GuiMain extends Application{
 		loader.setLocation(GuiMain.class.getResource("Start.fxml"));
 		Pane root = (Pane) loader.load();
 
-		Scene scene = new Scene(root, 507, 300);
+		Scene scene = new Scene(root, 455, 475);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

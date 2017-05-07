@@ -23,10 +23,12 @@ public class StartController {
 	@FXML
 	ListView resumes;
 
-	
+	CVDataBase cvdb;
+
+
 	@FXML
 	public void initialize(){
-		CVDataBase data = new CVDataBase();
+		/*CVDataBase data = new CVDataBase();
 		try {
 			ArrayList<User> names = data.getPersonalData();
 			if (names != null) {
@@ -35,11 +37,18 @@ public class StartController {
 		} catch (Exception e) {
 			System.out.println("Could not start listview!");
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	@FXML
 	public void createDB(){
+		cvdb = new CVDataBase();
+		try {
+			cvdb.setUp();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		openResumeAdd();
 	}
 
@@ -49,6 +58,9 @@ public class StartController {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(GuiMain.class.getResource("ResumeAdd.fxml"));
 			Pane root = (Pane) loader.load();
+
+			ResumeAddController resume = (ResumeAddController) loader.getController();
+			resume.importVariables(this);
 
 			Stage secondStage = new Stage();
 			Scene scene = new Scene(root);
