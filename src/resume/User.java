@@ -1,6 +1,8 @@
 package resume;
 
-public class User implements ResumeObject{
+import java.io.Serializable;
+
+public class User implements ResumeObject, Serializable{
 	private String name, email, phone, additional;
 	private Address address;
 

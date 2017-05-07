@@ -15,7 +15,7 @@ public class DBSetUpObject {
 		
 		this.createPrsnlDataTableQuery = "CREATE TABLE IF NOT EXISTS PERSONALDATA "
 	            + "(PersonalID INT PRIMARY KEY     NOT NULL,"
-	            + "User BLOB NOT NULL;";
+	            + "User        BLOB                NOT NULL);";
 		
 		this.createExprDataTableQuery = "CREATE TABLE IF NOT EXISTS EXPERIENCEDATA "
 	            + "(ExperienceID INT PRIMARY KEY           NOT NULL,"
@@ -25,7 +25,7 @@ public class DBSetUpObject {
 		
 		this.createEducDataTableQuery = "CREATE TABLE IF NOT EXISTS EDUCATIONDATA "
 	            + "(EducItemID INT PRIMARY KEY         NOT NULL,"
-	            + "Education BLOB NOT NULL"
+	            + "Education BLOB NOT NULL,"
 	            + "PersonalIDEduc INT              ,"
 	            + "FOREIGN KEY (PersonalIDEduc) REFERENCES PERSONALDATA (PersonalID));";
 		
