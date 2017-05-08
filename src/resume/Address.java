@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Address implements Serializable{
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private String street, apt, city, state, zip;
@@ -22,7 +22,7 @@ public class Address implements Serializable{
 	public String getCity(){ return city; }
 	public String getState(){ return state; }
 	public String getZip(){ return zip; }
-	
+
 	public void setStreet(String st){ this.street = st; }
 	public void setApt(String ap){ this.apt = ap; }
 	public void setCity(String cty){ this.city = cty; }
@@ -30,8 +30,8 @@ public class Address implements Serializable{
 	public void setZip(String zp){ this.zip = zp; }
 
 	public String toString() {
-		String add = street  + apt  + city  + state  + zip;
+		String add = street + " " + apt + ", " + city + ", " + state + ", " + zip;
 		return add;
 	}
-	
+
 }

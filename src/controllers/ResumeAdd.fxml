@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ResumeAddController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ResumeAddController">
    <children>
       <TabPane fx:id="tabs" layoutX="-3.0" layoutY="-4.0" prefHeight="408.0" prefWidth="610.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -21,10 +21,10 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="379.0" prefWidth="594.0" style="-fx-background-color: b5bcfc;">
                      <children>
-                        <TextField fx:id="name" layoutX="72.0" layoutY="27.0" promptText="John Smith" text="Shane Atchley" />
-                        <TextField fx:id="email" layoutX="312.0" layoutY="24.0" prefHeight="25.0" prefWidth="288.0" promptText="smithjj@hendrix.edu" text="sosatchley@gmail.com" />
-                        <TextField fx:id="phone" layoutX="72.0" layoutY="81.0" promptText="(555)123-4567" text="(479) 216-9668" />
-                        <TextField fx:id="userStreet" layoutX="312.0" layoutY="80.0" prefHeight="25.0" prefWidth="289.0" promptText="1600 Washington Avenue" text="1600 Washington Ave" />
+                        <TextField fx:id="name" layoutX="72.0" layoutY="27.0" promptText="John Smith" text="Kelsey Dietrich" />
+                        <TextField fx:id="email" layoutX="312.0" layoutY="24.0" prefHeight="25.0" prefWidth="288.0" promptText="smithjj@hendrix.edu" text="dietrichkk@hendrix.edu" />
+                        <TextField fx:id="phone" layoutX="72.0" layoutY="81.0" promptText="(555)123-4567" text="(501) 733-0719" />
+                        <TextField fx:id="userStreet" layoutX="312.0" layoutY="80.0" prefHeight="25.0" prefWidth="289.0" promptText="1600 Washington Avenue" text="1600 Washington Avenue" />
                         <Label layoutX="22.0" layoutY="28.0" text="Name:">
                            <font>
                               <Font size="14.0" />
@@ -55,7 +55,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="userApt" layoutX="121.0" layoutY="128.0" prefHeight="25.0" prefWidth="51.0" promptText="3309" text="3039" />
+                        <TextField fx:id="userApt" layoutX="121.0" layoutY="128.0" prefHeight="25.0" prefWidth="51.0" promptText="3309" text="3309" />
                         <Label layoutX="189.0" layoutY="130.0" text="City:">
                            <font>
                               <Font size="14.0" />
@@ -73,7 +73,7 @@
                            </font>
                         </Label>
                         <TextField fx:id="userZip" layoutX="537.0" layoutY="129.0" prefHeight="25.0" prefWidth="63.0" promptText="72032" text="72032" />
-                        <TextArea fx:id="userAdditional" layoutX="14.0" layoutY="209.0" prefHeight="131.0" prefWidth="583.0" wrapText="true" />
+                        <TextArea fx:id="userAdditional" layoutX="14.0" layoutY="209.0" prefHeight="131.0" prefWidth="583.0" text="hire me pls" wrapText="true" />
                         <Button fx:id="personalDone" layoutX="279.0" layoutY="346.0" mnemonicParsing="false" onAction="#personalDone" text="Done" />
                         <ChoiceBox fx:id="userState" layoutX="360.0" layoutY="128.0" prefHeight="25.0" prefWidth="95.0" />
                      </children>
@@ -84,7 +84,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: fcdcb5;">
                      <children>
-                        <TextField fx:id="title" layoutX="101.0" layoutY="27.0" prefHeight="25.0" prefWidth="175.0" promptText="Computer Science TA" text="Rental Property Manager" />
+                        <TextField fx:id="title" layoutX="101.0" layoutY="27.0" prefHeight="25.0" prefWidth="175.0" promptText="Computer Science TA" text="Help Desk Worker" />
                         <Label layoutX="25.0" layoutY="29.0" text="Job Title:">
                            <font>
                               <Font size="14.0" />
@@ -95,7 +95,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="employer" layoutX="383.0" layoutY="28.0" prefHeight="25.0" prefWidth="170.0" promptText="Hendrix College" text="Select Realty" />
+                        <TextField fx:id="employer" layoutX="383.0" layoutY="28.0" prefHeight="25.0" prefWidth="170.0" promptText="Hendrix College" text="Hendrix College" />
                         <Label layoutX="25.0" layoutY="88.0" text="Start Date:">
                            <font>
                               <Font size="14.0" />
@@ -114,7 +114,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="jobAdditional" layoutX="25.0" layoutY="190.0" prefHeight="125.0" prefWidth="560.0" promptText="Computer Science lab assistant and tutor. Assisted students in entry level classes with computer science labs." text="Delt with tenants. Cleaned and repaired properties between renters. " wrapText="true" />
+                        <TextArea fx:id="jobAdditional" layoutX="25.0" layoutY="190.0" prefHeight="125.0" prefWidth="560.0" promptText="Computer Science lab assistant and tutor. Assisted students in entry level classes with computer science labs." text="fix campus tech" wrapText="true" />
                         <Button fx:id="addJob" layoutX="101.0" layoutY="331.0" mnemonicParsing="false" onAction="#addWork" text="Add Another Job" />
                         <Button fx:id="jobDone" layoutX="361.0" layoutY="331.0" mnemonicParsing="false" onAction="#workDone" text="Done" />
                      </children>
@@ -149,7 +149,7 @@
                            </font>
                         </Label>
                         <DatePicker fx:id="eduEnd" layoutX="328.0" layoutY="74.0" prefHeight="25.0" prefWidth="139.0" promptText="05/13/2017" />
-                        <CheckBox fx:id="stillGoes" layoutX="488.0" layoutY="79.0" mnemonicParsing="false" selected="true" text="I Still Go Here" />
+                        <CheckBox fx:id="stillGoes" layoutX="488.0" layoutY="79.0" mnemonicParsing="false" text="I Still Go Here" />
                         <Label layoutX="295.0" layoutY="229.0">
                            <font>
                               <Font size="14.0" />
@@ -174,7 +174,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="minor" layoutX="479.0" layoutY="129.0" prefHeight="25.0" prefWidth="113.0" />
+                        <TextField fx:id="minor" layoutX="479.0" layoutY="129.0" prefHeight="25.0" prefWidth="113.0" text="Sociology" />
                      </children>
                   </AnchorPane>
                </content>

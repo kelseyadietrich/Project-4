@@ -71,39 +71,32 @@ public class Parser2 {
 	}
 
 	public void parseWork(Work work) {
-		String title = work.getTitle();
-		title = title.toUpperCase();
-		String company = work.getEmployer();
-		company = company.toUpperCase();
+		String title = work.getTitle().toUpperCase();
+		String company = work.getEmployer().toUpperCase();
 		String date = "";
 		if (work.stillWorks() == true) {
 			date = "CURRENT EMPLOYER";
-		} else if (work.getStart() != "") {
-			date = work.getStart() + " - CURRENT";
-		} else if (work.stillWorks() == false && work.getEnd() != "") {
+		} else {
 			date = work.getStart() + " - " + work.getEnd();
 		}
-		date.toUpperCase();
 		parsed.add("<h4>" + title + " | " + company + " | " + date + "</h4>");
 		parsed.add("<p>" + work.getDescrip() + "</p>");
 	}
 
-	public void parseEducation(Education edu) {
+	public void openEducation(){
 		parsed.add("<h3>EDUCATION</h3><hr align=\"left\" size=\"10\" color= \"#ea4e4e\">");
-		String degree = edu.getDegree();
-		degree = degree.toUpperCase();
+	}
+
+	public void parseEducation(Education edu) {
+		String degree = edu.getDegree().toUpperCase();
 		String date = "";
 		if (edu.stillGoes() == true) {
 			date = "CURRENTLY PURSUING";
-		} else if (edu.getStart() != "") {
-			date = edu.getStart() + " - CURRENT";
-		} else if (edu.stillGoes() == false && edu.getEnd() != "") {
+		} else {
 			date = edu.getStart() + " - " + edu.getEnd();
 		}
-		String school = edu.getSchool();
-		school = school.toUpperCase();
-		String major = edu.getMajor();
-		major = major.toUpperCase();
+		String school = edu.getSchool().toUpperCase();
+		String major = edu.getMajor().toUpperCase();
 		parsed.add("<h4>" + degree + " OF " + major + " | " + date + " | " + school + "</h4>");
 		parsed.add("<p>" + edu.getAdditional() + "</p>");
 	}

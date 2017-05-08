@@ -24,7 +24,7 @@ public class CVDataBase {
 	Connection c;
 	Statement stmt;
 
-	
+
 	DBSetUpObject sqlStmt;
 	DBInsertObject sqlInsertStmt;
 	DBSelectorObject sqlSelectStmt;
@@ -37,7 +37,7 @@ public class CVDataBase {
 			this.sqlStmt = new DBSetUpObject();
 			this.sqlInsertStmt = new DBInsertObject(stmt, c);
 			this.sqlSelectStmt = new DBSelectorObject(stmt, c);
-			//setUp();
+			setUp();
 		} catch ( Exception e ) {
 			this.c = null;
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -47,8 +47,8 @@ public class CVDataBase {
 	}
 
 	public void setUp() throws SQLException{
+		System.out.println("Setting up database.");
 		this.sqlStmt.setUpWith(stmt, c);
-
 	}
 
 	//inserts
@@ -70,24 +70,24 @@ public class CVDataBase {
 	public void insertSkillEntries(Skills skillList) throws SQLException, IOException{
 		this.sqlInsertStmt.insertSkillEntries(skillList);
 	}
-	
+
 	//retrievals
 	public ArrayList<User> getPersonalData() throws ClassNotFoundException, SQLException, IOException{
 		return this.sqlSelectStmt.getAllKnownUsers();
 	}
-	
+
 	public ArrayList<Work> getExperienceData() throws ClassNotFoundException, SQLException, IOException{
 		return this.sqlSelectStmt.getAllKnownWorkExpr();
 	}
-	
+
 	public ArrayList<Education> getEducationData() throws ClassNotFoundException, IOException, SQLException{
 		return this.sqlSelectStmt.getAllKnownEducation();
 	}
-	
+
 	public ArrayList<Skills> getSkillsData() throws ClassNotFoundException, IOException, SQLException{
 		return this.sqlSelectStmt.getAllKnownSkills();
 	}
-	
+
 
 
 

@@ -22,8 +22,8 @@ public class DBInsertObject {
 	int exprIDCount;
 	int educIDCount;
 	int skillEntryID;
-	
-	
+
+
 	public DBInsertObject(Statement stmt, Connection c){
 		this.stmt = stmt;
 		this.c = c;
@@ -32,12 +32,13 @@ public class DBInsertObject {
 		this.educIDCount = 0;
 		this.skillEntryID = 0;
 	}
-	
+
 	int getPersonalID(){
 		return this.personalIDCount;
 	}
-	
+
 	public void insertPrsnlEntry(User u) throws SQLException, IOException{
+		System.out.println("Inserting Personal Entry");
 		this.stmt = this.c.createStatement();
 		PreparedStatement pstmt =
 				this.c.prepareStatement("INSERT INTO PERSONALDATA VALUES (?, ?);");
@@ -48,6 +49,7 @@ public class DBInsertObject {
 	}
 
 	public void insertWorkEntry(Work w) throws SQLException, IOException{
+		System.out.println("Inserting Work Entry.");
 		this.stmt = this.c.createStatement();
 		PreparedStatement pstmt =
 				this.c.prepareStatement("INSERT INTO EXPERIENCEDATA VALUES (?, ?, ?);");
@@ -60,6 +62,7 @@ public class DBInsertObject {
 
 
 	public void insertEducEntry(Education e) throws SQLException, IOException{
+		System.out.println("Inserting Education Entry.");
 		this.stmt = c.createStatement();
 		PreparedStatement pstmt =
 				this.c.prepareStatement("INSERT INTO EDUCATIONDATA VALUES (?, ?, ?);");
@@ -72,6 +75,7 @@ public class DBInsertObject {
 	}
 
 	public void insertSkillEntries(Skills skillList) throws SQLException, IOException{
+		System.out.println("Inserting skills.");
 		PreparedStatement pstmt = this.c.prepareStatement("INSERT INTO SKILLSDATA VALUES (?,?,?);");
 	    pstmt.setInt(1, this.skillEntryID);
 	    pstmt.setObject(2, serializeObject(skillList));

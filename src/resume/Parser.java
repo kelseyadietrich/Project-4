@@ -47,55 +47,47 @@ public class Parser {
 
 	}
 
-	public void parseWork(Work work) {
+	public void openWork(){
 		parsed.add("<h2>Experience</h2>");
-		String title = work.getTitle();
-		title = title.toUpperCase();
-		String company = work.getEmployer();
-		company.toUpperCase();
-		String start = work.getStart();
-		start.toUpperCase();
-		String end = work.getEnd();
-		end.toUpperCase();
-		parsed.add("<h3>" + title + " | " + company + " | " + start + " - " + end);
+	}
+
+	public void parseWork(Work work) {
+		String title = work.getTitle().toUpperCase();
+		String company = work.getEmployer().toUpperCase();
+		String start = work.getStart().toUpperCase();
+		String end = work.getEnd().toUpperCase();
+		parsed.add("<h3>" + title + " | " + company + " | " + start + " - " + ((end.equals(""))?"PRESENT":end));
 		parsed.add("<ul>");
 		parsed.add("<li>" + work.getDescrip() + "</ul> ");
+	}
 
+	public void openEducation(){
+		parsed.add("<h2>Education</h2>");
 	}
 
 	public void parseEducation(Education edu) {
-		parsed.add("<h2>Education</h2>");
-		String degree = edu.getDegree();
-		degree = degree.toUpperCase();
-		String date = edu.getEnd();
-		date = date.toUpperCase();
-		String school = edu.getSchool();
-		school.toUpperCase();
-
-		parsed.add("<h3>" + degree + " | " + date + " | " + school + "</h3>");
+		String degree = edu.getDegree().toUpperCase();
+		String start = edu.getStart().toUpperCase();
+		String end = edu.getEnd().toUpperCase();
+		String school = edu.getSchool().toUpperCase();
+		parsed.add("<h3>" + degree + " | " + start + " - " + ((end.equals(""))?"PRESENT":end) + " | " + school + "</h3>");
 		parsed.add("<ul>");
-		if (edu.getMajor() != "") {
-			parsed.add("<li>Major: " + edu.getMajor());
-		}
-		if (edu.getMinor() != "") {
-			parsed.add("<li>Minor: " + edu.getMinor());
-		}
-		if (edu.getAdditional() != "") {
-			parsed.add("<li>Additional: " + edu.getAdditional() + "</ul>");
-		}
-
+		if (!edu.getMajor().equals("")) parsed.add("<li>Major: " + edu.getMajor() + "</li>");
+		if (!edu.getMinor().equals("")) parsed.add("<li>Minor: " + edu.getMinor() + "</li>");
+		if (!edu.getAdditional().equals("")) parsed.add("<li>Additional: " + edu.getAdditional() + "</li?");
+		parsed.add("</ul>");
 	}
 
 	public void parseSkill(Skills skills) {
 		parsed.add("</li></ul><h2>Skills & Abilities</h2>");
 		parsed.add("<ul>");
-		
+
 		for (int a = 0; a < skills.size(); a++) {
 			parsed.add("<li><h3>" + skills.getSkill(a) + "</h3>");
-			
+
 		}
 		parsed.add("</ul>");
-		
+
 	}
 
 
