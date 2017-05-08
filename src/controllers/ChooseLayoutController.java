@@ -44,7 +44,6 @@ public class ChooseLayoutController {
 	@FXML
 	public void choose(){
 		getSelected();
-		System.out.println("Calling view");
 		callView();
 	}
 
@@ -82,7 +81,7 @@ public class ChooseLayoutController {
 				+ "entered any information." , ButtonType.OK);
 		r.setTitle("ERROR");
 		r.showAndWait();
-	}
+	}	@FXML void OneOver() {		layout1.setScaleX(1.05);		layout1.setScaleY(1.05);	}		@FXML void OneOFF() {		layout1.setScaleX(1.0);		layout1.setScaleY(1.0);	}		@FXML void twoOver() {		layout2.setScaleX(1.05);		layout2.setScaleY(1.05);	}		@FXML void twoOFF() {		layout2.setScaleX(1.0);		layout2.setScaleY(1.0);	}		@FXML void threeOver() {		layout3.setScaleX(1.05);		layout3.setScaleY(1.05);	}		@FXML void threeOFF() {		layout3.setScaleX(1.0);		layout3.setScaleY(1.0);	}
 	//First parser that can be called
 	public void parser1Call() {
 		Parser parser = new Parser();
