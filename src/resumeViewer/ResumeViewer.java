@@ -21,11 +21,13 @@ public class ResumeViewer {
 
 	public void DisplayContentsOf(String filelocation){
 		Stage webStage = new Stage();
-		webStage.setWidth(400);
-		webStage.setHeight(500);
+		webStage.setWidth(800);
+		webStage.setHeight(900);
 
 		Scene scene = new Scene(new Group());
 		ScrollPane scrollPane = new ScrollPane();
+		scrollPane.setPrefWidth(800);
+		scrollPane.setPrefHeight(900);
 	    scrollPane.setContent(this.browser);
 
 	    try {
