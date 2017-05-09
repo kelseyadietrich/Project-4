@@ -1,7 +1,7 @@
 package controllers;
 import java.io.IOException;import java.sql.SQLException;import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;import database.CVDataBase;import javafx.fxml.FXML;
+import java.util.List;import database.CVDataBase;import database.Database;import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -100,7 +100,7 @@ public class ResumeAddController {
 	User personal;
 	ArrayList<Work> work = new ArrayList<Work>();
 	ArrayList<Education> edu = new ArrayList<Education>();
-	Skills skills;	CVDataBase cvdb;
+	Skills skills;	int resNum = 1;	Database db;	CVDataBase cvdb;
 	List<String> States = new ArrayList<>(Arrays.asList("States", "Alabama", "Alaska", "Arizona",
 			"Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
 			"Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
@@ -119,7 +119,7 @@ public class ResumeAddController {
 		fillDegrees();		degree.setValue("Bachelor's");
 		document = new DocHandler();
 		skills = new Skills();
-	}	@FXML	public void importVariables(StartController start){		cvdb = start.cvdb;	}	@FXML
+	}	@FXML	public void importVariables(StartController start){		db = start.dbase;	}	@FXML
 	private void fillDegrees() {
 		for(String deg: Degrees){
 			degree.getItems().add(deg);
@@ -143,10 +143,10 @@ public class ResumeAddController {
 		return new Address(street, apt, city, state, zip);
 	}
 	@FXML
-	public void addWork(){
+	public void addWork() throws ClassNotFoundException{
 	    work.add(new Work(title.getText(), employer.getText(), (jobStart.getValue() == null)?"":jobStart.getValue().toString(),
 	        (jobEnd.getValue() == null)?"":jobEnd.getValue().toString(), jobAdditional.getText(),
-	         stillWorks.isSelected()));	    try {			cvdb.insertWorkEntry(work.get(work.size() - 1));		} catch (SQLException e) {			// TODO Auto-generated catch block			e.printStackTrace();		} catch (IOException e) {			// TODO Auto-generated catch block			e.printStackTrace();		}
+	         stillWorks.isSelected()));	   /* try {	    	Work latest = work.get(work.size() - 1);			db.sendCommand("INSERT INTO Work VALUES (" + resNum + ", " + latest.getTitle() + ", " + latest.getEmployer() + ", " + latest.getStart()													   + ", " + latest.getEnd() + ", " + latest.stillWorks() + ", "	+ latest.getDescrip() + ")");		} catch (SQLException e) {			// TODO Auto-generated catch block			e.printStackTrace();		}*/
 	    title.setText("");
 	    employer.setText("");
 	    jobStart.setValue(null);
@@ -155,10 +155,10 @@ public class ResumeAddController {
 	    stillWorks.setSelected(false);
 	}
 	@FXML
-	public void addEdu(){
+	public void addEdu() throws ClassNotFoundException{
 		edu.add(new Education(school.getText(), (eduStart.getValue() == null)?"":eduStart.getValue().toString(),
 				(eduEnd.getValue() == null)?"":eduEnd.getValue().toString(), degree.getSelectionModel().getSelectedItem(),
-				 eduAdditional.getText(), stillGoes.isSelected(), major.getText(), minor.getText()));		/*		try {			cvdb.insertEducEntry(edu.get(edu.size() - 1));		} catch (SQLException e) {			// TODO Auto-generated catch block			e.printStackTrace();		} catch (IOException e) {			// TODO Auto-generated catch block			e.printStackTrace();		}*/		if(major.getText() != "") System.out.println("major: " + major.getText());		if(minor.getText().equals("")) System.out.println("minor is empty");		if(eduAdditional.getText() != "") System.out.println("additional: " + eduAdditional.getText());
+				 eduAdditional.getText(), stillGoes.isSelected(), major.getText(), minor.getText()));		/*try {			Education latest = edu.get(edu.size()-1);			db.sendCommand("INSERT INTO Education VALUES (" + resNum + ", " + latest.getSchool() + ", " + latest.getStart() + ", "															+ latest.getEnd() + ", " + latest.stillGoes() + ", " + latest.getDegree() + ", "															+ latest.getMajor() + ", " + latest.getMinor() + ", " + latest.getAdditional() + ")");		} catch (SQLException e) {			// TODO Auto-generated catch block			e.printStackTrace();		}*/		if(major.getText() != "") System.out.println("major: " + major.getText());		if(minor.getText().equals("")) System.out.println("minor is empty");		if(eduAdditional.getText() != "") System.out.println("additional: " + eduAdditional.getText());
 		school.setText("");
 		eduStart.setValue(null);
 		eduEnd.setValue(null);
@@ -170,14 +170,14 @@ public class ResumeAddController {
 	}
 
 	@FXML
-	public void addSkills(){
-		if(skill1.getText() != "") { skills.add(skill1.getText()); }
-		if(skill2.getText() != "") { skills.add(skill2.getText()); }
-		if(skill3.getText() != "") { skills.add(skill3.getText()); }
-		if(skill4.getText() != "") { skills.add(skill4.getText()); }
-		if(skill5.getText() != "") { skills.add(skill5.getText()); }
-		if(skill6.getText() != "") { skills.add(skill6.getText()); }
-		if(skill7.getText() != "") { skills.add(skill7.getText()); }		/*try {			cvdb.insertSkillEntries(skills);		} catch (SQLException e) {			// TODO Auto-generated catch block			e.printStackTrace();		} catch (IOException e) {			// TODO Auto-generated catch block			e.printStackTrace();		}*/
+	public void addSkills() throws ClassNotFoundException{
+		if(!skill1.getText().equals("")) { skills.add(skill1.getText()); }
+		if(!skill2.getText().equals("")) { skills.add(skill2.getText()); }
+		if(!skill3.getText().equals("")) { skills.add(skill3.getText()); }
+		if(!skill4.getText().equals("")) { skills.add(skill4.getText()); }
+		if(!skill5.getText().equals("")) { skills.add(skill5.getText()); }
+		if(!skill6.getText().equals("")) { skills.add(skill6.getText()); }
+		if(!skill7.getText().equals("")) { skills.add(skill7.getText()); }		/*for(int i = 7; i > 0; i --){			try{				db.sendCommand("INSERT INTO Skills VALUES (" + resNum + ", " + skills.getSkill(skills.size() - i) + ")");			} catch (SQLException e){				e.printStackTrace();			}		}*/
 		skill1.setText("");
 		skill2.setText("");
 		skill3.setText("");
@@ -187,25 +187,25 @@ public class ResumeAddController {
 		skill7.setText("");
 	}
 	@FXML
-	public void personalDone(){		boolean errors = checkPersonal();		if(!errors){
+	public void personalDone() throws ClassNotFoundException{		boolean errors = checkPersonal();		if(!errors){
 			personal = new User(name.getText(), email.getText(), phone.getText(),
-								getUserAddress(), userAdditional.getText());			try {				cvdb.insertPrsnlEntry(personal);			} catch (SQLException | IOException e) {				// TODO Auto-generated catch block				e.printStackTrace();			}
+								getUserAddress(), userAdditional.getText());			/*try {				db.sendCommand("INSERT INTO Personal VALUES (" + resNum + "," + personal.getNameSQL() + "," + personal.getEmailSQL() + ","															   + personal.getPhoneSQL() + "," + personal.getAddress().getStreetSQL() + ","															   + personal.getAddress().getAptSQL() + "," + personal.getAddress().getCitySQL() + ","															   + personal.getAddress().getStateSQL() + "," + personal.getAddress().getZip() + ","															   + personal.getAddSQL() + ")");			} catch (SQLException e) {				// TODO Auto-generated catch block				e.printStackTrace();			}*/
 			tabs.getSelectionModel().select(1);		}
 		//System.out.println(personal.toString());
 	}
 	@FXML
 	public void workDone(){		boolean errors = checkWork();		if(!errors){
-		    addWork();
+		    try {				addWork();			} catch (ClassNotFoundException e) {				// TODO Auto-generated catch block				e.printStackTrace();			}
 		    tabs.getSelectionModel().select(2);		}
 	}
 	@FXML
 	public void eduDone(){		boolean errors = checkEdu();		if(!errors){
-			addEdu();
+			try {				addEdu();			} catch (ClassNotFoundException e) {				// TODO Auto-generated catch block				e.printStackTrace();			}
 			tabs.getSelectionModel().select(3);		}
 	}
 	@FXML
 	public void skillsDone(){
-		addSkills();
+		try {			addSkills();		} catch (ClassNotFoundException e) {			// TODO Auto-generated catch block			e.printStackTrace();		}
 		tabs.getSelectionModel().selectFirst();
 	}
 	//Where the parsers are called from the button

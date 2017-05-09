@@ -23,6 +23,43 @@ public class Address implements Serializable{
 	public String getState(){ return state; }
 	public String getZip(){ return zip; }
 
+	public String getStreetSQL(){
+		String newStreet = "";
+		for(int i = 0; i < street.length(); i ++){
+			char letter = street.charAt(i);
+			if(!Character.isLetter(letter)) newStreet += "\"" + letter + "\"";
+			else { newStreet += letter;}
+		}
+		return newStreet;
+	}
+	public String getAptSQL(){
+		String newApt = "";
+		for(int i = 0; i < apt.length(); i ++){
+			char letter = apt.charAt(i);
+			if(!Character.isLetter(letter)) newApt += "\"" + letter + "\"";
+			else { newApt += letter;}
+		}
+		return newApt;
+	}
+	public String getCitySQL(){
+		String newName = "";
+		for(int i = 0; i < city.length(); i ++){
+			char letter = city.charAt(i);
+			if(!Character.isLetter(letter)) newName += "\"" + letter + "\"";
+			else { newName += letter;}
+		}
+		return newName;
+	}
+	public String getStateSQL(){
+		String newName = "";
+		for(int i = 0; i < state.length(); i ++){
+			char letter = state.charAt(i);
+			if(!Character.isLetter(letter)) newName += "\"" + letter + "\"";
+			else { newName += letter;}
+		}
+		return newName;
+	}
+
 	public void setStreet(String st){ this.street = st; }
 	public void setApt(String ap){ this.apt = ap; }
 	public void setCity(String cty){ this.city = cty; }

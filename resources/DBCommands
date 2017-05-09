@@ -1,0 +1,4 @@
+CREATE TABLE Personal (ResID INTEGER, Name TEXT, Email TEXT, Phone TEXT, Address TEXT, Additional TEXT)
+CREATE TABLE Work (ResID INTEGER, Job TEXT, Employer TEXT, Start TEXT, End TEXT, Current BOOLEAN, Additional TEXT)
+CREATE TABLE Education (ResID INTEGER, School TEXT, Start TEXT, End TEXT, Current BOOLEAN, Degree TEXT, Major TEXT, Minor TEXT, Additional TEXT)
+CREATE TABLE Skills (ResID INTEGER, Skill TEXT)

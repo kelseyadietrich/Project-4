@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import database.Database;
 import database.CVDataBase;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -24,6 +25,7 @@ public class StartController {
 	ListView resumes;
 
 	CVDataBase cvdb;
+	Database dbase;
 
 
 	@FXML
@@ -41,14 +43,10 @@ public class StartController {
 	}
 
 	@FXML
-	public void createDB(){
-		cvdb = new CVDataBase();
-		try {
-			cvdb.setUp();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void createDB() throws ClassNotFoundException, SQLException, IOException{
+		/*dbase = new Database();
+		dbase.main();*/
+
 		openResumeAdd();
 	}
 
